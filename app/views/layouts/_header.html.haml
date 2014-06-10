@@ -1,0 +1,17 @@
+.navbar.navbar-default(role="navigation")
+  .navbar-header
+    %button.navbar-toggle(type="button" data-toggle="collapse")
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    = link_to I18n.t("brand.name"), root_path, class: "navbar-brand"
+  .collapse.navbar-collapse
+    %ul.nav.navbar-nav.navbar-right
+      - if user_signed_in? and current_user
+        %li
+          = link_to content_tag(:i, "", class: "glyphicon glyphicon-user") + t("account.status"), root_path
+        %li
+          = link_to content_tag(:i, "", class: "glyphicon glyphicon-leaf") + t("account.logout"), destroy_user_session_path, method: :delete, id: "logout"
+      - else
+        %li= link_to t("account.new"), new_user_registration_path
+        %li= link_to t("account.login"), new_user_session_path, id: "login"
