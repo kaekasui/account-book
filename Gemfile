@@ -50,3 +50,31 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
+
+# For test
+gem 'capybara'
+gem 'capybara-webkit'
+gem 'rspec-rails'
+gem 'guard-rspec'
+gem 'growl'
+gem 'webrat'
+gem 'database_cleaner'
+gem 'factory_girl_rails'
+gem 'better_errors'
+gem 'binding_of_caller'
+gem 'spork'
+gem 'faker'
+gem 'simplecov', require: false
+gem 'simplecov-rcov', require: false
+gem 'ci_reporter'
+gem 'launchy'
+gem 'selenium-webdriver'
+
+# i18n
+gem 'rails-i18n'
+gem 'i18n_generators'
+
+gem 'paranoia'
+gem 'kaminari'
+
+gem 'dotenv-rails'
