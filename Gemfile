@@ -55,6 +55,7 @@ gem 'devise'
 gem 'capybara'
 gem 'capybara-webkit'
 gem 'rspec-rails'
+gem 'rspec-collection_matchers'
 gem 'guard-rspec'
 gem 'growl'
 gem 'webrat'
@@ -69,6 +70,7 @@ gem 'simplecov-rcov', require: false
 gem 'ci_reporter'
 gem 'launchy'
 gem 'selenium-webdriver'
+gem 'growl'
 
 # i18n
 gem 'rails-i18n'
