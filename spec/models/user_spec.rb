@@ -18,4 +18,12 @@ describe User do
     user = build(:user, password: "")
     expect(user).to have(1).errors_on(:password)
   end
+
+  # 論理削除となり、削除時刻が更新されること
+  it 'updates the deleted_at' do
+    user = create(:user)
+    expect(user.deleted_at).to be_nil
+    user.destroy
+    expect(user.deleted_at).not_to be_nil
+  end
 end
