@@ -68,6 +68,7 @@ gem 'faker'
 gem 'simplecov', require: false
 gem 'simplecov-rcov', require: false
 gem 'ci_reporter'
+gem 'rspec-legacy_formatters'
 gem 'launchy'
 gem 'selenium-webdriver'
 gem 'growl'
