@@ -1,0 +1,7 @@
+.panel.panel-default
+  .panel-heading= Breakdown.model_name.human
+  .panel-body
+    = form_for @breakdown, remote: true do |f| 
+      = f.text_field :name, placeholder: "", class: "form-control"
+  %table.table.breakdown
+    = render partial: @breakdowns
