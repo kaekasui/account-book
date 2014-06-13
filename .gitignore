@@ -19,3 +19,7 @@
 # Spec Reports
 # rake ci:setup:rspec spec
 /spec/reports/*
+
+# Ignore the swap files.
+/*.swp
+/*/*.swp
