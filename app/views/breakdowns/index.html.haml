@@ -2,6 +2,7 @@
   .panel-heading= Breakdown.model_name.human
   .panel-body
     = form_for @breakdown, remote: true do |f| 
+      = f.select :category_id, Category.all.map {|c| [c.name, c.id]}
       = f.text_field :name, placeholder: "", class: "form-control"
   %table.table.breakdown
     = render partial: @breakdowns
