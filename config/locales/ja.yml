@@ -1,3 +1,13 @@
 ja:
   brand:
     name: "おこづかい管理サイト"
+  buttons:
+    sign_in: "ログインする"
+  helpers:
+    submit:
+      user:
+        create: "新規登録する"
+  links:
+    sign_in: "ログイン"
+    sign_up: "新規登録"
+    sign_out: "ログアウト"
