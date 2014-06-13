@@ -1,0 +1,7 @@
+.panel.panel-default
+  .panel-heading= Category.model_name.human
+  .panel-body
+    = form_for @category, remote: true do |f| 
+      = f.text_field :name, placeholder: "", class: "form-control"
+  %table.table.category
+    = render partial: @categories
