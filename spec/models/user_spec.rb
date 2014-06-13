@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User do
+describe User type: :model do
   # メールアドレスとパスワードが有れば有効な状態であること
   it 'is valid with a email.' do
     user = build(:user)
