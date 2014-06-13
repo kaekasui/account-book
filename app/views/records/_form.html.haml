@@ -1,0 +1,22 @@
+= form_for @record do |f|
+  - if @record.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@record.errors.count, "error")} prohibited this record from being saved:"
+      %ul
+        - @record.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :published_at
+    = f.date_select :published_at
+  .field
+    = f.label :breakdown_id
+    = f.select :breakdown_id, Breakdown.all.map { |b| [b.name, b.id] }
+  .field
+    = f.label :charge
+    = f.number_field :charge
+  .field
+    = f.label :memo
+    = f.text_area :memo
+  .actions
+    = f.submit

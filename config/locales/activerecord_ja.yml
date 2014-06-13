@@ -5,3 +5,8 @@ ja:
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "パスワード（確認）"
+      record:
+        breakdown_id: "内訳"
+        charge: "料金"
+        memo: "メモ"
+        published_at: "日付"

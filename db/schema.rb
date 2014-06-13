@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613202111) do
+ActiveRecord::Schema.define(version: 20140613221835) do
 
   create_table "breakdowns", force: true do |t|
     t.string   "name"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20140613202111) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "records", force: true do |t|
+    t.date     "published_at"
+    t.integer  "charge"
+    t.integer  "breakdown_id"
+    t.text     "memo"
+    t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

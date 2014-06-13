@@ -14,3 +14,5 @@ ja:
   menu:
     breakdown: "内訳"
     category: "カテゴリ"
+    new_record: "入力する"
+    record: "履歴"
