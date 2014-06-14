@@ -6,5 +6,6 @@
   %li.list-group-item= link_to I18n.t("menu.record"), records_path
 
 %ul.nav.nav-pills
-  - @years.each do |key, value|
-    %li= link_to key.to_s + I18n.t("date.year"), records_path(year: key)
+  - if @years
+    - @years.each do |key, value|
+      %li= link_to key.to_s + I18n.t("date.year"), records_path(year: key)
