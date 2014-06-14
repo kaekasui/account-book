@@ -1,4 +1,7 @@
 ja:
+  date:
+    month: "月"
+    year: "年"
   category:
     income: "収入"
     outgo: "支出"

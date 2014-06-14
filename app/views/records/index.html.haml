@@ -1,21 +1,12 @@
-%table
-  %tr
-    %th Published at
-    %th Charge
-    %th Breakdown
-    %th Memo
-    %th Deleted at
-    %th
-    %th
-    %th
+= render partial: 'records/links'
 
+%table.table
   - @records.each do |record|
     %tr
       %td= record.published_at
+      %td= record.breakdown.category.name
+      %td= record.breakdown.name
       %td= record.charge
-      %td= record.breakdown_id
-      %td= record.memo
-      %td= record.deleted_at
       %td= link_to 'Show', record
       %td= link_to 'Edit', edit_record_path(record)
       %td= link_to 'Destroy', record, :method => :delete, :data => { :confirm => 'Are you sure?' }

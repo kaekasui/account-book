@@ -1,0 +1,4 @@
+= @year + I18n.t("date.year")
+%ul.nav.nav-pills
+  - 1.upto(12) do |month|
+    %li(class="#{@month == month.to_s ? 'active' : ''}")= link_to month.to_s + I18n.t("date.month"), records_path(year: @year, month: month)
