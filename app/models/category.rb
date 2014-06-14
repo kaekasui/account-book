@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
+  acts_as_paranoid
   validates :name, presence: true, length: { maximum: MAX_LONG_TEXT_FIELD_LENGTH }
 
   has_many :breakdowns
