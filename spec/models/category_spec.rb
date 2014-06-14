@@ -50,4 +50,24 @@ RSpec.describe Category, type: :model do
       expect(category.barance_of_payments_name).to eq I18n.t("category.income")
     end
   end
+
+  context 'when a cateogry destroys' do
+    let(:user) { create(:user) }
+    let(:category) { create(:category) }
+
+    it 'destroys some breakdowns that belongs to the category.' do
+      breakdown = create(:breakdown, category_id: category.id, user_id: user.id)
+      expect(breakdown.reload.deleted_at).to be_nil
+      category.destroy
+      expect(breakdown.reload.deleted_at).not_to be_nil
+    end
+
+    it "dosen't some breakdowns that dosen't belong to the category." do
+      category2 = create(:category)
+      breakdown = create(:breakdown, category_id: category2.id, user_id: user.id)
+      expect(breakdown.reload.deleted_at).to be_nil
+      category.destroy
+      expect(breakdown.reload.deleted_at).to be_nil
+    end
+  end
 end
