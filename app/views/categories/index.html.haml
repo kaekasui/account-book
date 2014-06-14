@@ -2,6 +2,13 @@
   .panel-heading= Category.model_name.human
   .panel-body
     = form_for @category, remote: true do |f| 
+      .btn-group{"data-toggle" => "buttons"}
+        %label.btn.btn-defaults
+          = f.radio_button :barance_of_payments, "0", class: "form-control"
+          = I18n.t("category.outgo")
+        %label.btn.btn-defaults
+          = f.radio_button :barance_of_payments, "1", class: "form-control"
+          = I18n.t("category.income")
       = f.text_field :name, placeholder: "", class: "form-control"
   %table.table.category
     = render partial: @categories

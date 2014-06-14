@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 
   def index
     @category = Category.new
-    @categories = Category.all
+    @categories = Category.all.order_updated_at
   end
 
   def edit
@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+    @category.barance_of_payments = 0 if category_params[:barance_of_payments].nil?
     @category.save
     respond_with @category, location: categories_path
   end
@@ -42,6 +43,6 @@ class CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name, :barance_of_payments)
     end
 end
