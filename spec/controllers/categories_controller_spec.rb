@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
-
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
   }
@@ -11,6 +10,11 @@ RSpec.describe CategoriesController, type: :controller do
   }
 
   let(:valid_session) { {} }
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
 
   describe "GET index" do
     it "assigns all categories as @categories" do
@@ -122,5 +126,9 @@ RSpec.describe CategoriesController, type: :controller do
       delete :destroy, { id: category.id }
       expect(response).to redirect_to(categories_url)
     end
+  end
+
+  after do
+    sign_out :user
   end
 end
