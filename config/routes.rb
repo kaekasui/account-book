@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   resources :categories, except: [:new, :show]
   resources :breakdowns, except: [:new, :show]
-  resources :records
+  resources :records do
+    post "/set_breakdowns_from_category" => "records#set_breakdowns_from_category", on: :collection
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

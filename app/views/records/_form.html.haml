@@ -6,17 +6,20 @@
         - @record.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :published_at
+  .form-group
+    = f.label :published_at, class: "control-label"
     = f.date_select :published_at
-  .field
-    = f.label :breakdown_id
+  .form-group
+    = label :category, :name, Category.human_attribute_name(:name), class: "control-label category"
+    = select :category, :name, Category.all.map { |c| [c.name, c.id] }, class: "category"
+  .form-group
+    = f.label :breakdown_id, class: "control-label"
     = f.select :breakdown_id, Breakdown.all.map { |b| [b.name, b.id] }
-  .field
-    = f.label :charge
-    = f.number_field :charge
-  .field
-    = f.label :memo
-    = f.text_area :memo
+  .form-group
+    = f.label :charge, class: "control-label"
+    = f.number_field :charge, class: "form-control"
+  .form-group
+    = f.label :memo, class: "control-label"
+    = f.text_area :memo, class: "form-control"
   .actions
-    = f.submit
+    = f.submit class: "btn btn-default"
