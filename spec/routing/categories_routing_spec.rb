@@ -12,7 +12,7 @@ RSpec.describe CategoriesController, :type => :routing do
     end
 
     it "routes to #show" do
-      expect(:get => "/categories/1").not_to route_to("categories#show", :id => "1")
+      expect(:get => "/categories/1").to route_to("categories#show", :id => "1")
     end
 
     it "routes to #edit" do

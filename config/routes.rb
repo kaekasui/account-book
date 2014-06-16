@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :categories, except: [:new, :show]
+  resources :categories, except: [:new]
   resources :breakdowns, except: [:new, :show]
   resources :records do
     post "/set_breakdowns_from_category" => "records#set_breakdowns_from_category", on: :collection
