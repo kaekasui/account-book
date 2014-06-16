@@ -5,7 +5,11 @@
   %li.list-group-item= link_to I18n.t("menu.breakdown"), breakdowns_path
   %li.list-group-item= link_to I18n.t("menu.record"), records_path
 
-%ul.nav.nav-pills
-  - if @years
+- if @years
+  %ul.nav.nav-pills
     - @years.each do |key, value|
       %li= link_to key.to_s + I18n.t("date.year"), records_path(year: key)
+  %p= @current_year.to_s + I18n.t("date.year")
+  %ul.nav.nav-pills
+    - 1.upto(12) do |month|
+      %li(class="#{@month == month.to_s ? 'active' : ''}")= link_to month.to_s + I18n.t("date.month"), records_path(year: @current_year, month: month)

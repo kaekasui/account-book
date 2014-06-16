@@ -1,12 +1,10 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_record, only: [:show, :edit, :update, :destroy]
-  before_action :set_years
   skip_before_action :verify_authenticity_token, only: [:set_breakdowns_from_category]
 
   def index
     @year = year_param || Date.today.year.to_s
-    @month = month_param || Date.today.month.to_s
+    @month = month_param || (@year == Date.today.year.to_s ? Date.today.month.to_s : "1")
 
     @records = current_user.records.where("year(published_at) = #{@year} and month(published_at) = #{@month}")
   end
@@ -93,7 +91,4 @@ class RecordsController < ApplicationController
       params[:month]
     end
 
-    def set_years
-      @years = current_user.records.group_by_years
-    end
 end
