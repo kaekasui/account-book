@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     def set_years
       if current_user && !@years
         @years = current_user.records.group_by_years
-        @current_year = Date.today.year
+        @current_day = Date.today
       end
     end
 end
