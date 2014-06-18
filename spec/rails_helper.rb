@@ -48,24 +48,30 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Capybara::DSL
 
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # Use Devise Test Helper
   config.include Devise::TestHelpers, :type => :controller
 
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean_with(:truncation)
-  end
 
-  config.before(:each) do
+  config.before :each do
+    if Capybara.current_driver == :rack_test
+      DatabaseCleaner.strategy = :transaction
+    else
+      DatabaseCleaner.strategy = :truncation
+    end
     DatabaseCleaner.start
   end
 
-  config.after(:each) do
+  config.after do
     DatabaseCleaner.clean
   end
+
+  #config.before(:suite) do
+  #  DatabaseCleaner.strategy = :truncation
+  #  DatabaseCleaner.clean_with(:truncation)
+  #end
 
   config.infer_spec_type_from_file_location!
   config.infer_base_class_for_anonymous_controllers = false
