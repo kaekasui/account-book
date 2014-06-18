@@ -1,10 +1,14 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
   respond_to :js
 
   def index
     @category = Category.new
     @categories = Category.all.order_updated_at
+  end
+
+  def show
+    @breakdowns = @category.breakdowns
   end
 
   def edit

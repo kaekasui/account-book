@@ -1,0 +1,11 @@
+%p= @category.name
+
+%table.table
+  %tr
+    - @breakdowns.each do |breakdown|
+      - breakdown.records.each do |record|
+        %td= record.published_at
+        %td= breakdown.name
+        %td= record.charge 
+        %td= record.memo
+       

@@ -1,5 +1,5 @@
 %tr
   %td= category.barance_of_payments_name
-  %td= category.name
+  %td= link_to category.name, category
   %td= link_to 'Edit', edit_category_path(id: category.id)
   %td= link_to 'Destroy', category, method: :delete, data: { confirm: "Are you sure? it has #{category.breakdowns.count} breakdowns" }
