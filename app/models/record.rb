@@ -8,4 +8,8 @@ class Record < ActiveRecord::Base
 
   scope :group_by_years, -> { group("date_format(published_at, '%Y')").count }
   scope :group_by_months, -> { group("date_format(published_at, '%Y/%m')").count }
+
+  def yen_charge
+    "¥" + self.charge.to_s
+  end
 end
