@@ -17,13 +17,17 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     @category.barance_of_payments = 0 if category_params[:barance_of_payments].nil?
+    @category.user_id = current_user.id
     @category.save
     respond_with @category, location: categories_path
   end
 
   def update
     respond_to do |format|
-      if @category.update(category_params)
+      @category.update_attributes(category_params)
+      @category.barance_of_payments = 0 if category_params[:barance_of_payments].nil?
+      @category.user_id = current_user.id
+      if @category.save
         format.html { redirect_to categories_path, notice: 'Category was successfully updated.' }
         format.json { render :show, status: :ok, location: categories_path }
       else

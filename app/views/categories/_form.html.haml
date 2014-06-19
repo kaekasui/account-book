@@ -10,10 +10,10 @@
     = f.label :barance_of_payments, class: "control-label"
     .btn-group{"data-toggle" => "buttons"}
       %label.btn.btn-defaults
-        = f.radio_button :barance_of_payments, 1, class: "form-control"
+        = f.radio_button :barance_of_payments, 0, class: "form-control"
         = I18n.t("category.outgo")
       %label.btn.btn-defaults
-        = f.radio_button :barance_of_payments, 0, class: "form-control"
+        = f.radio_button :barance_of_payments, 1, class: "form-control"
         = I18n.t("category.income")
   .form-group
     = f.label :name, class: "control-label"
