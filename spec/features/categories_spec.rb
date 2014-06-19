@@ -21,4 +21,12 @@ js: true
     JS
     #expect(page).to have_content(category_name)
 =end
+
+  scenario "display the category's records" do
+    category = create(:category)
+    visit categories_path
+    click_link category.name
+
+    expect(page).to have_content(category.name)
+  end
 end
