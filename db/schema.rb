@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614200708) do
+ActiveRecord::Schema.define(version: 20140619151816) do
 
   create_table "breakdowns", force: true do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140614200708) do
     t.datetime "updated_at"
     t.boolean  "barance_of_payments"
     t.datetime "deleted_at"
+    t.integer  "user_id"
   end
 
   create_table "records", force: true do |t|
