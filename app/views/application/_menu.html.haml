@@ -12,3 +12,6 @@
   %ul.nav.nav-pills
     %li= link_to I18n.t("date.last_month"), records_path(year: (@current_day-1.month).year, month: (@current_day-1.month).month)
     %li= link_to I18n.t("date.current_month"), records_path(year: @current_day.year, month: @current_day.month)
+
+%ul.list-group
+  %li.list-group-item= link_to I18n.t("menu.import"), csv_new_path

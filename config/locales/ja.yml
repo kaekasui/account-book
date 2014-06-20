@@ -23,4 +23,5 @@ ja:
     breakdown: "内訳"
     category: "カテゴリ"
     new_record: "入力する"
+    import: "CSVインポート"
     record: "履歴"

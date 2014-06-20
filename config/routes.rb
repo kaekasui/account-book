@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  get 'csv/new' => 'csv#new'
+  post 'csv/import' => 'csv#import'
   resources :categories, except: [:new]
   resources :breakdowns, except: [:new, :show]
   resources :records do
