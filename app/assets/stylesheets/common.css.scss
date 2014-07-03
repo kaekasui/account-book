@@ -1,3 +1,23 @@
 body {
-  background-image: url("wood.png")
+  .navbar-default .navbar-brand {
+    width: 300px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Lucida Grande', Meiryo, sans-serif;
+    img { width: 60px; }
+    span.brand-name { border-bottom: dotted 3px #76891a; }
+    padding: 10px 10px 10px 40px;
+  }
+  span { padding: 3px; }
+  li.list-group-item {
+    a { color: #AC5E9F; }
+    span {
+      padding-right: 7px;
+      color: #AC5E9F;
+    }
+  }
+  a img { padding-right: 7px; }
+  background-image: url("wood.png");
+  .list-group-item {
+  }
 }

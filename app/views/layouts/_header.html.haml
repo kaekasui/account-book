@@ -4,14 +4,12 @@
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
-    = link_to I18n.t("brand.name"), root_path, class: "navbar-brand"
+    = link_to image_tag('pig.gif') + content_tag(:span, I18n.t("brand.name"), class: "brand-name") + content_tag(:span, "", class: "glyphicon glyphicon-paperclip"), root_path, class: "navbar-brand"
   .collapse.navbar-collapse
-    %ul.nav.navbar-nav.navbar-right
+    %ul.nav.navbar-nav
       - if user_signed_in? and current_user
-        %li
-          = link_to content_tag(:i, "", class: "glyphicon glyphicon-user") + t("account.status"), root_path
-        %li
-          = link_to content_tag(:i, "", class: "glyphicon glyphicon-leaf") + t("links.sign_out"), destroy_user_session_path, method: :delete, id: "logout"
+        %li= link_to content_tag(:span, "", class: "glyphicon glyphicon-user") + t("account.status"), root_path
+        %li= link_to content_tag(:span, "", class: "glyphicon glyphicon-leaf") + t("links.sign_out"), destroy_user_session_path, method: :delete
       - else
-        %li= link_to t("links.sign_up"), new_user_registration_path
-        %li= link_to t("links.sign_in"), new_user_session_path, id: "login"
+        %li= link_to content_tag(:span, "", class: "glyphicon glyphicon-heart") + t("links.sign_up"), new_user_registration_path
+        %li= link_to content_tag(:span, "", class: "glyphicon glyphicon-leaf") + t("links.sign_in"), new_user_session_path

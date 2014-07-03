@@ -8,7 +8,7 @@ ja:
     income: "収入"
     outgo: "支出"
   brand:
-    name: "おこづかい管理サイト"
+    name: "おこづかいちょう"
   buttons:
     sign_in: "ログインする"
   helpers:
