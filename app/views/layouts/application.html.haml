@@ -29,9 +29,10 @@
         .col-md-3
           .menu= render partial: "application/menu"
         .col-md-9
-          = yield
+          .main= yield
 
     .footer
       = render partial: "layouts/footer"
 
     %script(src="https://code.jquery.com/jquery.js")
+    %script(src="http://d3js.org/d3.v3.min.js")
