@@ -12,7 +12,7 @@ RSpec.describe RecordsController, type: :controller do
 
     describe "GET index" do
       it "assigns all records as @records" do
-        record = create(:record, breakdown_id: breakdown.id, user_id: user.id)
+        record = create(:record, breakdown_id: breakdown.id, user_id: user.id, published_at: Date.today)
         get :index
         expect(assigns(:records)).to eq([record])
       end
