@@ -1,6 +1,11 @@
 ja:
   activerecord:
+    models:
+      category: "カテゴリ"
     attributes:
+      breakdown:
+        category_id: "カテゴリ名"
+        name: "内訳"
       category:
         barance_of_payments: "収支"
         name: "カテゴリ名"

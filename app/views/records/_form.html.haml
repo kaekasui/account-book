@@ -13,7 +13,7 @@
 
       .form-group
         = f.label :published_at, class: "control-label"
-        = f.date_select :published_at, {}, { class: "date-form-control" }
+        = f.date_select :published_at, {}, { class: "non-block-form-control" }
       .form-group
         = label :category, :name, Category.human_attribute_name(:name), class: "control-label category"
         = select :category, :name, Category.all.map { |c| [c.name, c.id] }, {}, { class: "category form-control" }

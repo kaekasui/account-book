@@ -11,10 +11,15 @@ ja:
     name: "おこづかいちょう"
   buttons:
     sign_in: "ログインする"
+  example:
+    breakdown: "例）電気代⏎"
   helpers:
     submit:
       user:
         create: "新規登録する"
+  labels:
+    delete: "削除"
+    edit: "編集"
   links:
     sign_in: "ログイン"
     sign_up: "新規登録"
@@ -31,4 +36,6 @@ ja:
     users/sessions:
       new: "ログイン"
     records:
-      new: "登録画面"
+      new: "入力する"
+    breakdowns:
+      index: "内訳"

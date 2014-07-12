@@ -1,5 +1,5 @@
 %tr
   %td= breakdown.category.name
   %td= breakdown.name
-  %td= link_to 'Edit', edit_breakdown_path(id: breakdown.id)
-  %td= link_to 'Destroy', breakdown, method: :delete, data: { confirm: 'Are you sure?' }
+  %td= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_breakdown_path(id: breakdown.id)
+  %td= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), breakdown, method: :delete, data: { confirm: 'Are you sure?' }

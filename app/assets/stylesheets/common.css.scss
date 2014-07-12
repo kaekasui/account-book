@@ -3,7 +3,13 @@ body {
     padding-left: 20px;
     font-family: 'Lucida Grande', Meiryo, sans-serif;
   }
-  .date-form-control {
+  .table {
+    font-family: 'Lucida Grande', Meiryo, sans-serif;
+  }
+  .trash-icon {
+    width: 60px;
+  }
+  .non-block-form-control {
     width: auto;
     height: auto;
     border: 1px solid #cccccc;
@@ -15,8 +21,8 @@ body {
   }
   .panel-body {
     background-image: url('filter_pig.gif');
-    background-size: 100% auto;
-    background-repeat: none;
+    background-size: 120% auto;
+    background-repeat: no-repeat;
   }
   label {
     font-family: 'Lucida Grande', Meiryo, sans-serif;
