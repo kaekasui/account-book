@@ -30,3 +30,5 @@ ja:
   page_title:
     users/sessions:
       new: "ログイン"
+    records:
+      new: "登録画面"

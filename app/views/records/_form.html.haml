@@ -1,25 +1,30 @@
-= form_for @record do |f|
-  - if @record.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@record.errors.count, "error")} prohibited this record from being saved:"
-      %ul
-        - @record.errors.full_messages.each do |msg|
-          %li= msg
+.panel.panel-default
+  .panel-heading
+    %span.glyphicon.glyphicon-pencil
+    = page_title
+  .panel-body
+    = form_for @record do |f|
+      - if @record.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@record.errors.count, "error")} prohibited this record from being saved:"
+          %ul
+            - @record.errors.full_messages.each do |msg|
+              %li= msg
 
-  .form-group
-    = f.label :published_at, class: "control-label"
-    = f.date_select :published_at
-  .form-group
-    = label :category, :name, Category.human_attribute_name(:name), class: "control-label category"
-    = select :category, :name, Category.all.map { |c| [c.name, c.id] }, class: "category"
-  .form-group
-    = f.label :breakdown_id, class: "control-label"
-    = f.select :breakdown_id, Breakdown.all.map { |b| [b.name, b.id] }
-  .form-group
-    = f.label :charge, class: "control-label"
-    = f.number_field :charge, class: "form-control"
-  .form-group
-    = f.label :memo, class: "control-label"
-    = f.text_area :memo, class: "form-control"
-  .actions
-    = f.submit class: "btn btn-default"
+      .form-group
+        = f.label :published_at, class: "control-label"
+        = f.date_select :published_at, {}, { class: "date-form-control" }
+      .form-group
+        = label :category, :name, Category.human_attribute_name(:name), class: "control-label category"
+        = select :category, :name, Category.all.map { |c| [c.name, c.id] }, {}, { class: "category form-control" }
+      .form-group
+        = f.label :breakdown_id, class: "control-label"
+        = f.select :breakdown_id, Breakdown.all.map { |b| [b.name, b.id] }, {}, { class: "form-control" }
+      .form-group
+        = f.label :charge, class: "control-label"
+        = f.number_field :charge, class: "form-control"
+      .form-group
+        = f.label :memo, class: "control-label"
+        = f.text_area :memo, class: "form-control"
+      .actions
+        = f.submit class: "btn btn-default"
