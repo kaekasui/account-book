@@ -19,9 +19,14 @@ ja:
     sign_in: "ログイン"
     sign_up: "新規登録"
     sign_out: "ログアウト"
+    status: "マイページ"
   menu:
     breakdown: "内訳"
     category: "カテゴリ"
+    dashboard: "ダッシュボード"
     new_record: "入力する"
     import: "CSVインポート"
     record: "履歴"
+  page_title:
+    users/sessions:
+      new: "ログイン"
