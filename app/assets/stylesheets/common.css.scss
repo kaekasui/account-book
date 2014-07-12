@@ -6,6 +6,15 @@ body {
   .table {
     font-family: 'Lucida Grande', Meiryo, sans-serif;
   }
+  .btn-checkbox:hover {
+    color: #515e12;
+  }
+  .btn-checkbox {
+    border-color: #a8ae88;
+  }
+  .active {
+    background-color: #fff;
+  }
   .trash-icon {
     width: 60px;
   }

@@ -13,6 +13,7 @@ ja:
     sign_in: "ログインする"
   example:
     breakdown: "例）電気代⏎"
+    category: "例）光熱費⏎"
   helpers:
     submit:
       user:
@@ -33,6 +34,8 @@ ja:
     import: "CSVインポート"
     record: "履歴"
   page_title:
+    categories:
+      index: "カテゴリ"
     users/sessions:
       new: "ログイン"
     records:

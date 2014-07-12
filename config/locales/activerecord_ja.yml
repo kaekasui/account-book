@@ -4,11 +4,11 @@ ja:
       category: "カテゴリ"
     attributes:
       breakdown:
-        category_id: "カテゴリ名"
+        category_id: "カテゴリ"
         name: "内訳"
       category:
         barance_of_payments: "収支"
-        name: "カテゴリ名"
+        name: "カテゴリ"
       user:
         email: "メールアドレス"
         password: "パスワード"
