@@ -13,6 +13,6 @@
           %label.btn.btn-defaults.btn-checkbox.plus-sign(class="#{checked ? '' : 'active'}")
             = f.radio_button :barance_of_payments, "1"
             = content_tag(:span, "", class: "glyphicon glyphicon-plus-sign") + I18n.t("category.income")
-          = "　"
-          = f.text_field :name, placeholder: I18n.t("example.category"), class: "non-block-form-control"
+          %br
+          = f.text_field :name, placeholder: I18n.t("example.category"), class: "form-control"
     #categories_list= render partial: "categories", locals: { categories: @categories }

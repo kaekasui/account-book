@@ -21,7 +21,7 @@
     .header
       = render partial: "layouts/header"
 
-    .container
+    .container(class="#{controller_name}_#{action_name}")
       .row
         =# bootstrap_flash
         = notice

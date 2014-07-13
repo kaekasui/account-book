@@ -1,5 +1,4 @@
 %tr
-  %td= category.barance_of_payments_name
   %td= link_to category.name, category
-  %td= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_category_path(id: category.id)
+  %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_category_path(id: category.id)
   %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), category, method: :delete, data: { confirm: "Are you sure? it has #{category.breakdowns.count} breakdowns" }

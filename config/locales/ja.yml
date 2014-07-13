@@ -12,8 +12,8 @@ ja:
   buttons:
     sign_in: "ログインする"
   example:
-    breakdown: "例）電気代⏎"
-    category: "例）光熱費⏎"
+    breakdown: "電気代"
+    category: "光熱費"
   helpers:
     submit:
       user:

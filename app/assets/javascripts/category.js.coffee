@@ -6,8 +6,10 @@ $(document).on('page:change', (e) ->
 )
 
 $(document).on('ready page:load', (e) ->
-  $("input#category_barance_of_payments_0").val(["0"])
-  set_categories(0)
+  $(".container.categories_index").on('ready page:load', (e) ->
+    $("input#category_barance_of_payments_0").val(["0"])
+    set_categories(0)
+  )
 )
 
 set_categories = (sign) ->
