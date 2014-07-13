@@ -1,4 +1,4 @@
 %tr
-  %td= link_to category.name, category
+  %td(class="category_id_#{category.id}")= link_to category.name, category
   %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_category_path(id: category.id)
   %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), category, method: :delete, data: { confirm: "Are you sure? it has #{category.breakdowns.count} breakdowns" }

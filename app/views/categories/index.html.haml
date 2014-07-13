@@ -5,8 +5,8 @@
   .panel-body
     = form_for @category, remote: true do |f| 
       - checked = @category.barance_of_payments
-      .fform-group
-        .bbtn-group{"data-toggle" => "buttons"}
+      .form-group
+        .btn-group{"data-toggle" => "buttons"}
           %label.btn.btn-defaults.btn-checkbox.minus-sign(class="#{checked ? 'active' : ''}")
             = f.radio_button :barance_of_payments, "0"
             = content_tag(:span, "", class: "glyphicon glyphicon-minus-sign") + I18n.t("category.outgo")

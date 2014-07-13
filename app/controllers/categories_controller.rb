@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   def index
     @category = Category.new
     @category.barance_of_payments = true
-    @categories = Category.all.order_updated_at
+    @categories = Category.where(barance_of_payments: true).order_updated_at
   end
 
   def show

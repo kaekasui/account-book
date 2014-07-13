@@ -36,6 +36,7 @@ ja:
   page_title:
     categories:
       index: "カテゴリ"
+      edit: "カテゴリの編集"
     users/sessions:
       new: "ログイン"
     records:

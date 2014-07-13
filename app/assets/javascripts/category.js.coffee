@@ -1,15 +1,15 @@
 $(document).on('page:change', (e) ->
-  $(".minus-sign").click ->
+  $(".categories_index .minus-sign").click ->
     set_categories(0)
-  $(".plus-sign").click ->
+  $(".categories_index .plus-sign").click ->
     set_categories(1)
 )
 
 $(document).on('ready page:load', (e) ->
-  $(".container.categories_index").on('ready page:load', (e) ->
-    $("input#category_barance_of_payments_0").val(["0"])
-    set_categories(0)
-  )
+  $(".categories_index input#category_barance_of_payments_0").val(["0"])
+  if ($(".container").hasClass('categories_index')) then set_categories(0)
+  if ($(".categories_edit .minus-sign").hasClass('active')) then $("input#category_barance_of_payments_0").val(["0"])
+  if ($(".categories_edit .plus-sign").hasClass('active')) then $("input#category_barance_of_payments_1").val(["1"])
 )
 
 set_categories = (sign) ->

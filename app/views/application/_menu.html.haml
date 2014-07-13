@@ -2,7 +2,7 @@
   %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-pencil") + I18n.t("menu.new_record"), new_record_path
 %ul.list-group
   %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-stats") + I18n.t("menu.dashboard"), dashboard_path
-  %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-tags") + I18n.t("menu.category"), categories_path
+  %li.list-group-item.categories-list= link_to content_tag(:span, "", class: "glyphicon glyphicon-tags") + I18n.t("menu.category"), categories_path
   %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-th-list") + I18n.t("menu.breakdown"), breakdowns_path
   %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-list-alt") + I18n.t("menu.record"), records_path
 
