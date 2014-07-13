@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
 
   def index
     @category = Category.new
+    @category.barance_of_payments = true
     @categories = Category.all.order_updated_at
   end
 
@@ -43,6 +44,10 @@ class CategoriesController < ApplicationController
       format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def set_categories_list
+    @categories = Category.where(barance_of_payments: params[:barance_of_payments], user_id: current_user.id)
   end
 
   private

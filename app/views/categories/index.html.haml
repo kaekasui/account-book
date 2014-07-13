@@ -4,15 +4,15 @@
     = page_title
   .panel-body
     = form_for @category, remote: true do |f| 
-      .form-group
-        .btn-group{"data-toggle" => "buttons"}
-          %label.btn.btn-defaults.btn-checkbox
-            = f.radio_button :barance_of_payments, "0", class: "form-control"
+      - checked = @category.barance_of_payments
+      .fform-group
+        .bbtn-group{"data-toggle" => "buttons"}
+          %label.btn.btn-defaults.btn-checkbox.minus-sign(class="#{checked ? 'active' : ''}")
+            = f.radio_button :barance_of_payments, "0"
             = content_tag(:span, "", class: "glyphicon glyphicon-minus-sign") + I18n.t("category.outgo")
-          %label.btn.btn-defaults.btn-checkbox
-            = f.radio_button :barance_of_payments, "1", class: "form-control"
+          %label.btn.btn-defaults.btn-checkbox.plus-sign(class="#{checked ? '' : 'active'}")
+            = f.radio_button :barance_of_payments, "1"
             = content_tag(:span, "", class: "glyphicon glyphicon-plus-sign") + I18n.t("category.income")
           = "　"
           = f.text_field :name, placeholder: I18n.t("example.category"), class: "non-block-form-control"
-    %table.table.category
-      = render partial: @categories
+    #categories_list= render partial: "categories", locals: { categories: @categories }
