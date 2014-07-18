@@ -3,7 +3,7 @@
     %span.glyphicon.glyphicon-pencil
     = page_title
   .panel-body
-    = render partial: 'messages', locals: { target: @record }
+    = render partial: 'messages', locals: { target: @record } if @record.errors.any?
     = form_for @record do |f|
       .form-group
         = f.label :published_at, class: "control-label"

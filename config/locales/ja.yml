@@ -8,9 +8,12 @@ ja:
     income: "収入"
     outgo: "支出"
   brand:
+    and: "と"
     name: "おこづかいちょう"
+    pig: "こぶたさん"
   buttons:
     sign_in: "ログインする"
+    sign_up: "登録する"
   example:
     breakdown: "電気代"
     category: "光熱費"
@@ -40,6 +43,8 @@ ja:
       edit: "カテゴリの編集"
     users/sessions:
       new: "ログイン"
+    users/registrations:
+      new: "新規登録"
     records:
       new: "入力する"
       create: "入力する"
