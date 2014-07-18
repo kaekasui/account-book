@@ -13,7 +13,15 @@ $panel-default-border: #76891a;
 $panel-default-text: #515e12;
 $panel-default-heading-bg: rgba(#fff, 0.5);
 
-$btn-default-color: #fff;//515e12;
-$btn-default-bg: #AC5E9F;
+$btn-default-color: #ffffff;
+$btn-default-bg: #ac5e9f;
+$btn-default-border: #ac5e9f;
 
 $table-border-color: #a8ae88;
+
+$state-danger-text: #ac5e9f;
+$state-danger-bg: rgba(#eedeef, 0.7);
+$state-danger-border: #d5aecf;
+$state-success-test: #76891a;
+$state-success-bg: rgba(#bac48c, 0.7);
+$close-color: #ac5e9f;

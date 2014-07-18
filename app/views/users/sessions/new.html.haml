@@ -3,6 +3,7 @@
     %span.glyphicon.glyphicon-leaf
     = page_title
   .panel-body
+    = render partial: 'messages', locals: { target: nil }
     = form_for(resource, html: { role: "form" }, as: resource_name, url: session_path(resource_name)) do |f|
       .form-group
         = f.label :email
