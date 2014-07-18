@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Category' do
+feature 'カテゴリの管理' do
   background do
     user = create(:user)
     login user
@@ -22,8 +22,8 @@ js: true
     #expect(page).to have_content(category_name)
 =end
 
-  scenario "display the category's records" do
-    category = create(:category)
+  scenario "カテゴリごとに記録を表示する" do
+    category = create(:category, barance_of_payments: 1)
     visit categories_path
     click_link category.name
 
