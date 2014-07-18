@@ -35,34 +35,31 @@ feature 'User' do
     expect(page).to have_content I18n.t("devise.sessions.signed_out")
   end
 
-  # 会員登録する
-  scenario 'creates a user.' do
+  scenario '新規会員登録をする' do
     visit root_path
 
     click_link I18n.t("links.sign_up")
     fill_in User.human_attribute_name(:email), with: "new_user@example.com"
     fill_in User.human_attribute_name(:password), with: "password"
     fill_in User.human_attribute_name(:password_confirmation), with: "password"
-    click_button I18n.t("helpers.submit.user.create")
+    click_button I18n.t("buttons.sign_up")
 
     expect(current_path).to eq root_path
     expect(page).to have_content I18n.t("devise.registrations.signed_up")
   end
 
-  # 会員登録に失敗する
-  scenario 'doesn\'t create a user.' do
+  scenario '新規会員登録に失敗する' do
     visit root_path
     click_link I18n.t("links.sign_up")
     fill_in User.human_attribute_name(:email), with: "new_user@example.com"
     fill_in User.human_attribute_name(:password), with: "password"
     fill_in User.human_attribute_name(:password_confirmation), with: ""
-    click_button I18n.t("helpers.submit.user.create")
+    click_button I18n.t("buttons.sign_up")
 
     expect(current_path).to eq user_registration_path
   end
 
-  # ユーザー情報を更新する
-  scenario 'update a user.' do
+  scenario 'ユーザー情報を更新する' do
     pending
     user = create(:user)
     login user
