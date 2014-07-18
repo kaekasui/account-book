@@ -23,12 +23,10 @@
 
     .container(class="#{controller_name}_#{action_name}")
       .row
-        =# bootstrap_flash
-        = notice
-        = alert
         .col-md-3
           .menu= render partial: "application/menu"
         .col-md-9
+          = render partial: 'messages', locals: { target: nil } if notice
           .main= yield
 
     .footer
