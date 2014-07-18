@@ -42,5 +42,6 @@ ja:
       new: "ログイン"
     records:
       new: "入力する"
+      create: "入力する"
     breakdowns:
       index: "内訳"

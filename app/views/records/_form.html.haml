@@ -3,14 +3,8 @@
     %span.glyphicon.glyphicon-pencil
     = page_title
   .panel-body
+    = render partial: 'messages', locals: { target: @record }
     = form_for @record do |f|
-      - if @record.errors.any?
-        #error_explanation
-          %h2= "#{pluralize(@record.errors.count, "error")} prohibited this record from being saved:"
-          %ul
-            - @record.errors.full_messages.each do |msg|
-              %li= msg
-
       .form-group
         = f.label :published_at, class: "control-label"
         = f.date_select :published_at, {}, { class: "non-block-form-control" }

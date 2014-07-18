@@ -3,7 +3,10 @@
     %button.close(data-dismiss='alert' type='button')
       %span(aria-hidden='true')= t("links.cross_mark")
       %span.sr-only= "Close"
-    = alert if alert
+      = alert if alert
+    %ul
+      - if target
+        = target.errors.full_messages.map { |msg| content_tag(:li, msg) }.join.html_safe
 - elsif notice
   .alert.alert-success(role='alert')
     %button.close(data-dismiss='alert' type='button')
