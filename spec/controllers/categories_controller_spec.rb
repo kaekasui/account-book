@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe CategoriesController, type: :controller do
   let(:user) { create(:user) }
 
-  context 'with a logged-in users' do
+  context 'ユーザーがログインしている場合' do
     before do
       sign_in user
     end
 
-    describe "GET index" do
-      it "assigns all categories as @categories" do
-        category = create(:category)
+    describe "カテゴリ一覧画面" do
+      it "支出のカテゴリが表示されること" do
+        category = create(:category, barance_of_payments: 1)
         get :index
         expect(assigns(:categories)).to eq([category])
       end
