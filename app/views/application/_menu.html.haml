@@ -1,18 +1,23 @@
-%ul.list-group
-  %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-pencil") + I18n.t("menu.new_record"), new_record_path
-%ul.list-group
-  %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-stats") + I18n.t("menu.dashboard"), dashboard_path
-  %li.list-group-item.categories-list= link_to content_tag(:span, "", class: "glyphicon glyphicon-tags") + I18n.t("menu.category"), categories_path
-  %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-th-list") + I18n.t("menu.breakdown"), breakdowns_path
-  %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-list-alt") + I18n.t("menu.record"), records_path
+- if current_user
+  %ul.list-group
+    %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-pencil") + I18n.t("menu.new_record"), new_record_path
+  %ul.list-group
+    %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-stats") + I18n.t("menu.dashboard"), dashboard_path
+    %li.list-group-item.categories-list= link_to content_tag(:span, "", class: "glyphicon glyphicon-tags") + I18n.t("menu.category"), categories_path
+    %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-th-list") + I18n.t("menu.breakdown"), breakdowns_path
+    %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-list-alt") + I18n.t("menu.record"), records_path
 
-- if @years
-  %ul.nav.nav-pills
-    - @years.each do |key, value|
-      %li= link_to key.to_s + I18n.t("date.year"), records_path(year: key)
-  %ul.nav.nav-pills
-    %li= link_to I18n.t("date.last_month"), records_path(year: (@current_day-1.month).year, month: (@current_day-1.month).month)
-    %li= link_to I18n.t("date.current_month"), records_path(year: @current_day.year, month: @current_day.month)
+  - if @years
+    %ul.nav.nav-pills
+      - @years.each do |key, value|
+        %li= link_to key.to_s + I18n.t("date.year"), records_path(year: key)
+    %ul.nav.nav-pills
+      %li= link_to I18n.t("date.last_month"), records_path(year: (@current_day-1.month).year, month: (@current_day-1.month).month)
+      %li= link_to I18n.t("date.current_month"), records_path(year: @current_day.year, month: @current_day.month)
 
-%ul.list-group
-  %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-import") + I18n.t("menu.import"), csv_new_path
+  %ul.list-group
+    %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-import") + I18n.t("menu.import"), csv_new_path
+
+- else
+  %ul.list-group
+    %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-stats") + I18n.t("menu.dashboard"), dashboard_path
