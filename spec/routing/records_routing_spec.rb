@@ -1,35 +1,34 @@
 require "rails_helper"
 
-RSpec.describe RecordsController, :type => :routing do
-  describe "routing" do
+RSpec.describe RecordsController, type: :routing do
+  describe "記録を管理している画面への接続について" do
 
-    it "routes to #index" do
-      expect(:get => "/records").to route_to("records#index")
+    it "記録の一覧画面に接続できること" do
+      expect(get: "/records").to route_to("records#index")
     end
 
-    it "routes to #new" do
-      expect(:get => "/records/new").to route_to("records#new")
+    it "記録の作成画面に接続できること" do
+      expect(get: "/records/new").to route_to("records#new")
     end
 
-    it "routes to #show" do
-      expect(:get => "/records/1").to route_to("records#show", :id => "1")
+    it "記録の詳細画面に接続できること" do
+      expect(get: "/records/1").to route_to("records#show", id: "1")
     end
 
-    it "routes to #edit" do
-      expect(:get => "/records/1/edit").to route_to("records#edit", :id => "1")
+    it "記録の編集画面に接続できること" do
+      expect(get: "/records/1/edit").to route_to("records#edit", id: "1")
     end
 
-    it "routes to #create" do
-      expect(:post => "/records").to route_to("records#create")
+    it "内訳の作成処理に接続できること" do
+      expect(post: "/records").to route_to("records#create")
     end
 
-    it "routes to #update" do
-      expect(:put => "/records/1").to route_to("records#update", :id => "1")
+    it "内訳の更新処理に接続できること" do
+      expect(put: "/records/1").to route_to("records#update", id: "1")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/records/1").to route_to("records#destroy", :id => "1")
+      expect(delete: "/records/1").to route_to("records#destroy", id: "1")
     end
-
   end
 end
