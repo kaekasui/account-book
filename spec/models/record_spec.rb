@@ -5,33 +5,32 @@ RSpec.describe Record, type: :model do
   let(:category) { create(:category) }
   let(:breakdown) { create(:breakdown, category_id: category.id, user_id: user.id) }
 
-  it 'is valid with a charge, a user and a breakdown' do
+  it '内訳、ユーザー、料金があれば有効であること' do
     record = build(:record, breakdown_id: breakdown.id, user_id: user.id)
     expect(record).to be_valid
   end
 
-  it 'is invalid without a charge' do
+  it '料金が空であればエラーが発生すること' do
     record = build(:record, charge: "", breakdown_id: breakdown.id)
-    expect(record).to be_invalid
+    expect(record).to have(1).errors_on(:charge)
   end
 
-  it 'is invalid without a breakdown' do
+  it '内訳がなければエラーが発生すること' do
     record = build(:record)
-    expect(record).to be_invalid
+    expect(record).to have(1).errors_on(:breakdown_id)
   end
 
-  it 'is invalid without a published date' do
+  it '日付がなければエラーが発生すること' do
     record = build(:record, published_at: '')
-    expect(record).to be_invalid
+    expect(record).to have(1).errors_on(:published_at)
   end
 
-  it 'is invalid without a user' do
+  it 'ユーザーがなければエラーが発生すること' do
     record = build(:record, user_id: '')
-    expect(record).to be_invalid
+    expect(record).to have(1).errors_on(:user_id)
   end
 
-  # 論理削除となり、削除時刻が更新されること
-  it 'updates the deleted_at' do
+  it '論理削除となり削除時刻が更新されること' do
     record = create(:record, breakdown_id: breakdown.id, user_id: user.id)
     expect(record.deleted_at).to be_nil
     record.destroy

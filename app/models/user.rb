@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
 
   has_many :breakdowns
   has_many :records
+
+  validates :email, length: { maximum: MAX_LONG_TEXT_FIELD_LENGTH }
 end
