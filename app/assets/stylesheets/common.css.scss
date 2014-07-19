@@ -67,4 +67,18 @@ body {
   background-image: url("wood.png");
   .list-group-item {
   }
+  .nav.nav-tabs li.active {
+    background-color: transparent;
+  }
+  .nav.nav-pills li.active {
+    background-color: transparent;
+    margin-bottom: 4px;
+    a { border: 1px solid #76891a; }
+  }
+  .nav.nav-tabs li a:hover, .nav.nav-pills li a:hover {
+    background-color: rgba(#fff, 0.5);
+  }
+  table.table.record tr th {
+    border-top: none;
+  }
 }

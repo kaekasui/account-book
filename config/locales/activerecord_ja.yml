@@ -16,6 +16,7 @@ ja:
         remember_me: "パスワードを記憶する"
       record:
         breakdown_id: "内訳"
+        category: "カテゴリ"
         charge: "料金"
         memo: "メモ"
         published_at: "日付"
