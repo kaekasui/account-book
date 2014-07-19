@@ -1,7 +1,7 @@
 - if @years
   %ul.nav.nav-pills
     - @years.each do |key, value|
-      %li(class="#{@year == key.to_s ? 'active' : ''}")= link_to key.to_s + I18n.t("date.year"), records_path(year: key)
+      %li(class="#{@year == key.to_s ? 'active' : ''}")= link_to key.to_s + I18n.t("date.year"), records_path(year: key, month: params[:month])
 
 %ul.nav.nav-tabs
   - 1.upto(12) do |month|

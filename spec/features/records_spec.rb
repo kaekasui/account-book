@@ -22,14 +22,13 @@ feature 'Record' do
   scenario '指定の年の履歴を表示する' do
     breakdown = create(:breakdown, category_id: category.id, user_id: user.id)
 
-    # 2012年8月1日
+    create(:record, breakdown_id: breakdown.id, user_id: user.id, published_at: "2014-08-01")
     create(:record, breakdown_id: breakdown.id, user_id: user.id, published_at: "2012-08-01")
-    visit records_path(year: 2012)
-    expect(page).not_to have_content breakdown.name
 
-    # 2012年1月1日
-    create(:record, breakdown_id: breakdown.id, user_id: user.id, published_at: "2012-01-01")
-    visit records_path(year: 2012)
+    visit records_path(year: 2014, month: 8)
+    expect(page).to have_content breakdown.name
+puts page.body
+    click_link "2012年"
     expect(page).to have_content breakdown.name
   end
 

@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
 
   def index
     @year = year_param || Date.today.year.to_s
-    @month = month_param || (@year == Date.today.year.to_s ? Date.today.month.to_s : "1")
+    @month = month_param || Date.today.month.to_s
 
     @records = current_user.records.where("year(published_at) = #{@year} and month(published_at) = #{@month}")
   end
@@ -90,5 +90,4 @@ class RecordsController < ApplicationController
     def month_param
       params[:month]
     end
-
 end
