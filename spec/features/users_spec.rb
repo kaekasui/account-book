@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 feature 'User' do
-  # ログインする
-  scenario 'logs in.' do
+  scenario 'ログインする' do
     user = create(:user)
     login user
 
@@ -10,8 +9,7 @@ feature 'User' do
     expect(page).to have_content I18n.t("devise.sessions.signed_in")
   end
 
-  # ログインに失敗する
-  scenario 'doesn\'t log in.' do
+  scenario 'ログインに失敗する' do
     user = create(:user, email: "abc@example.com")
 
     visit root_path
@@ -24,8 +22,7 @@ feature 'User' do
     expect(page).to have_content I18n.t("devise.failure.invalid")
   end
 
-  # ログアウトする
-  scenario 'logs out.' do
+  scenario 'ログアウトする' do
     user = create(:user)
     login user
     

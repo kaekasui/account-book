@@ -5,55 +5,45 @@ describe Users::RegistrationsController do
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
-  # ログインしていない場合
-  context 'with non-logged-in user' do
-    describe 'GET #new' do
-      # 新しいアカウントを割り当てること
-      it 'assigns a new User to @user.' do
+  context 'ログインしていない場合' do
+    describe '新規登録画面' do
+      it '新規登録フォームを表示すること' do
         get :new, use_route: :users
         expect(assigns(:user)).to be_a_new(User)
       end
 
-      # :new テンプレートを表示すること
-      it 'renders the :new template.' do
+      it '新規登録画面を表示すること' do
         get :new, use_route: :users
         expect(response).to render_template :new
       end
     end
 
-    describe 'POST #create' do
-      # 有効な属性の場合
-      context 'with valid attributes' do
-        # ユーザーを追加すること
-        it 'creates a user.' do
+    describe '新規登録' do
+      context '有効な値を入力した場合' do
+        it 'ユーザーを追加すること' do
           expect { post :create, { use_route: :users, user: attributes_for(:user) } }.to change(User, :count).by(1)
         end
 
-        # root_path にリダイレクトすること
-        it 'redirects to root_path.' do
+        it 'トップ画面にリダイレクトすること' do
           post :create, { use_route: :users, user: attributes_for(:user) }
           expect(response).to redirect_to root_path
         end
       end
 
-      # 無効な属性の場合
-      context 'with invalid attributes' do
-        # ユーザーを追加しないこと
-        it 'doesn\'t create a user.' do
+      context '無効な値を入力した場合' do
+        it 'ユーザーを追加しないこと' do
           expect { post :create, { use_route: :users, user: attributes_for(:user, email: "") }}.to change(User, :count).by(0)
         end
 
-        # :new テンプレートを再表示すること
-        it 're-renders the :new template.' do
+        it '新規登録画面を再表示すること' do
           post :create, { use_route: :users, user: attributes_for(:user, email: "") }
           expect(response).to render_template :new
         end
       end
     end
 
-    describe 'GET #edit' do
-      # root_pathにリダイレクトすること
-      it 'redirects to root_path.' do
+    describe 'ユーザー情報の編集画面' do
+      it 'ログイン画面が表示されること' do
         user = create(:user)
         get :edit, use_route: :users, id: user.id
         expect(response).to redirect_to new_user_session_path
@@ -61,84 +51,54 @@ describe Users::RegistrationsController do
     end
   end
 
-  # ログインしている場合
-  context 'with logged-in user' do
+  context 'ログインしている場合' do
     before do
       @user = create(:user)
       sign_in @user
     end
 
-    describe 'GET #new' do
-      # root_path にリダイレクトすること
-      it 'redirects to root_path.' do
+    describe '新規登録画面' do
+      it 'トップ画面にリダイレクトすること' do
         get :new, use_route: :users
         expect(response).to redirect_to root_path
       end
     end 
 
-    describe 'POST #create' do
-      # 有効な属性の場合
-      context 'with valid attributes' do
-        # root_path にリダイレクトすること
-        it 'redirects to root_path.' do
-          post :create, { use_route: :users, user: attributes_for(:user) }
-          expect(response).to redirect_to root_path
-        end
-      end
-
-      # 無効な属性の場合
-      context 'with invalid attributes' do
-        # root_path にリダイレクトすること
-        it 'redirects to root_path.' do
-          post :create, { use_route: :users, user: attributes_for(:user, email: "") }
-          expect(response).to redirect_to root_path
-        end
-      end
-    end 
-
-    describe 'GET #edit' do
-      # @user に要求されたアカウントを割り当てること
-      it 'assigns the requested user to @user.' do
+    describe 'ユーザー情報の編集画面' do
+      it '登録されたユーザー情報を表示すること' do
         get :edit, use_route: :users
         expect(assigns(:user)).to eq @user
       end
 
-      # :edit テンプレートを表示すること
-      it 'renders the :edit template.' do
+      it '編集画面を表示すること' do
         get :edit, use_route: :users
         expect(response).to render_template :edit
       end
     end
 
-    describe 'PATCH #update' do
-      # 有効な属性の場合
-      context 'with valid attributes' do
-        # ユーザーを更新すること
-        it 'updates a user.' do
+    describe 'ユーザー情報の編集' do
+      context '有効な値を入力した場合' do
+        it 'ユーザー情報を更新すること' do
           pending
           patch :update, user: attributes_for(:edit_user)
           expect(@user.reload.email).to eq "edit_user@example.com"
         end
 
-        # root_path にリダイレクトする
-        it 'redirects to root_path' do
+        it 'トップ画面にリダイレクトすること' do
           pending
           patch :update, user: attributes_for(:edit_user)
           expect(response).to redirect_to root_path
         end
       end
 
-      # 無効な属性の場合
-      context 'with invalid attributes' do
-        # ユーザーを更新しないこと
-        it 'doesn\'t update a user.' do
+      context '無効な値を入力した場合' do
+        it 'ユーザー情報を更新しないこと' do
           pending
           patch :update, user: attributes_for(:edit_user, current_password: "")
           expect(@user.reload.email).to eq "user@example.com"
         end
 
-        # :edit テンプレートを再表示する
-        it 're-renders the :edit template.' do
+        it 'ユーザー情報の編集画面を再表示すること' do
           pending
           patch :update, user: attributes_for(:edit_user, current_password: "")
           expect(response).to render_template :edit
@@ -146,9 +106,8 @@ describe Users::RegistrationsController do
       end
     end
 
-    describe 'DELETE #destroy' do
-      # ユーザーを論理削除すること
-      it 'delete a user.' do
+    describe 'アカウントを削除すること' do
+      it 'アカウントを論理削除し削除時刻を更新すること' do
         delete :destroy, use_route: :users
         expect(@user.reload.deleted_at).to_not be_nil
       end

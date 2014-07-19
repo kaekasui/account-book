@@ -5,105 +5,105 @@ RSpec.describe RecordsController, type: :controller do
   let(:category) { create(:category) }
   let(:breakdown) { create(:breakdown, user_id: user.id, category_id: category.id) }
 
-  context 'with a logged-in user' do
+  context 'ログインしている場合' do
     before do
       sign_in user
     end
 
-    describe "GET index" do
-      it "assigns all records as @records" do
+    describe "記録一覧画面" do
+      it "記録の一覧が表示されること" do
         record = create(:record, breakdown_id: breakdown.id, user_id: user.id, published_at: Date.today)
         get :index
         expect(assigns(:records)).to eq([record])
       end
     end
 
-    describe "GET show" do
-      it "assigns the requested record as @record" do
+    describe "記録の詳細画面" do
+      it "対象の記録の詳細が表示されること" do
         record = create(:record, breakdown_id: breakdown.id, user_id: user.id)
         get :show, { id: record.id }
         expect(assigns(:record)).to eq(record)
       end
     end
 
-    describe "GET new" do
-      it "assigns a new record as @record" do
+    describe "記録の作成画面" do
+      it "記録の作成フォームが表示されること" do
         get :new
         expect(assigns(:record)).to be_a_new(Record)
       end
     end
 
-    describe "GET edit" do
-      it "assigns the requested record as @record" do
+    describe "記録の編集画面" do
+      it "対象の記録の編集フォームが表示されること" do
         record = create(:record, breakdown_id: breakdown.id, user_id: user.id)
         get :edit, { id: record.id }
         expect(assigns(:record)).to eq(record)
       end
     end
 
-    describe "POST create" do
-      describe "with valid params" do
-        it "creates a new Record" do
+    describe "記録の作成" do
+      describe "有効な値を入力した場合" do
+        it "新しく記録が登録されること" do
           expect {
             post :create, { record: attributes_for(:record, breakdown_id: breakdown.id, user_id: user.id) }
           }.to change(Record, :count).by(1)
         end
 
-        it "assigns a newly created record as @record" do
+        it "新しく登録された記録が登録済みに割り当てられること" do
           post :create, { record: attributes_for(:record, breakdown_id: breakdown.id, user_id: user.id) }
           expect(assigns(:record)).to be_a(Record)
           expect(assigns(:record)).to be_persisted
         end
 
-        it "redirects to the created record" do
+        it "記録の詳細画面にリダイレクトすること" do
           post :create, { record: attributes_for(:record, breakdown_id: breakdown.id, user_id: user.id) }
           expect(response).to redirect_to(Record.last)
         end
       end
 
-      describe "with invalid params" do
-        it "assigns a newly created but unsaved record as @record" do
+      describe "無効な値を入力した場合" do
+        it "新しく記録が登録されないこと" do
           post :create, { record: attributes_for(:record) }
           expect(assigns(:record)).to be_a_new(Record)
         end
 
-        it "re-renders the 'new' template" do
+        it "記録の入力画面を再表示すること" do
           post :create, { record: attributes_for(:record) }
           expect(response).to render_template("new")
         end
       end
     end
 
-    describe "PUT update" do
-      describe "with valid params" do
-        it "updates the requested record" do
+    describe "記録の更新" do
+      describe "有効な値を入力した場合" do
+        it "記録が更新されないこと" do
           record = create(:record, breakdown_id: breakdown.id, user_id: user.id)
           put :update, { id: record.id, record: attributes_for(:record, charge: 2000, breakdown_id: breakdown.id, user_id: user.id) }
           record.reload
           expect(record.charge).to eq 2000
         end
 
-        it "assigns the requested record as @record" do
+        it "対象の記録が登録済みになること" do
           record = create(:record, breakdown_id: breakdown.id, user_id: user.id)
           put :update, { id: record.id, record: attributes_for(:record, breakdown_id: breakdown.id, user_id: user.id) }
           expect(assigns(:record)).to eq(record)
         end
 
-        it "redirects to the record" do
+        it "対象の記録の詳細画面にリダイレクトすること" do
           record = create(:record, breakdown_id: breakdown.id, user_id: user.id)
           put :update, { id: record.id, record: attributes_for(:record, breakdown_id: breakdown.id, user_id: user.id) }
           expect(response).to redirect_to(record)
         end
       end
 
-      describe "with invalid params" do
-        it "assigns the record as @record" do
+      describe "無効な値を入力した場合" do
+        it "対象の記録を更新しないこと" do
           record = create(:record, breakdown_id: breakdown.id, user_id: user.id)
           put :update, { id: record.id, record: attributes_for(:record, charge: '') }
           expect(assigns(:record)).to eq(record)
         end
 
-        it "re-renders the 'edit' template" do
+        it "記録の編集画面を再表示すること" do
           record = create(:record, breakdown_id: breakdown.id, user_id: user.id)
           put :update, { id: record.id, record: attributes_for(:record, charge: '') }
           expect(response).to render_template("edit")
@@ -111,15 +111,15 @@ RSpec.describe RecordsController, type: :controller do
       end
     end
 
-    describe "DELETE destroy" do
-      it "destroys the requested record" do
+    describe "記録の削除" do
+      it "対象の記録を削除すること" do
         record = create(:record, breakdown_id: breakdown.id, user_id: user.id)
         expect {
           delete :destroy, { id: record.id }
         }.to change(Record, :count).by(-1)
       end
 
-      it "redirects to the records list" do
+      it "記録の一覧画面にリダイレクトすること" do
         record = create(:record, breakdown_id: breakdown.id, user_id: user.id)
         delete :destroy, { id: record.id }
         expect(response).to redirect_to(records_url)
@@ -131,23 +131,23 @@ RSpec.describe RecordsController, type: :controller do
     end
   end
 
-  context 'with a non-logged-in user' do
-    describe "GET index" do
-      it "redirects to sign in page." do
+  context 'ログインしていない場合' do
+    describe "記録の一覧画面" do
+      it "ログイン画面にリダイレクトすること" do
         get :index
         expect(response).to redirect_to(user_session_path)
       end
     end
 
-    describe "GET new" do
-      it "redirects to sign in page." do
+    describe "記録の入力画面" do
+      it "ログイン画面にリダイレクトすること" do
         get :new
         expect(response).to redirect_to(user_session_path)
       end
     end
 
-    describe "GET edit" do
-      it "redirects to sign in page." do
+    describe "記録の編集画面" do
+      it "ログイン画面にリダイレクトすること" do
         category = create(:category)
         get :edit, { id: category.id }
         expect(response).to redirect_to(user_session_path)
