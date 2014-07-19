@@ -4,7 +4,7 @@
     = page_title
   .panel-body
   
-    = form_for @category do |f|
+    = form_for @category, html: { role: "form", class: "form-horizontal" } do |f|
       - checked = @category.barance_of_payments
       - if @category.errors.any?
         #error_explanation
@@ -14,7 +14,8 @@
               %li= msg
 
       .form-group
-        .btn-group{"data-toggle" => "buttons"}
+        = f.label :barance_of_payments, class: "control-label col-sm-2"
+        .btn-group.col-sm-10{"data-toggle" => "buttons"}
           %label.btn.btn-defaults.btn-checkbox.minus-sign(class="#{checked ? '' : 'active'}")
             = f.radio_button :barance_of_payments, 0
             = content_tag(:span, "", class: "glyphicon glyphicon-minus-sign") + I18n.t("category.outgo")
@@ -22,6 +23,10 @@
             = f.radio_button :barance_of_payments, 1
             = content_tag(:span, "", class: "glyphicon glyphicon-plus-sign") + I18n.t("category.income")
       .form-group
-        = f.label :name, class: "control-label"
-        = f.text_field :name, placeholder: I18n.t("example.category"), class: "form-control"
-      = f.submit class: "btn btn-default"
+        = f.label :name, class: "control-label col-sm-2"
+        .col-sm-10
+          = f.text_field :name, placeholder: I18n.t("example.category"), class: "form-control"
+      .form-group
+        .col-sm-2
+        .col-sm-10
+          = f.submit class: "btn btn-default"

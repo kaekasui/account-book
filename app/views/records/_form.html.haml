@@ -4,21 +4,28 @@
     = page_title
   .panel-body
     = render partial: 'messages', locals: { target: @record } if @record.errors.any?
-    = form_for @record do |f|
+    = form_for @record, html: { role: "form", class: "form-horizontal" } do |f|
       .form-group
-        = f.label :published_at, class: "control-label"
-        = f.date_select :published_at, {}, { class: "non-block-form-control" }
+        = f.label :published_at, class: "control-label col-sm-2"
+        .col-sm-10
+          = f.date_select :published_at, {}, { class: "non-block-form-control" }
       .form-group
-        = label :category, :name, Category.human_attribute_name(:name), class: "control-label category"
-        = select :category, :name, Category.all.map { |c| [c.name, c.id] }, {}, { class: "category form-control" }
+        = label :category, :name, Category.human_attribute_name(:name), class: "control-label category col-sm-2"
+        .col-sm-10
+          = select :category, :name, Category.all.map { |c| [c.name, c.id] }, {}, { class: "category form-control" }
       .form-group
-        = f.label :breakdown_id, class: "control-label"
-        = f.select :breakdown_id, Breakdown.all.map { |b| [b.name, b.id] }, {}, { class: "form-control" }
+        = f.label :breakdown_id, class: "control-label col-sm-2"
+        .col-sm-10
+          = f.select :breakdown_id, Breakdown.all.map { |b| [b.name, b.id] }, {}, { class: "form-control" }
       .form-group
-        = f.label :charge, class: "control-label"
-        = f.number_field :charge, class: "form-control"
+        = f.label :charge, class: "control-label col-sm-2"
+        .col-sm-10
+          = f.number_field :charge, class: "form-control"
       .form-group
-        = f.label :memo, class: "control-label"
-        = f.text_area :memo, class: "form-control"
-      .actions
-        = f.submit class: "btn btn-default"
+        = f.label :memo, class: "control-label col-sm-2"
+        .col-sm-10
+          = f.text_area :memo, class: "form-control"
+      .form-group
+        .col-sm-2
+        .col-sm-10
+          = f.submit class: "btn btn-default"
