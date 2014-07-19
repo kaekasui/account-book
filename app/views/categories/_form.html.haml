@@ -3,16 +3,9 @@
     %span.glyphicon.glyphicon-tags
     = page_title
   .panel-body
-  
+    = render partial: "messages", locals: { target: @category }
     = form_for @category, html: { role: "form", class: "form-horizontal" } do |f|
       - checked = @category.barance_of_payments
-      - if @category.errors.any?
-        #error_explanation
-          %h2= "#{pluralize(@category.errors.count, "error")} prohibited this category from being saved:"
-          %ul
-            - @category.errors.full_messages.each do |msg|
-              %li= msg
-
       .form-group
         = f.label :barance_of_payments, class: "control-label col-sm-2"
         .btn-group.col-sm-10{"data-toggle" => "buttons"}

@@ -3,16 +3,16 @@
     %span.glyphicon.glyphicon-th-list
     = page_title
   .panel-body
+    = render partial: "messages", locals: { target: @breakdown }
     = form_for @breakdown, html: { role: "form", class: "form-horizontal" } do |f|
-      = render partial: "messages", locals: { target: @breakdown }
-      .form-group
-        = f.label :name, class: "form-label col-sm-2"
-        .col-sm-10
-          = f.text_field :name, class: "form-control"
       .form-group
         = f.label :category_id, class: "form-label col-sm-2"
         .col-sm-10
           = f.select :category_id, Category.all.map {|c| [c.name, c.id]}, {}, { class: "form-control" }
+      .form-group
+        = f.label :name, class: "form-label col-sm-2"
+        .col-sm-10
+          = f.text_field :name, class: "form-control"
       .form-group
         .col-sm-2
         .col-sm-10

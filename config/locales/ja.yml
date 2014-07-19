@@ -44,13 +44,18 @@ ja:
     categories:
       index: "カテゴリ"
       edit: "カテゴリの編集"
+      update: "カテゴリの編集"
     users/sessions:
       new: "ログイン"
     users/registrations:
       new: "新規登録"
+      create: "新規登録"
     records:
-      new: "入力する"
       create: "入力する"
+      edit: "編集する"
+      index: "履歴"
+      new: "入力する"
+      update: "編集する"
     breakdowns:
       index: "内訳"
       edit: "内訳の編集"
