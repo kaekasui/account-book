@@ -26,6 +26,7 @@
         .col-md-3
           .menu= render partial: "application/menu"
         .col-md-9
+          .loading
           = render partial: 'messages', locals: { target: nil } if notice
           .main= yield
 
