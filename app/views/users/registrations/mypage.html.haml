@@ -1,0 +1,11 @@
+.panel.panel-default
+  .panel-heading
+    %span.glyphicon.glyphicon-user
+    = page_title
+  .panel-body
+    %dl.dl-horizontal
+      %dt= User.human_attribute_name(:email)
+      %dd= resource.email
+    %dl.dl-horizontal
+      %dt= I18n.t("labels.number_of_registered_records")
+      %dd= current_user.records.count

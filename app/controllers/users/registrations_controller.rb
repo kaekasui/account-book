@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_action :authenticate_user!, only: [:new]
+  prepend_before_filter :authenticate_scope!, only: [:edit, :update, :destroy, :mypage]
 
   def new
     super
@@ -40,6 +41,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
 =end
+  end
+
+  def mypage
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
   end
 
 =begin

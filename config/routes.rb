@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+  devise_scope :user do
+    get 'users/mypage' => 'users/registrations#mypage'
+  end
 
   resource :dashboard
   get 'csv/new' => 'csv#new'

@@ -27,6 +27,7 @@ ja:
     csv_file: "CSVファイル"
     delete: "削除"
     edit: "編集"
+    number_of_registered_records: "登録数"
   links:
     cross_mark: "×"
     sign_in: "ログイン"
@@ -50,6 +51,7 @@ ja:
     users/registrations:
       new: "新規登録"
       create: "新規登録"
+      mypage: "マイページ"
     records:
       create: "入力する"
       edit: "編集する"
