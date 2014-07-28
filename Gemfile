@@ -75,7 +75,6 @@ gem 'simplecov-rcov', require: false
 gem 'ci_reporter'
 gem 'launchy'
 gem 'selenium-webdriver'
-gem 'growl'
 
 # i18n
 gem 'rails-i18n'
