@@ -4,6 +4,8 @@ require 'kconv'
 class Record < ActiveRecord::Base
   acts_as_paranoid
 
+  after_commit :count_monthly_records_worker
+
   belongs_to :breakdown
   belongs_to :user
 
@@ -32,6 +34,16 @@ class Record < ActiveRecord::Base
     messages
   end
 
+  def set_records_count
+    user = User.find(self.user_id)
+    year = self.published_at.year
+    month = self.published_at.month
+    count = user.records.where("year(published_at) = #{year} and month(published_at) = #{month}").count
+    monthly = MonthlyCount.where(year: year, month: month, user_id: user.id).first || MonthlyCount.new(year: year, month: month, user_id: user.id)
+    monthly.count = count
+    monthly.save
+  end
+
   private
 
   def self.generate_messages(user, category, breakdown, record)
@@ -42,5 +54,9 @@ class Record < ActiveRecord::Base
     errors.concat breakdown.errors.full_messages.to_s unless breakdown.errors.blank?
     errors.concat record.errors.full_messages unless record.errors.blank?
     errors
+  end
+
+  def count_monthly_records_worker
+    CountMonthlyRecordsWorker.perform_async self.id
   end
 end

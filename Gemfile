@@ -84,3 +84,6 @@ gem 'paranoia'
 gem 'kaminari'
 
 gem 'dotenv-rails'
+
+# sidekiq for background
+gem 'sidekiq'
