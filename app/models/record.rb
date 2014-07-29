@@ -13,6 +13,7 @@ class Record < ActiveRecord::Base
 
   scope :group_by_years, -> { group("date_format(published_at, '%Y')").count }
   scope :group_by_months, -> { group("date_format(published_at, '%Y/%m')").count }
+  scope :total_charge, -> { sum(:charge) }
 
   def yen_charge
     "¥" + self.charge.to_s
@@ -39,8 +40,11 @@ class Record < ActiveRecord::Base
     year = self.published_at.year
     month = self.published_at.month
     count = user.records.where("year(published_at) = #{year} and month(published_at) = #{month}").count
+
     monthly = MonthlyCount.where(year: year, month: month, user_id: user.id).first || MonthlyCount.new(year: year, month: month, user_id: user.id)
     monthly.count = count
+
+    monthly.amount = user.records.total_charge
     monthly.save
   end
 
