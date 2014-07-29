@@ -19,6 +19,7 @@ SimpleCov.start do
   add_group 'Libraries', 'lib'
   add_group 'Routing', 'routing'
   add_group 'Features', 'features'
+  add_group 'Workers', 'workers'
   #add_group 'Requests', 'requests'
 end
 
@@ -37,7 +38,7 @@ Capybara.default_wait_time = 5
 Capybara.register_driver :selenium do |app|
   http_client = Selenium::WebDriver::Remote::Http::Default.new
   http_client.timeout = 100
-  Capybara::Selenium::Driver.new(app, :browser => :firefox, :http_client => http_client)
+  Capybara::Selenium::Driver.new(app, browser: :firefox, http_client: http_client)
 end
 
 RSpec.configure do |config|
@@ -52,8 +53,7 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # Use Devise Test Helper
-  config.include Devise::TestHelpers, :type => :controller
-
+  config.include Devise::TestHelpers, type: :controller
 
   config.before :each do
     if Capybara.current_driver == :rack_test

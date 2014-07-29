@@ -1,6 +1,6 @@
 class CountMonthlyRecordsWorker
   include Sidekiq::Worker
-  sidekiq_options retry: 3
+  sidekiq_options queue: :sidekiq, retry: 3
 
   def perform(id)
     puts '************* set records count *************'
