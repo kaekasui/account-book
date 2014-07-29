@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
   root 'home#index'
@@ -18,5 +20,9 @@ Rails.application.routes.draw do
   resources :breakdowns, except: [:new, :show]
   resources :records do
     post "/set_breakdowns_from_category" => "records#set_breakdowns_from_category", on: :collection
+  end
+
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
   end
 end

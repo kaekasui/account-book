@@ -87,3 +87,7 @@ gem 'dotenv-rails'
 
 # sidekiq for background
 gem 'sidekiq'
+
+# for sidekiq dashboard, build-in tools
+gem 'sinatra', require: false
+gem 'slim'
