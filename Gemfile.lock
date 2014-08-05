@@ -333,6 +333,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner
   devise
+  dotenv-deployment
   dotenv-rails
   erb2haml
   factory_girl_rails

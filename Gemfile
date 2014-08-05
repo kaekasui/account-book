@@ -77,6 +77,7 @@ group :development, :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'rspec-sidekiq'
+  gem 'dotenv-rails'
 end
 
 # i18n
@@ -86,7 +87,7 @@ gem 'i18n_generators'
 gem 'paranoia'
 gem 'kaminari'
 
-gem 'dotenv-rails'
+gem 'dotenv-deployment'
 
 # sidekiq for background
 gem 'sidekiq'

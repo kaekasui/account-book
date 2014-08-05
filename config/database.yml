@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: account-book_production
-  username: account-book
-  password: <%= ENV['ACCOUNT-BOOK_DATABASE_PASSWORD'] %>
+  username: root
+  password: #<%= ENV['ACCOUNT-BOOK_DATABASE_PASSWORD'] %>
