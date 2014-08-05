@@ -52,30 +52,32 @@ gem 'spring',        group: :development
 gem 'devise'
 
 # For test
-gem 'capybara'
-gem 'capybara-webkit'
-gem 'rspec'
-gem 'rspec-rails'
-gem 'rspec-core'
-gem 'rspec-expectations'
-gem 'rspec-mocks'
-gem 'rspec-collection_matchers'
-gem 'rspec-legacy_formatters'
-gem 'guard-rspec'
-gem 'growl'
-gem 'webrat'
-gem 'database_cleaner'
-gem 'factory_girl_rails'
-gem 'better_errors'
-gem 'binding_of_caller'
-gem 'spork'
-gem 'faker'
-gem 'simplecov', require: false
-gem 'simplecov-rcov', require: false
-gem 'ci_reporter'
-gem 'launchy'
-gem 'selenium-webdriver'
-gem 'rspec-sidekiq'
+group :development, :test do
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'rspec-core'
+  gem 'rspec-expectations'
+  gem 'rspec-mocks'
+  gem 'rspec-collection_matchers'
+  gem 'rspec-legacy_formatters'
+  gem 'guard-rspec'
+  gem 'growl'
+  gem 'webrat'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'spork'
+  gem 'faker'
+  gem 'simplecov', require: false
+  gem 'simplecov-rcov', require: false
+  gem 'ci_reporter'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+  gem 'rspec-sidekiq'
+end
 
 # i18n
 gem 'rails-i18n'
