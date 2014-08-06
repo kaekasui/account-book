@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     get 'users/mypage' => 'users/registrations#mypage'
   end
 
-  resource :dashboard
+  resource :dashboard do
+    post "/set_graph" => "dashboards#set_graph"#, on: :collection
+  end
   get 'csv/new' => 'csv#new'
   post 'csv/import' => 'csv#import'
   resources :categories, except: [:new] do
