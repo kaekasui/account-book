@@ -1,0 +1,51 @@
+margin = { top: 20, right: 20, bottom: 30, left: 40 }
+width = 960 - margin.left - margin.right
+height = 500 - margin.top - margin.bottom
+###
+x = d3.scale.original()
+  .rangeRoundBands([0, width], .1)
+y = d3.scale.linear()
+  .range([height, 0])
+###
+
+svg = d3.select(".dashboards_show").select(".panel-body")
+  .append("svg")
+  .attr({
+    width: width + margin.left + margin.right
+    height: height + margin.top + margin.bottom
+  })
+  .append("g")
+  .attr({ transform: "transform(" + margin.left + "," + margin.top + ")" })
+
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+svg.selectAll(".bar")
+  .data(data)
+  .enter().append("rect")
+    .attr({
+      class: "bar"
+      x: rect_x = (d) -> d * 30
+      width: "20px"
+      y: "80px"
+      height: rect_height = (d) -> d * 10
+    })
+
+
+
+
+
+
+
+###
+    .style("display", "inline-block")
+    .style("margin-right", "2px")
+    .style("background-color", "#9b59b6")
+    .style("height", "40px")
+    
+, width: '20px', margin-right: '2px', background-color: '#9b59b6')
+    .style(height = (d) ->
+      bar_height = d * 5
+      bar_height + "px"
+    )
+###
+

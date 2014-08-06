@@ -46,6 +46,8 @@ ja:
       index: "カテゴリ"
       edit: "カテゴリの編集"
       update: "カテゴリの編集"
+    dashboards:
+      show: "ダッシュボード"
     users/sessions:
       new: "ログイン"
     users/registrations:
