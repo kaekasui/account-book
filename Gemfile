@@ -59,11 +59,11 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'rspec-core'
+  # gem 'rspec-core'
   gem 'rspec-expectations'
   gem 'rspec-mocks'
   gem 'rspec-collection_matchers'
-  gem 'rspec-legacy_formatters'
+  # gem 'rspec-legacy_formatters'
   gem 'guard-rspec'
   gem 'growl'
   gem 'webrat'
@@ -75,7 +75,8 @@ group :development, :test do
   gem 'faker'
   gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false
-  gem 'ci_reporter'
+  # gem 'ci_reporter'
+  gem 'rspec_junit_formatter'
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'rspec-sidekiq'
