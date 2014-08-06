@@ -34,7 +34,8 @@ body {
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   }
   .panel-body {
-    background-image: url('filter_pig.gif');
+    //background-image: url('filter_pig.gif');
+    background-image: image_url("filter_pig.gif");
     background-size: 120% auto;
     background-repeat: no-repeat;
   }
@@ -64,7 +65,8 @@ body {
     }
   }
   a img { padding-right: 7px; }
-  background-image: url("wood.png");
+  //background-image: url("wood.png");
+  background-image: image_url("wood.png");
   .list-group-item {
   }
   .nav.nav-tabs li.active {

@@ -21,6 +21,8 @@ gem 'haml-rails'
 gem 'erb2haml'
 
 # Use Bootstrap
+gem 'rails_12factor', group: :production
+gem 'sprockets'
 gem 'bootstrap-sass'
 gem 'therubyracer'
 gem 'less-rails'

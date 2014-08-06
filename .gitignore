@@ -23,3 +23,6 @@
 # Ignore the swap files.
 /*.swp
 /*/*.swp
+
+# public files
+/public/assets/*
