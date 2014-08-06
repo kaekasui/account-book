@@ -87,4 +87,12 @@ body {
     font-weight: normal;
     color: #515e12;
   }
+  .loader-image {
+    height: 20px;
+    width: 60px;
+    display: block;
+    background-image: image_url("loader.gif");
+    background-size: 60px;
+    background-repeat: no-repeat;
+  }
 }
