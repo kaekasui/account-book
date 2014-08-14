@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe BreakdownsController, type: :controller do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, confirmed_at: Time.now) }
   let(:category) { create(:category) }
 
   context 'ログインしてる場合' do

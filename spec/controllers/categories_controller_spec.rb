@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, confirmed_at: Time.now) }
 
   context 'ユーザーがログインしている場合' do
     before do

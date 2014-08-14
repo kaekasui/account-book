@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails' #, '4.1.5'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
@@ -56,14 +56,16 @@ gem 'devise'
 # For test
 group :development, :test do
   gem 'capybara'
+  gem 'capybara-email'
   gem 'capybara-webkit'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'rspec-expectations'
   gem 'rspec-mocks'
   gem 'rspec-collection_matchers'
-  #gem 'rspec-legacy_formatters'
-  #gem 'rspec-core'
+  gem 'rspec-legacy_formatters'
+  gem 'rspec-support'
+  gem 'rspec-core'
   gem 'guard-rspec'
   gem 'growl'
   gem 'webrat'
@@ -79,7 +81,7 @@ group :development, :test do
   gem 'rspec_junit_formatter'
   gem 'launchy'
   gem 'selenium-webdriver'
-  gem 'rspec-sidekiq'
+  #gem 'rspec-sidekiq'
   gem 'dotenv-rails'
 end
 

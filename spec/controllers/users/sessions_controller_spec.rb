@@ -21,12 +21,12 @@ describe Users::SessionsController do
     describe 'ログイン' do
       context '有効な値を入力した場合' do
         it 'ログインすること' do
-          user = create(:user)
+          user = create(:user, confirmed_at: Time.now)
           expect(sign_in user).to eq [[user.id], user.encrypted_password[0..28]]
         end
 
         it 'トップ画面にリダイレクトすること' do
-          create(:user)
+          create(:user, confirmed_at: Time.now)
           post :create, { use_route: :users, user: attributes_for(:user) }
           expect(response).to redirect_to root_path 
         end
@@ -48,7 +48,7 @@ describe Users::SessionsController do
 
   context 'ログインしている場合' do
     before do
-      user = create(:user)
+      user = create(:user, confirmed_at: Time.now)
       sign_in user
     end
 

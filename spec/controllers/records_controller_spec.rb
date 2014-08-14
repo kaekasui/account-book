@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe RecordsController, type: :controller do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, confirmed_at: Time.now) }
   let(:category) { create(:category) }
   let(:breakdown) { create(:breakdown, user_id: user.id, category_id: category.id) }
 

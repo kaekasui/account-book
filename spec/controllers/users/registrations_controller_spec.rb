@@ -44,7 +44,7 @@ describe Users::RegistrationsController do
 
     describe 'ユーザー情報の編集画面' do
       it 'ログイン画面が表示されること' do
-        user = create(:user)
+        user = create(:user, confirmed_at: Time.now)
         get :edit, use_route: :users, id: user.id
         expect(response).to redirect_to new_user_session_path
       end
@@ -53,7 +53,7 @@ describe Users::RegistrationsController do
 
   context 'ログインしている場合' do
     before do
-      @user = create(:user)
+      @user = create(:user, confirmed_at: Time.now)
       sign_in @user
     end
 

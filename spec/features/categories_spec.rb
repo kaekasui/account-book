@@ -2,11 +2,11 @@ require 'rails_helper'
 
 feature 'カテゴリの管理' do
   background do
-    user = create(:user)
+    user = create(:user, confirmed_at: Time.now)
     login user
   end
 
-  scenario 'displays on the table'
+  scenario 'カテゴリの一覧を表示する'
 =begin
 js: true
     visit categories_path
