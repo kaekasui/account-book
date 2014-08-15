@@ -12,6 +12,7 @@ ja:
     name: "おこづかいちょうβ"
     pig: "こぶたさん"
   buttons:
+    change_password: "パスワードを変更する"
     sign_in: "ログインする"
     sign_up: "登録する"
     import: "インポートする"
@@ -55,6 +56,11 @@ ja:
       new: "確認メール再送"
       create: "確認メール再送"
       show: "確認メール再送"
+    users/passwords:
+      new: "パスワードの再設定"
+      create: "パスワードの再設定"
+      edit: "パスワードの再設定"
+      update: "パスワードの再設定"
     users/sessions:
       new: "ログイン"
     users/registrations:
