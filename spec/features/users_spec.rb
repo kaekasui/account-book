@@ -85,4 +85,42 @@ feature 'ユーザーアカウントの管理' do
 
     expect(current_path).to eq root_path
   end
+
+  scenario '新規会員登録で確認メールを再送し登録する' do
+    visit root_path
+
+    click_link I18n.t("links.sign_up")
+    fill_in User.human_attribute_name(:email), with: "new_user@example.com"
+    fill_in User.human_attribute_name(:password), with: "password"
+    fill_in User.human_attribute_name(:password_confirmation), with: "password"
+    click_button I18n.t("buttons.sign_up")
+
+    expect(current_path).to eq root_path
+    expect(page).to have_content I18n.t("devise.registrations.signed_up_but_unconfirmed")
+
+    visit new_user_session_path
+    click_link I18n.t("links.confirmation")
+
+    expect(current_path).to eq new_user_confirmation_path
+
+    fill_in User.human_attribute_name(:email), with: "new_user@example.com"
+    click_button I18n.t("buttons.send_email")
+
+    expect(page).to have_content I18n.t("devise.confirmations.send_instructions")
+
+    user = User.find_by_email("new_user@example.com")
+    open_email("new_user@example.com")
+    mail_body = current_email.body
+    index = mail_body.index("confirmation_token=")
+    token = mail_body.slice(index+19..index+38)
+    visit user_confirmation_path(confirmation_token: token)
+
+    expect(current_path).to eq new_user_session_path
+
+    fill_in User.human_attribute_name(:email), with: "new_user@example.com"
+    fill_in User.human_attribute_name(:password), with: "password"
+    click_button I18n.t("buttons.sign_in")
+
+    expect(page).to have_content I18n.t("devise.sessions.signed_in")
+  end
 end
