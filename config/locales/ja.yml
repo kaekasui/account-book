@@ -15,6 +15,7 @@ ja:
     sign_in: "ログインする"
     sign_up: "登録する"
     import: "インポートする"
+    send_email: "メールを送信する"
   example:
     breakdown: "電気代"
     category: "光熱費"
@@ -29,7 +30,9 @@ ja:
     edit: "編集"
     number_of_registered_records: "登録数"
   links:
+    confirmation: "確認メールが見つからない場合"
     cross_mark: "×"
+    reset_password: "パスワードを忘れた場合"
     sign_in: "ログイン"
     sign_up: "新規登録"
     sign_out: "ログアウト"
@@ -48,6 +51,10 @@ ja:
       update: "カテゴリの編集"
     dashboards:
       show: "ダッシュボード"
+    users/confirmations:
+      new: "確認メール再送"
+      create: "確認メール再送"
+      show: "確認メール再送"
     users/sessions:
       new: "ログイン"
     users/registrations:

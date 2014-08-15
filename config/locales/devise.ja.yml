@@ -4,7 +4,7 @@ ja:
   devise:
     confirmations:
       confirmed: "会員登録が完了しました。ログインしてください。"
-      send_instructions: "You will receive an email with instructions about how to confirm your account in a few minutes."
+      send_instructions: "メールを送信しました。受信には数分掛かる場合があります。"
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes."
     failure:
       already_authenticated: "You are already signed in."
@@ -15,7 +15,7 @@ ja:
       not_found_in_database: "メールアドレスまたはパスワードが不正です。"
       timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "表示するにはログインする必要があります。"
-      unconfirmed: "会員登録が完了していません。メールを確認するか会員登録完了メールの再送をしてください。"
+      unconfirmed: "登録が完了していません。確認メールのURLに接続してください。メールがない場合は確認メールを再送してください。"
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
@@ -49,10 +49,10 @@ ja:
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
   errors:
     messages:
-      already_confirmed: "was already confirmed, please try signing in"
+      already_confirmed: "はすでに登録済みです。"
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
       expired: "has expired, please request a new one"
-      not_found: "not found"
+      not_found: "が見つかりません。"
       not_locked: "was not locked"
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"

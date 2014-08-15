@@ -16,4 +16,6 @@
           = f.check_box :remember_me
           = f.label :remember_me, class: "font-weight-normal"
       = f.submit I18n.t("buttons.sign_in"), class: "btn btn-default"
-    =# render "users/shared/links"
+    %hr
+    %p= link_to I18n.t("links.reset_password"), new_user_password_path
+    %p= link_to I18n.t("links.confirmation"), new_user_confirmation_path
