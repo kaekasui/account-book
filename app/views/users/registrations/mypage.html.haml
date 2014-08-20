@@ -7,5 +7,10 @@
       %dt= User.human_attribute_name(:email)
       %dd= resource.email
     %dl.dl-horizontal
+      %dt= User.human_attribute_name(:password)
+      %dd= I18n.t("labels.comments")
+    .align-right= link_to I18n.t("links.edit_user"), edit_user_registration_path(resource), class: "btn btn-info"
+    %hr
+    %dl.dl-horizontal
       %dt= I18n.t("labels.number_of_registered_records")
       %dd= current_user.records.count

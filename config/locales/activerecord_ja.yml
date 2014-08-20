@@ -11,6 +11,7 @@ ja:
         name: "カテゴリ"
       user:
         confirmation_token: "URL"
+        current_password: "現在のパスワード"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "パスワード（確認）"

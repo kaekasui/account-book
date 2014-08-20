@@ -11,6 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
+    super
 =begin
     send(:"authenticate_#{resource_name}!", force: true)
     self.resource = OriginalUser.find_by_code(current_user.code)
@@ -19,6 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
+    super
 =begin
     self.resource = resource_class.to_adapter.get!(OriginalUser.find_by_code(current_user.code).to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
