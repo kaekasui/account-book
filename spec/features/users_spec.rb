@@ -72,18 +72,18 @@ feature 'ユーザーアカウントの管理' do
   end
 
   scenario 'ユーザー情報を更新する' do
-    pending
     user = create(:user, confirmed_at: Time.now)
     login user
 
-    visit edit_user_registration_path
+    click_link I18n.t("links.status")
+    click_link I18n.t("links.edit_user")
     fill_in User.human_attribute_name(:email), with: user.email
     fill_in User.human_attribute_name(:password), with: "12345678"
     fill_in User.human_attribute_name(:password_confirmation), with: "12345678"
     fill_in User.human_attribute_name(:current_password), with: user.password
-    click_button I18n.t("helpers.submit.user.update")
-
-    expect(current_path).to eq root_path
+    click_button I18n.t("buttons.update")
+    expect(page).to have_content I18n.t("devise.registrations.updated")
+    expect(current_path).to eq users_mypage_path
   end
 
   scenario '新規会員登録で確認メールを再送し登録する' do
