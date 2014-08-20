@@ -80,27 +80,24 @@ describe Users::RegistrationsController do
       context '有効な値を入力した場合' do
         it 'ユーザー情報を更新すること' do
           pending
-          patch :update, user: attributes_for(:edit_user)
+          patch :update, user: attributes_for(:edit_user, email: "edit_user@example.com", current_password: @user.password)
           expect(@user.reload.email).to eq "edit_user@example.com"
         end
 
-        it 'トップ画面にリダイレクトすること' do
-          pending
-          patch :update, user: attributes_for(:edit_user)
-          expect(response).to redirect_to root_path
+        it 'マイページにリダイレクトすること' do
+          patch :update, { id: @user.id, use_route: :users, user: attributes_for(:edit_user), id: @user.id}
+          expect(response).to redirect_to users_mypage_path
         end
       end
 
       context '無効な値を入力した場合' do
         it 'ユーザー情報を更新しないこと' do
-          pending
-          patch :update, user: attributes_for(:edit_user, current_password: "")
-          expect(@user.reload.email).to eq "user@example.com"
+          patch :update, { use_route: :users, user: attributes_for(:edit_user, current_password: "invalid_password")}
+          expect(@user.reload.password).to eq "password"
         end
 
         it 'ユーザー情報の編集画面を再表示すること' do
-          pending
-          patch :update, user: attributes_for(:edit_user, current_password: "")
+          patch :update, { use_route: :users, user: attributes_for(:edit_user, current_password: "invalid_password")}
           expect(response).to render_template :edit
         end
       end
