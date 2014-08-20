@@ -123,4 +123,31 @@ feature 'ユーザーアカウントの管理' do
 
     expect(page).to have_content I18n.t("devise.sessions.signed_in")
   end
+
+  scenario 'パスワードを再設定する' do
+    user = create(:user, confirmed_at: Time.now)
+
+    visit new_user_session_path
+    click_link I18n.t("links.reset_password")
+
+    expect(current_path).to eq new_user_password_path
+
+    fill_in User.human_attribute_name(:email), with: "user@example.com"
+    click_button I18n.t("buttons.send_email")
+
+    expect(page).to have_content I18n.t("devise.passwords.send_instructions")
+
+    open_email("user@example.com")
+    mail_body = current_email.body
+    index = mail_body.index("reset_password_token=")
+    token = mail_body.slice(index+21..index+40)
+    visit edit_user_password_path(reset_password_token: token)
+
+    fill_in User.human_attribute_name(:password), with: "new_password"
+    fill_in User.human_attribute_name(:password_confirmation), with: "new_password"
+    click_button I18n.t("buttons.change_password")
+
+    expect(current_path).to eq root_path
+    expect(page).to have_content I18n.t("devise.passwords.updated")
+  end
 end
