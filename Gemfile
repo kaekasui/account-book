@@ -53,6 +53,11 @@ gem 'spring',        group: :development
 
 gem 'devise'
 
+# Use Omniauth
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
 # For test
 group :development, :test do
   gem 'capybara'
