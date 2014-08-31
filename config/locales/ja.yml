@@ -12,6 +12,7 @@ ja:
     name: "おこづかいちょうβ"
     pig: "こぶたさん"
   buttons:
+    cancel: "退会する"
     change_password: "パスワードを変更する"
     sign_in: "ログインする"
     sign_up: "登録する"
@@ -33,6 +34,7 @@ ja:
     edit: "編集"
     number_of_registered_records: "登録数"
   links:
+    cancel_user: "退会する"
     edit_user: "登録情報を編集する"
     confirmation: "確認メールが見つからない場合"
     cross_mark: "×"
@@ -67,6 +69,8 @@ ja:
     users/sessions:
       new: "ログイン"
     users/registrations:
+      cancel: "退会"
+      destroy: "退会"
       edit: "登録情報編集"
       update: "登録情報編集"
       new: "新規登録"

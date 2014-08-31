@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   }
   devise_scope :user do
     get 'users/mypage' => 'users/registrations#mypage'
+    #get 'users/cancel' => 'users/registrations#cancel'
   end
 
   resource :dashboard do

@@ -3,7 +3,7 @@
     %span.glyphicon.glyphicon-heart
     = page_title
   .panel-body
-    = render partial: 'messages', locals: { target: resource } if alert
+    = render partial: 'messages', locals: { target: resource } if alert or resource.errors.any?
     = form_for(resource, html: { role: "form" }, as: resource_name, url: registration_path(resource_name)) do |f|
       .form-group
         = f.label :email

@@ -1,0 +1,12 @@
+.panel.panel-default
+  .panel-heading
+    %span.glyphicon.glyphicon-user
+    = page_title
+  .panel-body
+    = render partial: 'messages', locals: { target: @cancel }
+    = form_for @cancel, url: user_registration_path, html: { role: "form", method: :delete } do |f|
+      .form-group
+        = f.label :content, class: "control-label"
+        = f.text_area :content, class: "form-control", rows: "8"
+      .form-group
+        = f.submit I18n.t("buttons.cancel"), class: "btn btn-default"

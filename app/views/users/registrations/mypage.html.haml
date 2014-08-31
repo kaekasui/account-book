@@ -9,7 +9,9 @@
     %dl.dl-horizontal
       %dt= User.human_attribute_name(:password)
       %dd= I18n.t("labels.comments")
-    .align-right= link_to I18n.t("links.edit_user"), edit_user_registration_path(resource), class: "btn btn-info"
+    .align-right
+      = link_to I18n.t("links.edit_user"), edit_user_registration_path, class: "btn btn-info"
+      = link_to I18n.t("links.cancel_user"), cancel_user_registration_path, class: "btn btn-info"
     %hr
     %dl.dl-horizontal
       %dt= I18n.t("labels.number_of_registered_records")
