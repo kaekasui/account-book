@@ -105,7 +105,7 @@ describe Users::RegistrationsController do
 
     describe 'アカウントを削除すること' do
       it 'アカウントを論理削除し削除時刻を更新すること' do
-        delete :destroy, use_route: :users
+        delete :destroy, { use_route: :users, cancel: attributes_for(:cancel)}
         expect(@user.reload.deleted_at).to_not be_nil
       end
     end
