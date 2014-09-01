@@ -150,4 +150,18 @@ feature 'ユーザーアカウントの管理' do
     expect(current_path).to eq root_path
     expect(page).to have_content I18n.t("devise.passwords.updated")
   end
+
+  scenario '退会する' do
+    user = create(:user, confirmed_at: Time.now)
+    login user
+
+    visit users_mypage_path
+    click_link I18n.t("links.cancel_user")
+
+    fill_in Cancel.human_attribute_name(:content), with: "退会理由"
+    click_button I18n.t("buttons.cancel")
+
+    expect(current_path).to eq root_path
+    expect(page).to have_content I18n.t("devise.registrations.destroyed")
+  end
 end
