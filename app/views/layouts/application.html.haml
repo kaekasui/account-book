@@ -28,7 +28,7 @@
           .menu= render partial: "application/menu"
         .col-md-9
           .loading
-          = render partial: 'messages', locals: { target: nil } if notice
+          = render partial: 'messages', locals: { target: nil } if notice or alert
           .main= yield
 
     .footer

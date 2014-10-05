@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     confirmations: 'users/confirmations',
-    passwords: 'users/passwords'
+    passwords: 'users/passwords',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   devise_scope :user do
     get 'users/mypage' => 'users/registrations#mypage'

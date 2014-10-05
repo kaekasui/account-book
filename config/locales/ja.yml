@@ -87,3 +87,6 @@ ja:
       edit: "内訳の編集"
     csv:
       new: "CSVインポート"
+  messages:
+    reason:
+      authentication_failure: "認証失敗"

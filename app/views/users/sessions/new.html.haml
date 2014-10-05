@@ -3,7 +3,6 @@
     %span.glyphicon.glyphicon-leaf
     = page_title
   .panel-body
-    = render partial: 'messages', locals: { target: nil } if alert
     = form_for(resource, html: { role: "form" }, as: resource_name, url: session_path(resource_name)) do |f|
       .form-group
         = f.label :email
@@ -19,3 +18,4 @@
     %hr
     %p= link_to I18n.t("links.reset_password"), new_user_password_path
     %p= link_to I18n.t("links.confirmation"), new_user_confirmation_path
+    = link_to image_tag('twitter-icon.png', witdh: '21px', height: '21px') + "twitterでログイン", user_omniauth_authorize_path(provider: :twitter), class: "btn btn-primary"

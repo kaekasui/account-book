@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         :validatable, :confirmable#, :omniauthable
+         :confirmable, :omniauthable # :validatable
 
   acts_as_paranoid
 
@@ -12,5 +12,20 @@ class User < ActiveRecord::Base
   has_many :monthly_counts
   has_one :cancel
 
-  validates :email, length: { maximum: MAX_LONG_TEXT_FIELD_LENGTH }
+  validates :email, presence: true, uniqueness: true, length: { maximum: MAX_LONG_TEXT_FIELD_LENGTH }, if: :email_required?
+  validates :password, presence: true, confirmation: true, if: :password_required?
+  validates :password, length: { within: 8..128 }, unless: :password_blank?
+
+  private
+    def password_blank?
+      password.blank?
+    end
+
+    def email_required?
+      !password.nil? || !password_confirmation.nil?
+    end
+
+    def password_required?
+      !password.nil? || !password_confirmation.nil?
+    end
 end
