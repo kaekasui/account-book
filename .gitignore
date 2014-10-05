@@ -26,3 +26,6 @@
 
 # public files
 /public/assets/*
+
+# dotenv files
+/.env.*
