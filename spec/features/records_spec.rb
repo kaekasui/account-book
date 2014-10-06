@@ -27,7 +27,6 @@ feature 'Record' do
 
     visit records_path(year: 2014, month: 8)
     expect(page).to have_content breakdown.name
-puts page.body
     click_link "2012年"
     expect(page).to have_content breakdown.name
   end

@@ -9,6 +9,15 @@ require 'capybara/email/rspec'
 require 'simplecov'
 require 'simplecov-rcov'
 
+OmniAuth.config.test_mode = true
+
+OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+  provider: 'twitter',
+  uid: '123456',
+  info: { name: "name", nickname: "NickName" },
+  credentials: { token: "TOKEN" }
+})
+
 SimpleCov.start do
   add_filter 'factories'
 
