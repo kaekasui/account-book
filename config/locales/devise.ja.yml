@@ -7,7 +7,7 @@ ja:
       send_instructions: "メールを送信しました。受信には数分掛かる場合があります。"
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes."
     failure:
-      already_authenticated: "You are already signed in."
+      already_authenticated: "すでにログインしています。"
       inactive: "Your account is not activated yet."
       invalid: "メールアドレスまたはパスワードが不正です。"
       locked: "Your account is locked."
