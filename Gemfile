@@ -26,6 +26,7 @@ gem 'sprockets'
 gem 'bootstrap-sass'
 gem 'therubyracer'
 gem 'less-rails'
+gem 'select2-rails', '3.5.9.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
