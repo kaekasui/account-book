@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resource :notice, only: [:show] do
     get 'terms' => 'notice#terms'
   end
+  resources :places
   resources :records do
     post "/set_breakdowns_from_category" => "records#set_breakdowns_from_category", on: :collection
   end
