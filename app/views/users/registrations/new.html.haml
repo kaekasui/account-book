@@ -15,3 +15,4 @@
         = f.label :password_confirmation
         = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
       = f.submit I18n.t("buttons.sign_up"), class: "btn btn-default"
+    = render partial: "users/shared/links"

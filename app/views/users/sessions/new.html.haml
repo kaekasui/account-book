@@ -15,7 +15,4 @@
           = f.check_box :remember_me
           = f.label :remember_me, class: "font-weight-normal"
       = f.submit I18n.t("buttons.sign_in"), class: "btn btn-default"
-    %hr
-    %p= link_to I18n.t("links.reset_password"), new_user_password_path
-    %p= link_to I18n.t("links.confirmation"), new_user_confirmation_path
-    = link_to image_tag('twitter-icon.png', witdh: '21px', height: '21px') + "twitterでログイン", user_omniauth_authorize_path(provider: :twitter), class: "btn btn-primary"
+    = render partial: "users/shared/links"
