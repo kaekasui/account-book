@@ -43,6 +43,7 @@ ja:
     sign_up: "新規登録"
     sign_out: "ログアウト"
     status: "マイページ"
+    terms: "ご利用規約"
   menu:
     breakdown: "内訳"
     category: "カテゴリ"
@@ -57,6 +58,8 @@ ja:
       update: "カテゴリの編集"
     dashboards:
       show: "ダッシュボード"
+    notice:
+      terms: "ご利用規約"
     users/confirmations:
       new: "確認メール再送"
       create: "確認メール再送"

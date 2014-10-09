@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     post "/set_categories_list" => "categories#set_categories_list", on: :collection
   end
   resources :breakdowns, except: [:new, :show]
+  resource :notice, only: [:show] do
+    get 'terms' => 'notice#terms'
+  end
   resources :records do
     post "/set_breakdowns_from_category" => "records#set_breakdowns_from_category", on: :collection
   end
