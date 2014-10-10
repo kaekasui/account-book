@@ -1,12 +1,9 @@
 .navbar.navbar-default(role="navigation")
   .navbar-header
-    %button.navbar-toggle(type="button" data-toggle="collapse")
-      %span.icon-bar
-      %span.icon-bar
-      %span.icon-bar
     = link_to image_tag('pig.gif') + content_tag(:span, I18n.t("brand.name"), class: "brand-name") + content_tag(:span, "", class: "glyphicon glyphicon-paperclip"), root_path, class: "navbar-brand"
   .collapse.navbar-collapse
     %ul.nav.navbar-nav
+      %li= link_to content_tag(:span, "", class: "glyphicon glyphicon-home") + t("links.home"), root_path
       - if user_signed_in? and current_user
         %li= link_to content_tag(:span, "", class: "glyphicon glyphicon-user") + t("links.status"), users_mypage_path
         %li= link_to content_tag(:span, "", class: "glyphicon glyphicon-leaf") + t("links.sign_out"), destroy_user_session_path, method: :delete
