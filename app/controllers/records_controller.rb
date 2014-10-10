@@ -80,7 +80,7 @@ class RecordsController < ApplicationController
     end
 
     def record_params
-      params.require(:record).permit(:published_at, :charge, :breakdown_id, :memo, :deleted_at, :user_id)
+      params.require(:record).permit(:published_at, :charge, :breakdown_id, :place_id, :memo, :user_id)
     end
 
     def year_param

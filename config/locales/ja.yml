@@ -27,6 +27,8 @@ ja:
     submit:
       user:
         create: "新規登録する"
+  include_blank:
+    place: "▷お店や場所を選択してください。"
   labels:
     barance_of_payments: "収支"
     csv_file: "CSVファイル"
@@ -52,7 +54,7 @@ ja:
     dashboard: "ダッシュボード"
     new_record: "入力する"
     import: "CSVインポート"
-    place: "お店・場所"
+    place: "場所"
     record: "履歴"
     setting: "設定"
   page_title:
@@ -65,7 +67,7 @@ ja:
     notice:
       terms: "ご利用規約"
     places:
-      index: "お店・場所"
+      index: "場所"
     users/confirmations:
       new: "確認メール再送"
       create: "確認メール再送"

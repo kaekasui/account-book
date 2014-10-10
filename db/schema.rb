@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010002606) do
+ActiveRecord::Schema.define(version: 20141010010707) do
 
   create_table "breakdowns", force: true do |t|
     t.string   "name"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20141010002606) do
     t.date     "published_at"
     t.integer  "charge"
     t.integer  "breakdown_id"
+    t.integer  "place_id"
     t.text     "memo"
     t.datetime "deleted_at"
     t.datetime "created_at"

@@ -18,6 +18,10 @@
         .col-sm-10
           = f.select :breakdown_id, Breakdown.all.map { |b| [b.name, b.id] }, {}, { class: "form-control" }
       .form-group
+        = f.label :place_id, class: "control-label col-sm-2"
+        .col-sm-10
+          = f.select :place_id, Place.all.map { |p| [p.name, p.id] }, { include_blank: I18n.t("include_blank.place") }, { class: "form-control" }
+      .form-group
         = f.label :charge, class: "control-label col-sm-2"
         .col-sm-10
           = f.number_field :charge, class: "form-control"
