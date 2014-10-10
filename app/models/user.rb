@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   acts_as_paranoid
 
+  has_many :categories
   has_many :breakdowns
   has_many :records
   has_many :monthly_counts
