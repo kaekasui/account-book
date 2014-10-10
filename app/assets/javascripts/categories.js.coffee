@@ -35,6 +35,11 @@ $(document).on('page:change', (e) ->
   )
 )
 
+$(document).on('ready page:load', (e) ->
+  if ($('select#record_breakdown_id')[0])
+   set_breakdown_from_category()
+)
+
 set_breakdown_from_category = () ->
   category_id = $("select#category_name option:selected").val()
   $.ajax({
