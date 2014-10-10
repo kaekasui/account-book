@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :categories
   has_many :breakdowns
+  has_many :places
   has_many :records
   has_many :monthly_counts
   has_one :cancel

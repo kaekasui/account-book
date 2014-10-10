@@ -13,14 +13,15 @@ class RecordsController < ApplicationController
   end
 
   def new
-    @record = Record.new
+    @record = current_user.records.new
+    @category = current_user.categories.new
   end
 
   def edit
   end
 
   def create
-    @record = Record.new(record_params)
+    @record = current_user.records.new(record_params)
     @record.user_id = current_user.id
 
     respond_to do |format|
@@ -65,9 +66,9 @@ class RecordsController < ApplicationController
       @category_id = key
     end
     if @category_id
-      @breakdowns = Category.find(@category_id).breakdowns
+      @breakdowns = current_user.categories.find(@category_id).breakdowns
    else
-      @breakdowns = Breakdowns.all
+      @breakdowns = current_user.breakdowns.all
     end
     respond_to do |format|
       format.js

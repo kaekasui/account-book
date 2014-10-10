@@ -3,15 +3,15 @@ class BreakdownsController < ApplicationController
   respond_to :js
 
   def index
-    @breakdowns = Breakdown.all
-    @breakdown = Breakdown.new
+    @breakdowns = current_user.breakdowns.all
+    @breakdown = current_user.breakdowns.new
   end
 
   def edit
   end
 
   def create
-    @breakdown = Breakdown.new(breakdown_params)
+    @breakdown = current_user.breakdowns.new(breakdown_params)
     @breakdown.user_id = current_user.id
     @breakdown.save
     respond_with @breakdown, location: breakdowns_path

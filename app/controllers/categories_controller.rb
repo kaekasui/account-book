@@ -3,9 +3,9 @@ class CategoriesController < ApplicationController
   respond_to :js
 
   def index
-    @category = Category.new
+    @category = current_user.categories.new
     @category.barance_of_payments = true
-    @categories = Category.where(barance_of_payments: true).order(:updated_at).reverse_order
+    @categories = current_user.categories.where(barance_of_payments: true).order(:updated_at).reverse_order
   end
 
   def show
@@ -16,11 +16,11 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.new(category_params)
     @category.barance_of_payments = 0 if category_params[:barance_of_payments].nil?
     @category.user_id = current_user.id
     @category.save
-    respond_with @category, location: categories_path
+    render text: @category.id if @category.submit_type == 'modal'
   end
 
   def update
@@ -56,6 +56,6 @@ class CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:name, :barance_of_payments)
+      params.require(:category).permit(:name, :barance_of_payments, :submit_type)
     end
 end

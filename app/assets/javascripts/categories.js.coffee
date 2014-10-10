@@ -31,13 +31,46 @@ set_categories = (sign) ->
 # カテゴリーの選択後に内訳のセレクトボックスを該当カテゴリーの内訳にする
 $(document).on('page:change', (e) ->
   $("select#category_name").change( ->
-    category_id = $("select#category_name option:selected").val()
+    set_breakdown_from_category()
+  )
+)
+
+set_breakdown_from_category = () ->
+  category_id = $("select#category_name option:selected").val()
+  $.ajax({
+    url: "set_breakdowns_from_category",
+    type: "POST",
+    data: category_id,
+    success: (response) ->
+    error: (response) -> alert("エラーが発生しました")
+  })
+
+# 入力時にカテゴリを登録する
+$(document).on('ready page:load', (e) ->
+  $("#create_category").click ( ->
+    if !($("input[name='barance_of_payments']:checked").val())
+      return
+    if !($("input#name").val())
+      return
+    category = { category: {
+      name: $('input#name').val(),
+      barance_of_payments: $("input[name='barance_of_payments']:checked").val(),
+      submit_type: "modal"
+    }}
     $.ajax({
-      url: "set_breakdowns_from_category",
+      url: "/categories",
       type: "POST",
-      data: category_id,
+      beforeSend: (xhr) -> xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')),
+      data: category,
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
       success: (response) ->
-      error: (response) -> alert("エラーが発生しました")
+        $('#create-category-modal').modal('hide')
+        $('select#category_name').prepend($('<option>').html(category.category.name).val(response))
+        $('select#category_name').val(response)
+        set_breakdown_from_category()
+      error: (response) -> alert("error")
     })
   )
 )

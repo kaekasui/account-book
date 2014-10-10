@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
+  attr_accessor :submit_type
   acts_as_paranoid
   validates :name, presence: true, length: { maximum: MAX_TEXT_FIELD_LENGTH }
 

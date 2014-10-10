@@ -4,7 +4,7 @@ class PlacesController < ApplicationController
 
   def index
     @place = Place.new
-    @places = Place.all.order(:updated_at).reverse_order
+    @places = current_user.places.order(:updated_at).reverse_order
   end
 
   def show

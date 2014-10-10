@@ -1,0 +1,17 @@
+.modal.fade#create-category-modal(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-body
+        .form-group
+          = radio_button_tag :barance_of_payments, 0
+          = label_tag :barance_of_payments, I18n.t("category.outgo")
+          = radio_button_tag :barance_of_payments, 1
+          = label_tag :barance_of_payments, I18n.t("category.income")
+        .form-group
+          = label_tag :name, Category.human_attribute_name(:name), class: "control-label"
+          = text_field_tag :name, "", class: "form-control"
+        - @category.submit_type = "modal"
+        = hidden_field_tag :submit_type
+        %br
+        .align-center
+          .btn.btn-default#create_category= I18n.t("buttons.add")
