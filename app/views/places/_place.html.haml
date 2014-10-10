@@ -1,0 +1,4 @@
+%tr
+  %td(class="place_id_#{place.id}")= link_to place.name, place
+  %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_place_path(id: place.id)
+  %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), place, method: :delete, data: { confirm: "Are you sure?" }

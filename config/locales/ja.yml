@@ -22,6 +22,7 @@ ja:
   example:
     breakdown: "電気代"
     category: "光熱費"
+    place: "スーパー"
   helpers:
     submit:
       user:
@@ -33,6 +34,7 @@ ja:
     delete: "削除"
     edit: "編集"
     number_of_registered_records: "登録数"
+    place: "場所"
   links:
     cancel_user: "退会する"
     edit_user: "登録情報を編集する"
@@ -62,6 +64,8 @@ ja:
       show: "ダッシュボード"
     notice:
       terms: "ご利用規約"
+    places:
+      index: "お店・場所"
     users/confirmations:
       new: "確認メール再送"
       create: "確認メール再送"
@@ -95,3 +99,5 @@ ja:
   messages:
     reason:
       authentication_failure: "認証失敗"
+    places:
+      destroy_failure: "削除できませんでした。"
