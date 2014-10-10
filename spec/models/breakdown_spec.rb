@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Breakdown, type: :model do
   let(:user) { create(:user) }
-  let(:category) { create(:category) }
+  let(:category) { create(:category, user_id: user.id) }
 
   it '内訳が空であればエラーが発生すること' do
     breakdown = build(:breakdown, name: "", user_id: user.id, category_id: category.id)

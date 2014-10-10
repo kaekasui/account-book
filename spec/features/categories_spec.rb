@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature 'カテゴリの管理' do
   background do
-    user = create(:user, confirmed_at: Time.now)
-    login user
+    @user = create(:user, confirmed_at: Time.now)
+    login @user
   end
 
   scenario 'カテゴリの一覧を表示する'
@@ -23,7 +23,7 @@ js: true
 =end
 
   scenario "カテゴリごとに記録を表示する" do
-    category = create(:category, barance_of_payments: 1)
+    category = create(:category, barance_of_payments: 0, user_id: @user.id)
     visit categories_path
     click_link category.name
 

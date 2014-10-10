@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Record' do
   let(:user) { create(:user, confirmed_at: Time.now) }
-  let(:category) { create(:category) }
+  let(:category) { create(:category, name: "category_name", user_id: user.id) }
 
   background do
     login user

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Record, type: :model do
   let(:user) { create(:user) }
-  let(:category) { create(:category) }
+  let(:category) { create(:category, user_id: user.id) }
   let(:breakdown) { create(:breakdown, category_id: category.id, user_id: user.id) }
 
   it '内訳、ユーザー、料金があれば有効であること' do

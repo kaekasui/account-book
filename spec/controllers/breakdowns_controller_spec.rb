@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BreakdownsController, type: :controller do
   let(:user) { create(:user, confirmed_at: Time.now) }
-  let(:category) { create(:category) }
+  let(:category) { create(:category, user_id: user.id) }
 
   context 'ログインしてる場合' do
     before do
@@ -123,7 +123,7 @@ RSpec.describe BreakdownsController, type: :controller do
 
     describe "内訳の編集画面" do
       it "ログイン画面にリダイレクトすること" do
-        category = create(:category)
+        category = create(:category, user_id: user.id)
         get :edit, { id: category.id }
         expect(response).to redirect_to(user_session_path)
       end

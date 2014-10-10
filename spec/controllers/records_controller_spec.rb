@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RecordsController, type: :controller do
   let(:user) { create(:user, confirmed_at: Time.now) }
-  let(:category) { create(:category) }
+  let(:category) { create(:category, user_id: user.id) }
   let(:breakdown) { create(:breakdown, user_id: user.id, category_id: category.id) }
 
   context 'ログインしている場合' do
@@ -148,7 +148,7 @@ RSpec.describe RecordsController, type: :controller do
 
     describe "記録の編集画面" do
       it "ログイン画面にリダイレクトすること" do
-        category = create(:category)
+        category = create(:category, user_id: user.id)
         get :edit, { id: category.id }
         expect(response).to redirect_to(user_session_path)
       end

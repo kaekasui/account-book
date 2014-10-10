@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   def index
     @category = current_user.categories.new
     @category.barance_of_payments = true
-    @categories = current_user.categories.where(barance_of_payments: true).order(:updated_at).reverse_order
+    @categories = current_user.categories.where(barance_of_payments: false).order(:updated_at).reverse_order
   end
 
   def show

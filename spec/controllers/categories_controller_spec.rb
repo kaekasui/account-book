@@ -10,7 +10,7 @@ RSpec.describe CategoriesController, type: :controller do
 
     describe "カテゴリ一覧画面" do
       it "支出のカテゴリが表示されること" do
-        category = create(:category, barance_of_payments: 1)
+        category = create(:category, barance_of_payments: 0, user_id: user.id)
         get :index
         expect(assigns(:categories)).to eq([category])
       end
@@ -18,7 +18,7 @@ RSpec.describe CategoriesController, type: :controller do
 
     describe "カテゴリ編集画面" do
       it "対象のカテゴリを表示すること" do
-        category = create(:category)
+        category = create(:category, user_id: user.id)
         get :edit, { id: category.id }
         expect(assigns(:category)).to eq(category)
       end
@@ -28,18 +28,18 @@ RSpec.describe CategoriesController, type: :controller do
       describe "有効な値を入力した場合" do
         it "新しいカテゴリを登録すること" do
           expect {
-            post :create, { category: attributes_for(:category), format: :js }
+            post :create, { category: attributes_for(:category, user_id: user.id), format: :js }
           }.to change(Category, :count).by(1)
         end
 
         it "登録したカテゴリが割り当てられること" do
-          post :create, { category: attributes_for(:category), format: :js }
+          post :create, { category: attributes_for(:category, user_id: user.id), format: :js }
           expect(assigns(:category)).to be_a(Category)
           expect(assigns(:category)).to be_persisted
         end
 
 	it "レスポンスのステータスコードが200であること" do
-          post :create, { category: attributes_for(:category), format: :js }
+          post :create, { category: attributes_for(:category, user_id: user.id), format: :js }
           expect(response.status).to eq(200)
         end 
       end
@@ -47,7 +47,7 @@ RSpec.describe CategoriesController, type: :controller do
       describe "無効な値を入力した場合" do
         it "カテゴリを登録しないこと" do
           expect {
-            post :create, { category: attributes_for(:category, name: ""), format: :js }
+            post :create, { category: attributes_for(:category, name: "", user_id: user.id), format: :js }
           }.to change(Category, :count).by(0)
           expect(assigns(:category)).to be_a_new(Category)
         end
@@ -57,20 +57,20 @@ RSpec.describe CategoriesController, type: :controller do
     describe "カテゴリの更新" do
       describe "有効な値を入力した場合" do
         it "カテゴリを更新すること" do
-          category = create(:category)
+          category = create(:category, user_id: user.id)
           put :update, { id: category.id, category: attributes_for(:category, name: "new") }
           category.reload
           expect(category.name).to eq("new")
         end
 
         it "対象のカテゴリが割り当てられること" do
-          category = create(:category)
+          category = create(:category, user_id: user.id)
           put :update, { id: category.id, category: attributes_for(:category, name: "new") }
           expect(assigns(:category)).to eq(category)
         end
 
         it "カテゴリの一覧画面にリダイレクトすること" do
-          category = create(:category)
+          category = create(:category, user_id: user.id)
           put :update, { id: category.id, category: attributes_for(:category, name: "new") }
           expect(response).to redirect_to(categories_path)
         end
@@ -78,13 +78,13 @@ RSpec.describe CategoriesController, type: :controller do
 
       describe "無効な値を入力した場合" do
         it "カテゴリを更新しないこと" do
-          category = create(:category)
+          category = create(:category, user_id: user.id)
           put :update, { id: category.id, category: attributes_for(:category, name: "") }
           expect(assigns(:category)).to eq(category)
         end
 
         it "カテゴリの編集画面を再表示すること" do
-          category = create(:category)
+          category = create(:category, user_id: user.id)
           put :update, { id: category.id, category: attributes_for(:category, name: "") }
           expect(response).to render_template("edit")
         end
@@ -93,14 +93,14 @@ RSpec.describe CategoriesController, type: :controller do
 
     describe "カテゴリの削除" do
       it "対象のカテゴリを削除すること" do
-        category = create(:category)
+        category = create(:category, user_id: user.id)
         expect {
           delete :destroy, { id: category.id }
         }.to change(Category, :count).by(-1)
       end
 
       it "カテゴリの一覧画面にリダイレクトすること" do
-        category = create(:category)
+        category = create(:category, user_id: user.id)
         delete :destroy, { id: category.id }
         expect(response).to redirect_to(categories_url)
       end
@@ -121,7 +121,7 @@ RSpec.describe CategoriesController, type: :controller do
 
     describe "カテゴリの編集画面" do
       it "ログイン画面にリダイレクトすること" do
-        category = create(:category)
+        category = create(:category, user_id: user.id)
         get :edit, { id: category.id }
         expect(response).to redirect_to(user_session_path)
       end
