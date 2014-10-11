@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :places
   has_many :records
   has_many :monthly_counts
+  has_many :feedbacks
   has_one :cancel
 
   validates :email, presence: true, uniqueness: true, length: { maximum: MAX_LONG_TEXT_FIELD_LENGTH }, if: :email_required?

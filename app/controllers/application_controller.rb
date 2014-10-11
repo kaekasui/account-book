@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :authenticate_user!
-  before_action :set_years
+  before_action :set_years, :set_feedback
 
   private
 
@@ -12,5 +12,9 @@ class ApplicationController < ActionController::Base
         @years = current_user.records.group_by_years
         @current_day = Date.today
       end
+    end
+
+    def set_feedback
+      @feedback = current_user.feedbacks.new
     end
 end

@@ -1,0 +1,5 @@
+= form_for @feedback, remote: true, class: "form" do |f|
+  .form-group
+    .feedback-text-area= f.text_area :content, rows: "4", placeholder: I18n.t("example.feedback"), class: "form-control"
+  .form-group
+    .align-right= f.submit I18n.t("buttons.send"), class: "btn btn-default"

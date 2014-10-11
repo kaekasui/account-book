@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010010707) do
+ActiveRecord::Schema.define(version: 20141010120846) do
 
   create_table "breakdowns", force: true do |t|
     t.string   "name"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 20141010010707) do
     t.boolean  "barance_of_payments"
     t.datetime "deleted_at"
     t.integer  "user_id"
+  end
+
+  create_table "feedbacks", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.boolean  "checked"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "monthly_counts", force: true do |t|
