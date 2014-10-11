@@ -1,3 +1,11 @@
+# 画面遷移後に、支出と収入のカテゴリを表示する
+$(document).on('ready page:load', (e) ->
+  $(".categories_index input#category_barance_of_payments_0").val(["0"])
+  if ($(".container").hasClass('categories_index')) then set_categories(0)
+  if ($(".categories_edit .minus-sign").hasClass('active')) then $("input#category_barance_of_payments_0").val(["0"])
+  if ($(".categories_edit .plus-sign").hasClass('active')) then $("input#category_barance_of_payments_1").val(["1"])
+)
+
 # カテゴリの支出と収入を選択し、該当するカテゴリを表示する
 $(document).on('page:change', (e) ->
   $(".categories_index .minus-sign").click ->
@@ -6,18 +14,12 @@ $(document).on('page:change', (e) ->
     set_categories(1)
 )
 
-$(document).on('ready page:load', (e) ->
-  $(".categories_index input#category_barance_of_payments_0").val(["0"])
-  if ($(".container").hasClass('categories_index')) then set_categories(0)
-  if ($(".categories_edit .minus-sign").hasClass('active')) then $("input#category_barance_of_payments_0").val(["0"])
-  if ($(".categories_edit .plus-sign").hasClass('active')) then $("input#category_barance_of_payments_1").val(["1"])
-)
-
+# 支出と収入それぞれのカテゴリを表示する
 set_categories = (sign) ->
   category = {}
   category["barance_of_payments"] = sign
   $.ajax({
-    url: "categories/set_categories_list",
+    url: "/categories/set_categories_list",
     type: "POST",
     beforeSend: (xhr) -> xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')),
     data: category,
@@ -37,13 +39,14 @@ $(document).on('page:change', (e) ->
 
 $(document).on('ready page:load', (e) ->
   if ($('select#record_breakdown_id')[0])
-   set_breakdown_from_category()
+    if ($(".container").hasClass('records_new')) or ($(".container").hasClass('records_create'))
+      set_breakdown_from_category()
 )
 
 set_breakdown_from_category = () ->
   category_id = $("select#category_name option:selected").val()
   $.ajax({
-    url: "set_breakdowns_from_category",
+    url: "/records/set_breakdowns_from_category",
     type: "POST",
     data: category_id,
     success: (response) ->

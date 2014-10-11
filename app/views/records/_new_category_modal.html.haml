@@ -10,8 +10,6 @@
         .form-group
           = label_tag :name, Category.human_attribute_name(:name), class: "control-label"
           = text_field_tag :name, "", class: "form-control"
-        - @category.submit_type = "modal"
-        = hidden_field_tag :submit_type
         %br
         .align-center
           .btn.btn-default#create_category= I18n.t("buttons.add")
