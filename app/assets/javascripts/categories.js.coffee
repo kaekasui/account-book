@@ -32,7 +32,7 @@ set_categories = (sign) ->
 
 # カテゴリーの選択後に内訳のセレクトボックスを該当カテゴリーの内訳にする
 $(document).on('page:change', (e) ->
-  $("select#category_name").change( ->
+  $("select#record_category_id").change( ->
     set_breakdown_from_category()
   )
 )
@@ -44,7 +44,7 @@ $(document).on('ready page:load', (e) ->
 )
 
 set_breakdown_from_category = () ->
-  category_id = $("select#category_name option:selected").val()
+  category_id = $("select#record_category_id option:selected").val()
   $.ajax({
     url: "/records/set_breakdowns_from_category",
     type: "POST",
@@ -75,8 +75,8 @@ $(document).on('ready page:load', (e) ->
       },
       success: (response) ->
         $('#create-category-modal').modal('hide')
-        $('select#category_name').prepend($('<option>').html(category.category.name).val(response))
-        $('select#category_name').val(response)
+        $('select#record_category_id').prepend($('<option>').html(category.category.name).val(response))
+        $('select#record_category_id').val(response)
         set_breakdown_from_category()
       error: (response) -> alert("error")
     })

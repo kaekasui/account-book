@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010120846) do
+ActiveRecord::Schema.define(version: 20141011054422) do
 
   create_table "breakdowns", force: true do |t|
     t.string   "name"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20141010120846) do
   create_table "records", force: true do |t|
     t.date     "published_at"
     t.integer  "charge"
+    t.integer  "category_id"
     t.integer  "breakdown_id"
     t.integer  "place_id"
     t.text     "memo"

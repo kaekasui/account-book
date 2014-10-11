@@ -9,37 +9,45 @@ feature 'Record' do
   end
 
   scenario 'レコードを登録する' do
-    breakdown = create(:breakdown, category_id: category.id, user_id: user.id)
+    create(:category, name: "category_name", user_id: user.id)
+    visit root_path
+    click_link I18n.t("menu.new_record")
 
-    visit new_record_path
-    select category.name, from: "category_name"
+    select category.name, from: "record_category_id"
     fill_in 'record_charge', with: "900"
     click_button I18n.t("helpers.submit.create")
 
     expect(Record.last.charge).to eq 900
   end
 
-  scenario '指定の年の履歴を表示する' do
-    breakdown = create(:breakdown, category_id: category.id, user_id: user.id)
+  scenario 'レコードの登録に失敗する' do
+    create(:category, name: "category_name", user_id: user.id)
+    visit root_path
+    click_link I18n.t("menu.new_record")
 
-    create(:record, breakdown_id: breakdown.id, user_id: user.id, published_at: "2014-08-01")
-    create(:record, breakdown_id: breakdown.id, user_id: user.id, published_at: "2012-08-01")
+    select category.name, from: "record_category_id"
+    click_button I18n.t("helpers.submit.create")
+
+    expect(page).to have_content I18n.t("errors.messages.blank")
+  end
+
+  scenario '指定の年の履歴を表示する' do
+    create(:record, category_id: category.id, user_id: user.id, published_at: "2014-08-01")
+    create(:record, category_id: category.id, user_id: user.id, published_at: "2012-08-01")
 
     visit records_path(year: 2014, month: 8)
-    expect(page).to have_content breakdown.name
+    expect(page).to have_content category.name
     click_link "2012年"
-    expect(page).to have_content breakdown.name
+    expect(page).to have_content category.name
   end
 
   scenario '指定の月の履歴を表示する' do
     year = Date.today.year
-    breakdown = create(:breakdown, category_id: category.id, user_id: user.id)
-    
-    create(:record, breakdown_id: breakdown.id, user_id: user.id, published_at: "#{year}-08-01")
+    create(:record, category_id: category.id, user_id: user.id, published_at: "#{year}-08-01")
     visit records_path(year: year, month: "08")
-    expect(page).to have_content breakdown.name
+    expect(page).to have_content category.name
 
     visit records_path(year: year, month: "06")
-    expect(page).not_to have_content breakdown.name
+    expect(page).not_to have_content category.name
   end
 end

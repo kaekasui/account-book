@@ -10,9 +10,9 @@
         .col-sm-10
           = f.date_select :published_at, {}, { class: "non-block-form-control" }
       .form-group
-        = label :category, :name, Category.human_attribute_name(:name), class: "control-label category col-sm-2"
+        = f.label :category_id, class: "control-label category col-sm-2"
         .col-sm-5
-          = select :category, :name, current_user.categories.order(:updated_at).reverse_order.map { |c| [c.name, c.id] }, {}, { class: "category form-control" }
+          = f.select :category_id, current_user.categories.order(:updated_at).reverse_order.map { |c| [c.name, c.id] }, {}, { class: "category form-control" }
         .btn.btn-info(data-toggle='modal' data-target='#create-category-modal')= content_tag(:span, "", class: "glyphicon glyphicon-plus") + I18n.t("links.adding")
       .form-group
         = f.label :breakdown_id, class: "control-label col-sm-2"

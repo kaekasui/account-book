@@ -67,7 +67,7 @@ class RecordsController < ApplicationController
     end
     if @category_id
       @breakdowns = current_user.categories.find(@category_id).breakdowns
-   else
+    else
       @breakdowns = current_user.breakdowns.all
     end
     respond_to do |format|
@@ -81,7 +81,7 @@ class RecordsController < ApplicationController
     end
 
     def record_params
-      params.require(:record).permit(:published_at, :charge, :breakdown_id, :place_id, :memo, :user_id)
+      params.require(:record).permit(:published_at, :charge, :category_id, :breakdown_id, :place_id, :memo, :user_id)
     end
 
     def year_param

@@ -20,7 +20,7 @@ ja:
         remember_me: "パスワードを記憶する"
       record:
         breakdown_id: "内訳"
-        category: "カテゴリ"
+        category_id: "カテゴリ"
         charge: "料金"
         memo: "メモ"
         place_id: "場所"
