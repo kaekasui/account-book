@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
     end
 
     def set_feedback
-      @feedback = current_user.feedbacks.new
+      @feedback = current_user.feedbacks.new if current_user
     end
 end
