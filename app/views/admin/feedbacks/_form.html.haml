@@ -1,11 +1,4 @@
-= form_for @admin_feedback do |f|
-  - if @admin_feedback.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@admin_feedback.errors.count, "error")} prohibited this admin_feedback from being saved:"
-      %ul
-        - @admin_feedback.errors.full_messages.each do |msg|
-          %li= msg
-
+= form_for ['admin', @admin_feedback] do |f|
   .field
     = f.label :content
     = f.text_field :content

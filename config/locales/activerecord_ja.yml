@@ -11,6 +11,9 @@ ja:
       category:
         barance_of_payments: "収支"
         name: "カテゴリ"
+      feedback:
+        user_id: "アカウント"
+        content: "内容"
       user:
         confirmation_token: "URL"
         current_password: "現在のパスワード"

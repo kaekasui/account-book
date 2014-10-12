@@ -65,6 +65,8 @@ ja:
     record: "履歴"
     setting: "設定"
   page_title:
+    admin/feedbacks:
+      index: "フィードバック"
     categories:
       index: "カテゴリ"
       edit: "カテゴリの編集"
