@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011054422) do
+ActiveRecord::Schema.define(version: 20141011113232) do
 
   create_table "breakdowns", force: true do |t|
     t.string   "name"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20141011054422) do
     t.string   "name"
     t.string   "nickname"
     t.string   "token"
+    t.boolean  "admin"
     t.string   "type"
   end
 

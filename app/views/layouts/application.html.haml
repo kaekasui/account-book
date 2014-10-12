@@ -27,7 +27,10 @@
     .container(class="#{controller_name}_#{action_name}")
       .row
         .col-md-3
-          .menu= render partial: "application/menu"
+          - if namespace == 'admin'
+            .menu= render partial: "application/admin_menu"
+          - else
+            .menu= render partial: "application/menu"
         .col-md-9
           .loading
           = render partial: 'messages', locals: { target: nil } if notice or alert

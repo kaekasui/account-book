@@ -41,6 +41,7 @@ ja:
     number_of_registered_records: "登録数"
     place: "場所"
   links:
+    admin: "管理"
     adding: "新規追加"
     cancel_user: "退会する"
     edit_user: "登録情報を編集する"
@@ -57,6 +58,7 @@ ja:
     breakdown: "内訳"
     category: "カテゴリ"
     dashboard: "ダッシュボード"
+    feedbacks: "フィードバック"
     new_record: "入力する"
     import: "CSVインポート"
     place: "場所"

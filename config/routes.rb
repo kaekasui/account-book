@@ -36,4 +36,9 @@ Rails.application.routes.draw do
   authenticate :user do
     mount Sidekiq::Web => '/sidekiq'
   end
+
+  namespace :admin do
+    root 'feedbacks#index'
+    resources :feedbacks
+  end
 end
