@@ -6,4 +6,8 @@ module ApplicationHelper
   def namespace
     controller.controller_path.split('/')[-2]
   end
+
+  def setting_menu?
+    controller_name == 'categories' or controller_name == 'breakdowns' or controller_name == 'places'
+  end
 end

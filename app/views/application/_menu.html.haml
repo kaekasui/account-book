@@ -11,7 +11,7 @@
       .panel.panel-default
         .panel-heading
           %h4.panel-title= link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + I18n.t("menu.setting"), "#collapseOne", class: "collapse", id: "accordion", "data-toggle" => "collapse"
-        #collapseOne.panel-cllapse.collapse.in
+        #collapseOne.panel-cllapse.collapse(class="#{setting_menu? ? '' : 'in'}")
           .panel-body.menu
             %ul
               %li.list-group-item.categories-list= link_to content_tag(:span, "", class: "glyphicon glyphicon-tags") + I18n.t("menu.category"), categories_path
