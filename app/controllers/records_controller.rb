@@ -14,7 +14,6 @@ class RecordsController < ApplicationController
 
   def new
     @record = current_user.records.new
-    @category = current_user.categories.new
   end
 
   def edit
