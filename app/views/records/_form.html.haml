@@ -10,6 +10,17 @@
         .col-sm-10
           = f.date_select :published_at, {}, { class: "non-block-form-control" }
       .form-group
+        .col-sm-2
+        .col-sm-10
+          - checked = @record.category_type
+          .btn-group{"data-toggle" => "buttons"}
+            %label.btn.btn-defaults.btn-checkbox.minus-sign(class="#{checked ? 'active' : ''}")
+              = f.radio_button :category_type, "0"
+              = content_tag(:span, "", class: "glyphicon glyphicon-minus-sign") + I18n.t("category.outgo")
+            %label.btn.btn-defaults.btn-checkbox.plus-sign(class="#{checked ? '' : 'active'}")
+              = f.radio_button :category, "1"
+              = content_tag(:span, "", class: "glyphicon glyphicon-plus-sign") + I18n.t("category.income")
+      .form-group
         = f.label :category_id, class: "control-label category col-sm-2"
         .col-sm-5
           = f.select :category_id, current_user.categories.order(:updated_at).reverse_order.map { |c| [c.name, c.id] }, {}, { class: "category form-control" }

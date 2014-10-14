@@ -6,12 +6,28 @@ $(document).on('ready page:load', (e) ->
   if ($(".categories_edit .plus-sign").hasClass('active')) then $("input#category_barance_of_payments_1").val(["1"])
 )
 
+# 画面遷移後に、支出と収入のカテゴリをセレクトボックスに表示する
+$(document).on('ready page:load', (e) ->
+  if ($(".container").hasClass('records_new'))
+    set_categories_from_type(0)
+    set_breakdowns_from_category()
+)
+
 # カテゴリの支出と収入を選択し、該当するカテゴリを表示する
 $(document).on('page:change', (e) ->
   $(".categories_index .minus-sign").click ->
     set_categories(0)
   $(".categories_index .plus-sign").click ->
     set_categories(1)
+)
+
+$(document).on('page:change', (e) ->
+  $(".records_new .minus-sign").click ->
+    set_categories_from_type(0)
+    set_breakdowns_from_category()
+  $(".records_new .plus-sign").click ->
+    set_categories_from_type(1)
+    set_breakdowns_from_category()
 )
 
 # 支出と収入それぞれのカテゴリを表示する
@@ -30,20 +46,29 @@ set_categories = (sign) ->
     error: (response) -> alert("error")
   })
 
+set_categories_from_type = (sign) ->
+  category = {}
+  category["barance_of_payments"] = sign
+  $.ajax({
+    url: "/categories/set_categories_box",
+    type: "POST",
+    beforeSend: (xhr) -> xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')),
+    data: category,
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: (response) ->
+    error: (response) -> alert("error")
+  })
+
 # カテゴリーの選択後に内訳のセレクトボックスを該当カテゴリーの内訳にする
 $(document).on('page:change', (e) ->
   $("select#record_category_id").change( ->
-    set_breakdown_from_category()
+    set_breakdowns_from_category()
   )
 )
 
-$(document).on('ready page:load', (e) ->
-  if ($('select#record_breakdown_id')[0])
-    if ($(".container").hasClass('records_new')) or ($(".container").hasClass('records_create'))
-      set_breakdown_from_category()
-)
-
-set_breakdown_from_category = () ->
+set_breakdowns_from_category = () ->
   category_id = $("select#record_category_id option:selected").val()
   $.ajax({
     url: "/records/set_breakdowns_from_category",
@@ -77,7 +102,7 @@ $(document).on('ready page:load', (e) ->
         $('#create-category-modal').modal('hide')
         $('select#record_category_id').prepend($('<option>').html(category.category.name).val(response))
         $('select#record_category_id').val(response)
-        set_breakdown_from_category()
+        set_breakdowns_from_category()
       error: (response) -> alert("error")
     })
   )

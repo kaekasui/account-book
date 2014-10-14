@@ -17,7 +17,7 @@ class Record < ActiveRecord::Base
     "¥" + self.charge.to_s
   end
 
- def self.import_csv(csv_file)
+  def self.import_csv(csv_file)
     messages = ""
     text = csv_file.read
 
@@ -46,6 +46,10 @@ class Record < ActiveRecord::Base
     monthly.save
   end
 
+  def category_type
+    category.nil? ? true : category.barance_of_payments
+  end
+
   private
 
   def self.generate_messages(user, category, breakdown, record)
@@ -61,4 +65,5 @@ class Record < ActiveRecord::Base
   def count_monthly_records_worker
     CountMonthlyRecordsWorker.perform_async self.id
   end
+
 end

@@ -50,6 +50,10 @@ class CategoriesController < ApplicationController
     @categories = current_user.categories.where(barance_of_payments: params[:barance_of_payments]).order(:updated_at).reverse_order
   end
 
+  def set_categories_box
+    @categories = current_user.categories.where(barance_of_payments: params[:barance_of_payments]).order(:updated_at).reverse_order
+  end
+
   private
     def set_category
       @category = Category.find(params[:id])

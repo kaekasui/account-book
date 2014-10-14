@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post 'csv/import' => 'csv#import'
   resources :categories, except: [:new] do
     post "/set_categories_list" => "categories#set_categories_list", on: :collection
+    post "/set_categories_box" => "categories#set_categories_box", on: :collection
   end
   resources :breakdowns, except: [:new, :show]
   resources :feedbacks, only: [:create]
