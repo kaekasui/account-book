@@ -7,14 +7,14 @@
     %table.table.record
       %tr
         %th= Record.human_attribute_name(:published_at)
-        %th= Record.human_attribute_name(:category)
+        %th= Record.human_attribute_name(:category_id)
         %th= Record.human_attribute_name(:breakdown_id)
         %th= Record.human_attribute_name(:charge)
       - @records.each do |record|
         %tr
-          %td= record.published_at
-          %td= record.category.name
-          %td= record.breakdown.name if record.breakdown
+          %td(width='10%')= record.published_at
+          %td(width='30%')= record.category.name
+          %td(width='30%')= record.breakdown.name if record.breakdown
           %td= record.yen_charge
           %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_record_path(record)
           %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), record, method: :delete, data: { confirm: "Are you sure?" }
