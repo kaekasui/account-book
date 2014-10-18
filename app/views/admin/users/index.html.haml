@@ -1,0 +1,13 @@
+.panel.panel-default
+  .panel-heading
+    %span.glyphicon.glyphicon-user
+    = page_title
+  .panel-body
+    %table.table
+      %tr
+        %th(width='40%')= User.human_attribute_name(:email)
+        %th(width='60%')= User.human_attribute_name(:name)
+      - @admin_users.each do |user|
+        %tr
+          %td= user.email
+          %td= user.name

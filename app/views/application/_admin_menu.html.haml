@@ -1,3 +1,4 @@
 %ul.list-group
+  %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-user") + I18n.t("menu.users"), admin_users_path
   %li.list-group-item= link_to content_tag(:span, "", class: "glyphicon glyphicon-envelope") + I18n.t("menu.feedbacks"), admin_feedbacks_path
  

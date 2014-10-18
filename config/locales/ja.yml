@@ -64,9 +64,12 @@ ja:
     place: "場所"
     record: "履歴"
     setting: "設定"
+    users: "ユーザー"
   page_title:
     admin/feedbacks:
       index: "フィードバック"
+    admin/users:
+      index: "ユーザー"
     categories:
       index: "カテゴリ"
       edit: "カテゴリの編集"

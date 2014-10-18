@@ -18,6 +18,7 @@ ja:
         confirmation_token: "URL"
         current_password: "現在のパスワード"
         email: "メールアドレス"
+        name: "名前"
         password: "パスワード"
         password_confirmation: "パスワード（確認）"
         remember_me: "パスワードを記憶する"

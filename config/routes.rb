@@ -41,5 +41,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'feedbacks#index'
     resources :feedbacks
+    resources :users, only: [:index]
   end
 end
