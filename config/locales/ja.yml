@@ -110,5 +110,7 @@ ja:
   messages:
     reason:
       authentication_failure: "認証失敗"
+    record:
+      create: "登録しました。"
     places:
       destroy_failure: "削除できませんでした。"

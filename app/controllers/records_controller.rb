@@ -1,6 +1,7 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:set_breakdowns_from_category]
+  respond_to :html
 
   def index
     @year = year_param || Date.today.year.to_s
@@ -21,17 +22,8 @@ class RecordsController < ApplicationController
 
   def create
     @record = current_user.records.new(record_params)
-    @record.user_id = current_user.id
-
-    respond_to do |format|
-      if @record.save
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
-        format.json { render :show, status: :created, location: @record }
-      else
-        format.html { render :new }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:notice] = I18n.t("messages.record.create") if @record.save
+    respond_with @record, location: new_record_path
   end
 
   def update
