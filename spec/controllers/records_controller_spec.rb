@@ -55,9 +55,9 @@ RSpec.describe RecordsController, type: :controller do
           expect(assigns(:record)).to be_persisted
         end
 
-        it "記録の詳細画面にリダイレクトすること" do
+        it "記録の入力画面にリダイレクトすること" do
           post :create, { record: attributes_for(:record, category_id: category.id, user_id: user.id) }
-          expect(response).to redirect_to(Record.last)
+          expect(response).to redirect_to(new_record_path)
         end
       end
 
