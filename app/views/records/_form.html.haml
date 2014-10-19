@@ -6,7 +6,7 @@
     = render partial: 'messages', locals: { target: @record } if @record.errors.any?
     = form_for @record, html: { role: "form", class: "form-horizontal" } do |f|
       .form-group
-        = f.label :published_at, class: "control-label col-sm-2"
+        = f.label :published_at, (Record.human_attribute_name(:published_at) + asterisk).html_safe, class: "control-label col-sm-2"
         .col-sm-10
           = f.date_select :published_at, {}, { class: "non-block-form-control" }
       .form-group
@@ -21,7 +21,7 @@
               = f.radio_button :category, "1"
               = content_tag(:span, "", class: "glyphicon glyphicon-plus-sign") + I18n.t("category.income")
       .form-group
-        = f.label :category_id, class: "control-label category col-sm-2"
+        = f.label :category_id, (Record.human_attribute_name(:category_id) + asterisk).html_safe, class: "control-label category col-sm-2"
         .col-sm-5
           = f.select :category_id, current_user.categories.order(:updated_at).reverse_order.map { |c| [c.name, c.id] }, {}, { class: "category form-control" }
         .btn.btn-info.btn-sm(data-toggle='modal' data-target='#create-category-modal')= content_tag(:span, "", class: "glyphicon glyphicon-plus") + I18n.t("links.adding")
@@ -34,7 +34,7 @@
         .col-sm-10
           = f.select :place_id, current_user.places.order(:updated_at).reverse_order.map { |p| [p.name, p.id] }, { include_blank: I18n.t("include_blank.place") }, { class: "form-control" }
       .form-group
-        = f.label :charge, class: "control-label col-sm-2"
+        = f.label :charge, (Record.human_attribute_name(:charge) + asterisk).html_safe, class: "control-label col-sm-2"
         .col-sm-10
           = f.number_field :charge, class: "form-control"
       .form-group

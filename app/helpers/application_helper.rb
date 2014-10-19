@@ -12,6 +12,6 @@ module ApplicationHelper
   end
 
   def asterisk
-    content_tag(:font, "※", class: "red")
+    content_tag(:font, " ※ ", class: "red")
   end
 end
