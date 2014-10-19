@@ -66,6 +66,12 @@ class RecordsController < ApplicationController
     end
   end
 
+  def download
+    respond_to do |format|
+      format.csv { send_csv Record.sample_format_csvfile }
+    end
+  end
+
   private
     def set_record
       @record = Record.find(params[:id])

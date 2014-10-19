@@ -47,3 +47,4 @@
           %tr
             - record.each do |cell|
               %td= cell
+      .align-right= link_to I18n.t("buttons.download"), download_records_path(format: 'csv'), class: "btn btn-default"

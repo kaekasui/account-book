@@ -100,6 +100,14 @@ class Record < ActiveRecord::Base
     ]
   end
 
+  def self.sample_format_csvfile
+    CSV.generate(force_quotes: true) do |csv|
+      Record.sample_format.each do |records|
+        csv << records
+      end
+    end
+  end
+
   private
 
   def self.generate_messages(user, category, breakdown, record)

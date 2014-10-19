@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :places
   resources :records do
     post "/set_breakdowns_from_category" => "records#set_breakdowns_from_category", on: :collection
+    get "/download" => "records#download", on: :collection
   end
 
   authenticate :user do
