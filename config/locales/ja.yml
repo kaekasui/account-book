@@ -7,6 +7,31 @@ ja:
   category:
     income: "収入"
     outgo: "支出"
+  csv_import:
+    conditions:
+      barance_of_payments: "収支：支出が0、収入が1を指しています。入力がない場合は0（支出）が登録されます。"
+      breakdown: "内訳：存在しない内訳の場合、対象のカテゴリに新規登録されます。"
+      category: "カテゴリ：存在しないカテゴリの場合、新規登録されます。"
+      charge: "料金：料金に入力がない場合0が登録されます。"
+      date: "日付：xxxx-xx-xxの形式で登録します。"
+      required: "日付、カテゴリ、料金は必須です。"
+    examples:
+      breakdown_1: "電気代"
+      breakdown_2: "歯ブラシ"
+      breakdown_3: "タオル"
+      breakdown_4: "外食"
+      category_1: "水道・光熱費"
+      category_2: "日用品"
+      category_3: "給料"
+      category_4: "食費"
+      memo_1: "２個"
+      place_1: "薬局"
+      place_2: "スーパー"
+      place_3: "コンビニ"
+      place_4: "ファミレス"
+      published_at_1: "2014-08-10"
+      published_at_2: "2014-08-11"
+    format: "フォーマット"
   brand:
     and: "と"
     name: "おこづかいちょうβ"

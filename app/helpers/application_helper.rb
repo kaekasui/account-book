@@ -10,4 +10,8 @@ module ApplicationHelper
   def setting_menu?
     controller_name == 'categories' or controller_name == 'breakdowns' or controller_name == 'places'
   end
+
+  def asterisk
+    content_tag(:font, "※", class: "red")
+  end
 end

@@ -23,6 +23,7 @@ ja:
         password_confirmation: "パスワード（確認）"
         remember_me: "パスワードを記憶する"
       record:
+        barance_of_payments: "収支"
         breakdown_id: "内訳"
         category_id: "カテゴリ"
         charge: "料金"

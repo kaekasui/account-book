@@ -50,6 +50,56 @@ class Record < ActiveRecord::Base
     category.nil? ? true : category.barance_of_payments
   end
 
+  def self.sample_format
+    [
+      [
+        I18n.t("csv_import.examples.published_at_1"),
+        0,
+        I18n.t("csv_import.examples.category_1"),
+        I18n.t("csv_import.examples.breakdown_1"),
+        I18n.t("csv_import.examples.place_3"),
+        8600,
+        ""
+      ],
+      [
+        I18n.t("csv_import.examples.published_at_1"),
+        0,
+        I18n.t("csv_import.examples.category_2"),
+        I18n.t("csv_import.examples.breakdown_2"),
+        I18n.t("csv_import.examples.place_2"),
+        300,
+        I18n.t("csv_import.examples.memo_1")
+      ],
+      [
+        I18n.t("csv_import.examples.published_at_1"),
+        0,
+        I18n.t("csv_import.examples.category_2"),
+        I18n.t("csv_import.examples.breakdown_3"),
+        I18n.t("csv_import.examples.place_2"),
+        500,
+        ""
+      ],
+      [
+        I18n.t("csv_import.examples.published_at_2"),
+        1,
+        I18n.t("csv_import.examples.category_3"),
+        "",
+        "",
+        300000,
+        "上期ボーナス"
+      ],
+      [
+        I18n.t("csv_import.examples.published_at_2"),
+        0,
+        I18n.t("csv_import.examples.category_4"),
+        I18n.t("csv_import.examples.breakdown_4"),
+        I18n.t("csv_import.examples.place_4"),
+        800,
+        ""
+      ]
+    ]
+  end
+
   private
 
   def self.generate_messages(user, category, breakdown, record)
