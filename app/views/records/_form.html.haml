@@ -14,10 +14,10 @@
         .col-sm-10
           - checked = @record.category_type
           .btn-group{"data-toggle" => "buttons"}
-            %label.btn.btn-defaults.btn-checkbox.minus-sign(class="#{checked ? 'active' : ''}")
+            %label.btn.btn-defaults.btn-checkbox.minus-sign(class="#{checked ? '' : 'active'}")
               = f.radio_button :category_type, "0"
               = content_tag(:span, "", class: "glyphicon glyphicon-minus-sign") + I18n.t("category.outgo")
-            %label.btn.btn-defaults.btn-checkbox.plus-sign(class="#{checked ? '' : 'active'}")
+            %label.btn.btn-defaults.btn-checkbox.plus-sign(class="#{checked ? 'active' : ''}")
               = f.radio_button :category, "1"
               = content_tag(:span, "", class: "glyphicon glyphicon-plus-sign") + I18n.t("category.income")
       .form-group

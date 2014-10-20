@@ -103,7 +103,7 @@ class Record < ActiveRecord::Base
   end
 
   def category_type
-    category.nil? ? true : category.barance_of_payments
+    category.nil? ? false : category.barance_of_payments
   end
 
   def self.sample_format
