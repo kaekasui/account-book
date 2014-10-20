@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :confirmable, :omniauthable # :validatable
 
   acts_as_paranoid
+  before_create :set_code
 
   has_many :categories
   has_many :breakdowns
@@ -31,4 +32,13 @@ class User < ActiveRecord::Base
     def password_required?
       !password.nil? || !password_confirmation.nil?
     end
+
+    def set_code
+      self.code = self.code.blank? ? generate_code : self.code
+    end 
+
+    def generate_code
+      code = SecureRandom.urlsafe_base64(8)
+      self.class.where(code: code).blank? ? code : generate_code
+    end 
 end
