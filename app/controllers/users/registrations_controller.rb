@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, only: [ :new, :create ]
   skip_before_action :authenticate_user!, only: [:new]
-  prepend_before_filter :authenticate_scope!, only: [:edit, :update, :destroy, :mypage]
+  prepend_before_filter :authenticate_scope!, only: [:edit, :update, :edit_email, :update_email, :destroy, :mypage]
 
   def new
     super
@@ -13,6 +13,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def edit
     super
+  end
+
+  def edit_email
+    render :edit_email
+  end
+
+  def update_email
+    email = resource_params[:email]
+    if email == resource.email
+      resource.errors.add(:email, I18n.t("messages.users.same"))
+      render :edit_email
+    else
+      resource.unconfirmed_email = email
+      resource.send_confirmation_instructions
+
+      if successfully_sent?(resource)
+        set_flash_message(:notice, :confirmed) if is_flashing_format?
+        respond_with resource, location: users_mypage_path
+      else
+        set_flash_message(:alert, I18n.t("messages.errors.send_email")) if is_flashing_format?
+        respond_with resource, location: users_edit_email_path
+      end
+    end
   end
 
   def update

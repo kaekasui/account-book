@@ -1,0 +1,12 @@
+.panel.panel-default
+  .panel-heading
+    %span.glyphicon.glyphicon-envelope
+    = page_title
+  .panel-body
+    = render partial: 'messages', locals: { target: resource } if resource.errors.any?
+    = form_for(resource, html: { role: "form", method: :post }, as: resource_name, url: users_update_email_path) do |f|
+      .form-group
+        = f.label :email
+        = f.email_field :email, autofocus: true, class: "form-control"
+      .form-group
+        = f.submit I18n.t("buttons.send"), class: "btn btn-default"

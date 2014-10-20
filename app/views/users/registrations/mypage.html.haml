@@ -6,6 +6,12 @@
     %dl.dl-horizontal
       %dt= User.human_attribute_name(:email)
       %dd= resource.email
+    - if resource.unconfirmed_email.present?
+      %dl.dl-horizontal
+        %dt
+        %dd
+          = I18n.t("labels.unconfirmed_email") + I18n.t("code.colon")
+          = resource.unconfirmed_email
     %dl.dl-horizontal
       %dt= User.human_attribute_name(:password)
       %dd= I18n.t("labels.comments")

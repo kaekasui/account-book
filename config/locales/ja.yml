@@ -7,6 +7,8 @@ ja:
   category:
     income: "収入"
     outgo: "支出"
+  code:
+    colon: "："
   csv_import:
     conditions:
       barance_of_payments: "収支：支出が0、収入が1を指しています。入力がない場合は0（支出）が登録されます。"
@@ -72,11 +74,13 @@ ja:
     number_of_registered_records: "登録数"
     line: "行目"
     place: "場所"
+    unconfirmed_email: "認証待ち"
   links:
     admin: "管理"
     adding: "新規追加"
     cancel_user: "退会する"
     edit_user: "登録情報を編集する"
+    edit_email: "変更する"
     confirmation: "確認メールが見つからない場合"
     cross_mark: "×"
     home: "ホーム"
@@ -128,6 +132,8 @@ ja:
       destroy: "退会"
       edit: "登録情報編集"
       update: "登録情報編集"
+      edit_email: "メールアドレスの変更"
+      update_email: "メールアドレスの変更"
       new: "新規登録"
       create: "新規登録"
       mypage: "マイページ"
@@ -144,6 +150,8 @@ ja:
       new: "CSVインポート"
       import: "CSVインポート"
   messages:
+    errors:
+      send_email: "メールが送信できませんでした。"
     reason:
       authentication_failure: "認証失敗"
     record:
@@ -153,3 +161,5 @@ ja:
       import_failure: "CSVファイルのインポート中にエラーが発生しました。"
     places:
       destroy_failure: "削除できませんでした。"
+    users:
+      same: "が同じです。"

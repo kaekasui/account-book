@@ -6,6 +6,7 @@ ja:
       confirmed: "会員登録が完了しました。ログインしてください。"
       send_instructions: "メールを送信しました。受信には数分掛かる場合があります。"
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes."
+      update_email: "メールアドレスを更新しました。"
     failure:
       already_authenticated: "すでにログインしています。"
       inactive: "Your account is not activated yet."
@@ -33,6 +34,7 @@ ja:
       updated: "パスワードを変更しました。"
       updated_not_active: "Your password was changed successfully."
     registrations:
+      confirmed: "メールを送信しました。"
       destroyed: "退会しました。またのご利用をお待ちしています。"
       signed_up: "Welcome! You have signed up successfully."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
