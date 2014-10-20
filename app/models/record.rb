@@ -34,7 +34,7 @@ class Record < ActiveRecord::Base
         # 収支
         barance_of_payments = 0
         if row[1].to_i == 0 or row[1].nil?
-          barance_of_payments = 0          
+          barance_of_payments = 0
         elsif row[1].to_i == 1
           barance_of_payments = 1
         else

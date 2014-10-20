@@ -3,7 +3,7 @@
     %span.glyphicon.glyphicon-map-marker
     = page_title
   .panel-body
-    = form_for @place, remote: true, html: { role: "form", class: "form-horizontal" } do |f| 
+    = form_for @place, remote: true, html: { role: "form", class: "form-horizontal" } do |f|
       .form-group
         = f.label :name, I18n.t("labels.place"), class: "col-sm-2 control-label"
         .col-sm-10

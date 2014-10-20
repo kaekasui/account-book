@@ -1,7 +1,7 @@
 class TwitterUser < User
   def self.find_for_oauth(auth)
     where(uid: auth.uid).first
-  end 
+  end
 
   def self.create_with_oauth(auth)
     create!(provider: auth.provider, uid: auth.uid,

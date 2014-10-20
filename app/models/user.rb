@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
     def set_code
       self.code = self.code.blank? ? generate_code : self.code
-    end 
+    end
 
     def generate_code
       code = SecureRandom.urlsafe_base64(8)
