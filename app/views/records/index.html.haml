@@ -6,12 +6,14 @@
     = render partial: 'records/links'
     %table.table.record
       %tr
+        %th= ""
         %th= Record.human_attribute_name(:published_at)
         %th= Record.human_attribute_name(:category_id)
         %th= Record.human_attribute_name(:breakdown_id)
         %th= Record.human_attribute_name(:charge)
       - @records.each do |record|
         %tr
+          %td= record.category.barance_of_payments ? content_tag(:span, "", class: 'glyphicon glyphicon-plus-sign plus') : content_tag(:span, "", class: 'glyphicon glyphicon-minus-sign minus')
           %td(width='10%')= record.published_at
           %td(width='30%')= record.category.name
           %td(width='30%')= record.breakdown.name if record.breakdown
