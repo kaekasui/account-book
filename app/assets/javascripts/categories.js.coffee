@@ -101,6 +101,11 @@ $(document).on('ready page:load', (e) ->
       },
       success: (response) ->
         $('#create-category-modal').modal('hide')
+        barance_of_payments = $("input[name='barance_of_payments']:checked").val()
+        if barance_of_payments is "0"
+          $('.minus-sign').click()
+        else
+          $('.plus-sign').click()
         $('select#record_category_id').prepend($('<option>').html(category.category.name).val(response))
         $('select#record_category_id').val(response)
         set_breakdowns_from_category()
