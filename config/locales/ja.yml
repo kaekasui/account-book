@@ -15,6 +15,11 @@ ja:
       charge: "料金：料金に入力がない場合0が登録されます。"
       date: "日付：xxxx-xx-xxの形式で登録します。"
       required: "日付、カテゴリ、料金は必須です。"
+    errors:
+      barance_of_payments_name: "の収支"
+      barance_of_payments: "は0か1を設定してください。"
+      empty: "を入力してください。"
+      published_at: "の形式が正しくありません。"
     examples:
       breakdown_1: "電気代"
       breakdown_2: "歯ブラシ"
@@ -65,6 +70,7 @@ ja:
     delete: "削除"
     edit: "編集"
     number_of_registered_records: "登録数"
+    line: "行目"
     place: "場所"
   links:
     admin: "管理"
@@ -136,10 +142,14 @@ ja:
       edit: "内訳の編集"
     csv:
       new: "CSVインポート"
+      import: "CSVインポート"
   messages:
     reason:
       authentication_failure: "認証失敗"
     record:
-      create: "登録しました。"
+      created: "登録しました。"
+      import_file_not_found: "ファイルが選択されていません。"
+      import_file_is_not_csv: "CSVファイルを選択してください。"
+      import_failure: "CSVファイルのインポート中にエラーが発生しました。"
     places:
       destroy_failure: "削除できませんでした。"

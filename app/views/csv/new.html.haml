@@ -3,6 +3,7 @@
     %span.glyphicon.glyphicon-import
     = page_title
   .panel-body
+    = render partial: "messages", locals: { target: @record } if @record.errors.any?
     - if @error_messages
       %ul
       - @error_messages.each do |msg|

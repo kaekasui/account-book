@@ -17,6 +17,62 @@ class Record < ActiveRecord::Base
     "¥" + self.charge.to_s
   end
 
+  def csv_import(csv_file)
+    text = csv_file.read
+    ActiveRecord::Base.transaction do
+      line = 0
+      CSV.parse(Kconv.toutf8(text)) do |row|
+        line = line + 1
+        record = Record.new
+        record.user_id = self.user_id
+        # 日付
+        if row[0] =~ /\d\d\d\d-\d\d-\d\d/
+          record.published_at = row[0]
+        else
+          self.errors.add(:published_at, "(#{line}#{I18n.t('labels.line')})" + I18n.t("csv_import.errors.published_at"))
+        end
+        # 収支
+        barance_of_payments = 0
+        if row[1].to_i == 0 or row[1].nil?
+          barance_of_payments = 0          
+        elsif row[1].to_i == 1
+          barance_of_payments = 1
+        else
+          self.errors.add(:category_id, "#{I18n.t('csv_import.errors.barance_of_payments_name')}(#{line}#{I18n.t('labels.line')})" + I18n.t("csv_import.errors.barance_of_payments"))
+        end
+        # カテゴリ
+        if row[2].present?
+          category = Category.find_by_name(row[2]) || Category.create!(name: row[2], user_id: self.user_id, barance_of_payments: barance_of_payments)
+          record.category_id = category.id
+        else
+          self.errors.add(:category_id, "#{line}#{I18n.t('labels.line')})" + I18n.t("csv_import.errors.empty"))
+        end
+        # 内訳
+        if row[3].present?
+          breakdown = category.breakdowns.find_by_name(row[3]) || category.breakdowns.create!(name: row[3], user_id: self.user_id)
+          record.breakdown_id = breakdown.id
+        end
+        # 場所
+        if row[4].present?
+          place = Place.find_by_name(row[4]) || Place.create!(name: row[4], user_id: self.user_id)
+          record.place_id = place.id
+        end
+        # 料金
+        if row[5].blank?
+          record.charge = 0
+        else
+          record.charge = row[5].to_i
+        end
+        # メモ
+        if row[6]
+          record.memo = row[6]
+        end
+        record.save!
+      end
+    end
+    self
+  end
+
   def self.import_csv(csv_file)
     messages = ""
     text = csv_file.read

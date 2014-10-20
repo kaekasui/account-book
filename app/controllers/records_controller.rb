@@ -22,7 +22,7 @@ class RecordsController < ApplicationController
 
   def create
     @record = current_user.records.new(record_params)
-    flash[:notice] = I18n.t("messages.record.create") if @record.save
+    flash[:notice] = I18n.t("messages.record.created") if @record.save
     respond_with @record, location: new_record_path
   end
 
