@@ -71,13 +71,14 @@ set_categories_from_type = (sign) ->
 # 選択したカテゴリの内訳をセレクトボックスに表示する
 set_breakdowns_from_category = () ->
   category_id = $("select#record_category_id option:selected").val()
-  $.ajax({
-    url: "/records/set_breakdowns_from_category",
-    type: "POST",
-    data: category_id,
-    success: (response) ->
-    error: (response) -> alert("エラーが発生しました")
-  })
+  if category_id
+    $.ajax({
+      url: "/records/set_breakdowns_from_category",
+      type: "POST",
+      data: category_id,
+      success: (response) ->
+      error: (response) -> alert("エラーが発生しました")
+    })
 
 # 入力時にカテゴリを登録する
 $(document).on('ready page:load', (e) ->
