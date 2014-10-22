@@ -93,7 +93,7 @@ class Record < ActiveRecord::Base
     user = User.find(self.user_id)
     year = self.published_at.year
     month = self.published_at.month
-    count = user.records.where("year(published_at) = #{year} and month(published_at) = #{month}").count
+    count = user.records.where("year(published_at) = ? and month(published_at) = ?", year, month).count
 
     monthly = MonthlyCount.where(year: year, month: month, user_id: user.id).first || MonthlyCount.new(year: year, month: month, user_id: user.id)
     monthly.count = count
