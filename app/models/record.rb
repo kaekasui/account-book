@@ -2,6 +2,7 @@ require 'csv'
 require 'kconv'
 
 class Record < ActiveRecord::Base
+  attr_accessor :category_type
   acts_as_paranoid
   after_commit :count_monthly_records_worker
   belongs_to :category

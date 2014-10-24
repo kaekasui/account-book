@@ -17,7 +17,8 @@ $(document).on('page:change', (e) ->
 # 画面遷移後に、支出と収入のカテゴリをセレクトボックスに表示する
 $(document).on('ready page:load', (e) ->
   if ($(".container").hasClass('records_new'))
-    set_categories_from_type(0)
+    if getParam("category") == null
+      set_categories_from_type(0)
 )
 
 # カテゴリの支出と収入を選択し、該当するカテゴリをセレクトボックスに表示する
@@ -114,3 +115,18 @@ $(document).on('ready page:load', (e) ->
     })
   )
 )
+
+# GETパラメータの取得
+getParam = (key) ->
+  url = location.href
+  parameters = url.split('?')
+  paramsArray = []
+  if !parameters[1]
+    paramsArray[key] = null
+  else
+    params = parameters[1].split('&')
+    for i in [0..(params.length - 1)]
+      neet = params[i].split('=')
+      paramsArray.push(neet[0]);
+      paramsArray[neet[0]] = neet[1]
+  paramsArray[key]

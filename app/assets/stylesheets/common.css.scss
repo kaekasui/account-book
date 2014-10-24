@@ -21,11 +21,7 @@ body {
   .active {
     background-color: #fff;
   }
-  .trash-icon {
-    width: 50px;
-    text-align: right;
-  }
-  .edit-icon {
+  .edit-icon, .add-icon, .trash-icon {
     text-align: right;
     width: 50px;
   }

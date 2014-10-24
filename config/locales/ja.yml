@@ -71,6 +71,7 @@ ja:
     comments: "******"
     delete: "削除"
     edit: "編集"
+    new_record: "入力する"
     number_of_registered_records: "登録数"
     line: "行目"
     place: "場所"

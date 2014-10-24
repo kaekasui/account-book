@@ -15,6 +15,11 @@ class RecordsController < ApplicationController
 
   def new
     @record = current_user.records.new
+    if params[:category].present?
+      category = current_user.categories.find_by_id(params[:category])
+      @record.category_id = category.id
+      @record.category_type = category.barance_of_payments
+    end
   end
 
   def edit
