@@ -25,7 +25,11 @@ $(document).on('ready page:load', (e) ->
 $(document).on('page:change', (e) ->
   $(".records_new .minus-sign").click ->
     set_categories_from_type(0)
+  $(".records_edit .minus-sign").click ->
+    set_categories_from_type(0)
   $(".records_new .plus-sign").click ->
+    set_categories_from_type(1)
+  $(".records_edit .plus-sign").click ->
     set_categories_from_type(1)
 )
 
