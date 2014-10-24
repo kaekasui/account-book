@@ -1,10 +1,15 @@
-%p= @category.name
-
-%table.table
-  %tr
-    - @breakdowns.each do |breakdown|
-      - breakdown.records.each do |record|
-        %td= record.published_at
-        %td= breakdown.name
-        %td= record.charge
-        %td= record.memo
+.panel.panel-default
+  .panel-heading
+    %span.glyphicon.glyphicon-tags
+    = page_title
+  .panel-body
+    %table.table
+      = render partial: "category", locals: { category: @category }
+    %ul.list-unstyled
+      %li= content_tag(:span, "", class: "glyphicon glyphicon-th-list") + I18n.t("menu.breakdown")
+    %table.table
+      = render @breakdowns
+    %ul.list-unstyled
+      %li= content_tag(:span, "", class: "glyphicon glyphicon-list-alt") + I18n.t("menu.record")
+    %table.table
+      = render @records

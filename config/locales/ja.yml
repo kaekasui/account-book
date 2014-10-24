@@ -71,6 +71,7 @@ ja:
     comments: "******"
     delete: "削除"
     edit: "編集"
+    informations: "詳細"
     new_record: "入力する"
     number_of_registered_records: "登録数"
     line: "行目"
@@ -111,6 +112,7 @@ ja:
       index: "カテゴリ"
       edit: "カテゴリの編集"
       update: "カテゴリの編集"
+      show: "カテゴリの詳細"
     dashboards:
       show: "ダッシュボード"
     notice:

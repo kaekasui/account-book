@@ -11,12 +11,4 @@
         %th= Record.human_attribute_name(:category_id)
         %th= Record.human_attribute_name(:breakdown_id)
         %th= Record.human_attribute_name(:charge)
-      - @records.each do |record|
-        %tr
-          %td= record.category.barance_of_payments ? content_tag(:span, "", class: 'glyphicon glyphicon-plus-sign plus') : content_tag(:span, "", class: 'glyphicon glyphicon-minus-sign minus')
-          %td(width='10%')= record.published_at
-          %td(width='30%')= record.category.name
-          %td(width='30%')= record.breakdown.name if record.breakdown
-          %td= record.yen_charge
-          %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_record_path(record)
-          %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), record, method: :delete, data: { confirm: "Are you sure?" }
+      = render @records

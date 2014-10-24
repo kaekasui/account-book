@@ -6,6 +6,7 @@ class Category < ActiveRecord::Base
 
   belongs_to :user
   has_many :breakdowns, dependent: :destroy
+  has_many :records
 
   def barance_of_payments_name
     self.barance_of_payments ? I18n.t("category.income") : I18n.t("category.outgo")

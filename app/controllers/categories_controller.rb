@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
 
   def show
     @breakdowns = @category.breakdowns
+    @records = @category.records
   end
 
   def edit
