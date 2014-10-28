@@ -7,7 +7,7 @@ class RecordsController < ApplicationController
     @year = year_param || Date.today.year.to_s
     @month = month_param || Date.today.month.to_s
 
-    @records = current_user.records.where("year(published_at) = #{@year} and month(published_at) = #{@month}")
+    @records = current_user.records.where("year(published_at) = #{@year} and month(published_at) = #{@month}").order(:published_at).reverse_order
   end
 
   def show
