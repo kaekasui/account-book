@@ -1,0 +1,18 @@
+.panel.panel-default
+  .panel-heading
+    %span.glyphicon.glyphicon-bookmark
+    = page_title
+  .panel-body
+    = form_for @tag, remote: true, html: { role: "form", class: "form-horizontal" } do |f|
+      .form-group
+        .col-sm-4
+          = f.text_field :color_code, class: "colorpicker col-sm-4 form-control", "data-toggle" => "poover", placeholder: I18n.t("example.tag_color_code")
+        .col-sm-6
+          = f.text_field :name, class: "form-control", "data-toggle" => "popover", placeholder: I18n.t("example.tag_name")
+        .col-sm-2
+          = f.submit class: "btn btn-default"
+    %table.table.tags
+      = render partial: @tags
+
+%script
+  $(".colorpicker").minicolors({theme: "bootstrap"});

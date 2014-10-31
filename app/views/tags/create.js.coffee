@@ -1,0 +1,5 @@
+$("table.tags").prepend("<%= j render partial: 'tag', locals: { tag: @tag } %>")
+$(".minicolors-swatch-color").css("background-color", "transparent")
+$("input#tag_color_code").val("")
+$("input#tag_name").val("")
+$('#tag_color_code').popover("destroy")

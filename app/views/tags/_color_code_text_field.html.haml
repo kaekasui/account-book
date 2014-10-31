@@ -1,0 +1,9 @@
+= form_for @tag, remote: true, html: { role: "form", class: "form-horizontal" } do |f|
+  .form-group
+    .col-sm-8
+      = f.text_field :color_code, class: "form-control #{@tag.id}", "data-toggle" => "popoper"
+    .col-sm-2.cancel-icon
+      %font.red= content_tag(:span, "", class: "tag-cancel-icon control-label glyphicon glyphicon-remove")
+  .form-group
+    .col-sm-8
+      .align-right= f.submit remote: true, class: "btn btn-default"

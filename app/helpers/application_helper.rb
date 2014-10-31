@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def setting_menu?
-    controller_name == 'categories' or controller_name == 'breakdowns' or controller_name == 'places'
+    ["categories", "breakdowns", "places", "tags"].include?(controller_name)
   end
 
   def asterisk

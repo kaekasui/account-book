@@ -36,6 +36,10 @@ Rails.application.routes.draw do
     post "/set_breakdowns_from_category" => "records#set_breakdowns_from_category", on: :collection
     get "/download" => "records#download", on: :collection
   end
+  resources :tags, only: [:index, :create, :update, :destroy] do
+    post "/set_color_code_text_field" => "tags#set_color_code_text_field", on: :collection
+    post "/set_name_text_field" => "tags#set_name_text_field", on: :collection
+  end
 
   authenticate :user do
     mount Sidekiq::Web => '/sidekiq'

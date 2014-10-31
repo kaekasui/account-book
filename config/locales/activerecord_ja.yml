@@ -14,6 +14,9 @@ ja:
       feedback:
         user_id: "アカウント"
         content: "内容"
+      tag:
+        color_code: "カラーコード"
+        name: "ラベル名"
       user:
         confirmation_token: "URL"
         current_password: "現在のパスワード"

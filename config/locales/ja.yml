@@ -58,6 +58,8 @@ ja:
     breakdown: "電気代"
     category: "光熱費"
     place: "スーパー"
+    tag_color_code: "#ffffff"
+    tag_name: "クレジットカード払い"
     feedback: "いいね！使いやすくして！なんか変！？など、メッセージお待ちしてます(✿╹◡╹)"
   helpers:
     submit:
@@ -102,6 +104,7 @@ ja:
     place: "場所"
     record: "履歴"
     setting: "設定"
+    tag: "ラベル"
     users: "ユーザー"
   page_title:
     admin/feedbacks:
@@ -119,6 +122,8 @@ ja:
       terms: "ご利用規約"
     places:
       index: "場所"
+    tags:
+      index: "ラベル"
     users/confirmations:
       new: "確認メール再送"
       create: "確認メール再送"
