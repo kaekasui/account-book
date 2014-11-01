@@ -2,6 +2,7 @@
   %script
     $("[data-toggle='tooltip']").tooltip();
   %td.category_name(class="category_id_#{category.id}")= link_to category.name, category
+  %td.breakdowns-row= (category.breakdowns.map {|b| b.name }).join(', ')
   %td.info-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-info-sign"), category, "data-toggle" => "tooltip", "data-placement" => "top", title: I18n.t("labels.informations")
   %td.add-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-pencil"), new_record_path(category: category.id), "data-toggle" => "tooltip", "data-placement" => "top", title: I18n.t("labels.new_record")
   %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_category_path(id: category.id), "data-toggle" => "tooltip", "data-placement" => "top", title: I18n.t("labels.edit")
