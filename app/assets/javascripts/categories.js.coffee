@@ -114,7 +114,7 @@ $(document).on('ready page:load', (e) ->
           $('.plus-sign').click()
         $('select#record_category_id').prepend($('<option>').html(category.category.name).val(response))
         $('select#record_category_id').val(response)
-        set_breakdowns_from_category()
+        #set_breakdowns_from_category()
       error: (response) -> alert("error")
     })
   )

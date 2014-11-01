@@ -10,7 +10,7 @@ ja:
         content: "退会理由"
       category:
         barance_of_payments: "収支"
-        name: "カテゴリ"
+        name: "カテゴリ名"
       feedback:
         user_id: "アカウント"
         content: "内容"

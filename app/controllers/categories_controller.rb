@@ -20,8 +20,17 @@ class CategoriesController < ApplicationController
     @category = current_user.categories.new(category_params)
     @category.barance_of_payments = 0 if category_params[:barance_of_payments].nil?
     @category.user_id = current_user.id
-    @category.save
-    render text: @category.id if @category.submit_type == 'modal'
+    respond_to do |format|
+      if @category.save
+        if @category.submit_type == 'modal'
+          format.js { render text: @category.id }
+        else
+          format.js
+        end
+      else
+        format.js { render file: "categories/failure_create" }
+      end
+    end
   end
 
   def update
