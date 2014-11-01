@@ -66,6 +66,8 @@ ja:
       user:
         create: "新規登録する"
   include_blank:
+    breakdown: "▷内訳を選択してください。"
+    category: "▷カテゴリを選択してください。"
     place: "▷お店や場所を選択してください。"
   labels:
     barance_of_payments: "収支"

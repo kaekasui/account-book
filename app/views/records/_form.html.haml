@@ -23,12 +23,12 @@
       .form-group
         = f.label :category_id, (Record.human_attribute_name(:category_id) + asterisk).html_safe, class: "control-label category col-sm-2"
         .col-sm-5
-          = f.select :category_id, current_user.categories.order(:updated_at).reverse_order.map { |c| [c.name, c.id] }, {}, { class: "category form-control" }
+          = f.select :category_id, current_user.categories.order(:updated_at).reverse_order.map { |c| [c.name, c.id] }, { include_blank: I18n.t("include_blank.category") }, { class: "category form-control" }
         .btn.btn-info.btn-sm(data-toggle='modal' data-target='#create-category-modal')= content_tag(:span, "", class: "glyphicon glyphicon-plus") + I18n.t("links.adding")
       .form-group
         = f.label :breakdown_id, class: "control-label col-sm-2"
         .col-sm-10
-          = f.select :breakdown_id, current_user.breakdowns.order(:updated_at).reverse_order.map { |b| [b.name, b.id] }, {}, { class: "form-control" }
+          = f.select :breakdown_id, current_user.breakdowns.order(:updated_at).reverse_order.map { |b| [b.name, b.id] }, { include_blank: I18n.t("include_blank.breakdown") }, { class: "form-control" }
       .form-group
         = f.label :place_id, class: "control-label col-sm-2"
         .col-sm-10
