@@ -16,6 +16,14 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
 
+    describe "カテゴリ詳細画面" do
+      it "カテゴリの詳細が表示されること" do
+        category = create(:category, barance_of_payments: 0, user_id: user.id)
+        get :show, id: category.id
+        expect(assigns(:category)).to eq category
+      end
+    end
+
     describe "カテゴリ編集画面" do
       it "対象のカテゴリを表示すること" do
         category = create(:category, user_id: user.id)
