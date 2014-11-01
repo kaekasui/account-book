@@ -6,4 +6,4 @@
       %font.red= content_tag(:span, "", class: "tag-cancel-icon control-label glyphicon glyphicon-remove")
   .form-group
     .col-sm-8
-      .align-right= f.submit remote: true, class: "btn btn-default"
+      .align-right= f.submit remote: true, class: "btn btn-default", data: { disable_with: "loading..." }

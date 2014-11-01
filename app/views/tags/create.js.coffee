@@ -3,6 +3,7 @@ $(".minicolors-swatch-color").css("background-color", "transparent")
 $("input#tag_color_code").val("")
 $("input#tag_name").val("")
 $('#tag_color_code').popover("destroy")
+$('#tag_name').popover("destroy")
 
 $("td.tag-color-code").click ->
   if ($(this).hasClass('tag-color-code'))

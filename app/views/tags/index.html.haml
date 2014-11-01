@@ -10,7 +10,7 @@
         .col-sm-6
           = f.text_field :name, class: "form-control", "data-toggle" => "popover", placeholder: I18n.t("example.tag_name")
         .col-sm-2
-          = f.submit class: "btn btn-default"
+          = f.submit class: "btn btn-default", data: { disable_with: "loading..." }
     %table.table.tags
       = render partial: @tags
 
