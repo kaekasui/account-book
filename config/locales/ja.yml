@@ -173,3 +173,7 @@ ja:
       destroy_failure: "削除できませんでした。"
     users:
       same: "が同じです。"
+      original_user_login: "メールアドレスでログインしています。"
+      twitter_user_login: "Twitterアカウントでログインしています。"
+  tooltip:
+    open_twitter_url: "Twitter.comを開く"

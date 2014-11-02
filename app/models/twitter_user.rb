@@ -13,4 +13,8 @@ class TwitterUser < User
     update_attributes!(name: auth.info.name, nickname: auth.info.nickname, 
       token: auth.credentials.token)
   end
+
+  def twitter_url
+    "https://twitter.com/" + nickname
+  end
 end
