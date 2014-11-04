@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028191026) do
+ActiveRecord::Schema.define(version: 20141104011227) do
 
   create_table "breakdowns", force: true do |t|
     t.string   "name"
@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 20141028191026) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "tagged_records", force: true do |t|
+    t.integer  "record_id"
+    t.integer  "tag_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", force: true do |t|
