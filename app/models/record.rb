@@ -2,12 +2,13 @@ require 'csv'
 require 'kconv'
 
 class Record < ActiveRecord::Base
-  attr_accessor :category_type
+  attr_accessor :category_type, :tagged
   acts_as_paranoid
   after_commit :count_monthly_records_worker
   belongs_to :category
   belongs_to :breakdown
   belongs_to :user
+  has_many :tagged_records
   validates :charge, :category_id, :user_id, :published_at, presence: true
 
   scope :group_by_years, -> { group("date_format(published_at, '%Y')").count }

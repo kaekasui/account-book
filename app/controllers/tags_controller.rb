@@ -46,6 +46,10 @@ class TagsController < ApplicationController
   def set_name_text_field
   end
 
+  def get_tags
+    render text: current_user.tags.map {|t| t.name }
+  end
+
   private
     def set_tag
       @tag = current_user.tags.find(params[:id])

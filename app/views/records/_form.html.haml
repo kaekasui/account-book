@@ -38,6 +38,10 @@
         .col-sm-10
           = f.number_field :charge, class: "form-control"
       .form-group
+        = f.label :tagged, class: "control-label col-sm-2"
+        .col-sm-10
+          = f.text_field :tagged, class: "form-control", placeholder: I18n.t("placeholder.tags")
+      .form-group
         = f.label :memo, class: "control-label col-sm-2"
         .col-sm-10
           = f.text_area :memo, class: "form-control"

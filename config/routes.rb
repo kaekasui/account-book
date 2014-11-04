@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :tags, only: [:index, :create, :update, :destroy] do
     post "/set_color_code_text_field" => "tags#set_color_code_text_field", on: :collection
     post "/set_name_text_field" => "tags#set_name_text_field", on: :collection
+    get "/get_tags" => "tags#get_tags", on: :collection
   end
 
   authenticate :user do

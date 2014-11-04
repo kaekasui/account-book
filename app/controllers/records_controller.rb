@@ -23,11 +23,17 @@ class RecordsController < ApplicationController
   end
 
   def edit
+    @record.tagged = (@record.tagged_records.map {|r| r.tag.name }).join(',')
   end
 
   def create
     @record = current_user.records.new(record_params)
-    flash[:notice] = I18n.t("messages.record.created") if @record.save
+    @record.tagged = params[:record][:tagged] if params[:record][:tagged]
+    tagged_records = params[:record][:tagged]
+    if @record.save
+      flash[:notice] = I18n.t("messages.record.created")
+      set_tags(tagged_records.split(',')) if tagged_records.present?
+    end
     respond_with @record, location: new_record_path
   end
 
@@ -36,6 +42,8 @@ class RecordsController < ApplicationController
     @record.user_id = current_user.id
     respond_to do |format|
       if @record.save
+        tagged_records = params[:record][:tagged]
+        set_tags(tagged_records.split(',')) if tagged_records.present?
         format.html { redirect_to @record, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
       else
@@ -92,5 +100,15 @@ class RecordsController < ApplicationController
 
     def month_param
       params[:month]
+    end
+
+    def set_tags(tagged_records)
+      current_user.tagged_records.each do |tagged_record|
+        tagged_record.destroy
+      end
+      tagged_records.each do |tagged_record|
+        new_tag = current_user.tags.where(name: tagged_record).first || current_user.tags.create(name: tagged_record, color_code: "#5e7535")
+        current_user.tagged_records.create(tag_id: new_tag.id, record_id: @record.id)
+      end
     end
 end

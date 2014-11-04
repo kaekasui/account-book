@@ -35,3 +35,4 @@ ja:
         place_id: "場所"
         published_at: "日付"
         user_id: "ユーザー情報"
+        tagged: "ラベル"

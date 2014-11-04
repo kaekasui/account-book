@@ -1,4 +1,9 @@
 body {
+  .select2-container-multi .select2-choices .select2-search-choice {
+    color: #5e7535;
+    background-color: #e8efdf;
+    background-image: none;
+  }
   .align-right {
     text-align: right;
   }
@@ -159,3 +164,4 @@ body {
     width: 50%;
   }
 }
+

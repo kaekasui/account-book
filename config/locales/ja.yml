@@ -69,6 +69,8 @@ ja:
     breakdown: "▷内訳を選択してください。"
     category: "▷カテゴリを選択してください。"
     place: "▷お店や場所を選択してください。"
+  placeholder:
+    tags: "　▷ラベルを選択してください。"
   labels:
     barance_of_payments: "収支"
     csv_file: "CSVファイル"
