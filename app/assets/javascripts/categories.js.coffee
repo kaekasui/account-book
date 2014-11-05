@@ -16,7 +16,7 @@ $(document).on('page:change', (e) ->
 
 # 画面遷移後に、支出と収入のカテゴリをセレクトボックスに表示する
 $(document).on('ready page:load', (e) ->
-  if ($(".container").hasClass('records_new'))
+  if ($(".container").hasClass('records_new') or $(".container").hasClass('records_create'))
     if getParam("category") == null
       set_categories_from_type(0)
 )
@@ -25,11 +25,19 @@ $(document).on('ready page:load', (e) ->
 $(document).on('page:change', (e) ->
   $(".records_new .minus-sign").click ->
     set_categories_from_type(0)
+  $(".records_create .minus-sign").click ->
+    set_categories_from_type(0)
   $(".records_edit .minus-sign").click ->
+    set_categories_from_type(0)
+  $(".records_update .minus-sign").click ->
     set_categories_from_type(0)
   $(".records_new .plus-sign").click ->
     set_categories_from_type(1)
+  $(".records_create .plus-sign").click ->
+    set_categories_from_type(1)
   $(".records_edit .plus-sign").click ->
+    set_categories_from_type(1)
+  $(".records_update .plus-sign").click ->
     set_categories_from_type(1)
 )
 
