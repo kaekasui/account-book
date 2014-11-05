@@ -9,6 +9,8 @@ ja:
     outgo: "支出"
   code:
     colon: "："
+  confirmation:
+    delete: "削除してもよろしいですか？"
   csv_import:
     conditions:
       barance_of_payments: "収支：支出が0、収入が1を指しています。入力がない場合は0（支出）が登録されます。"

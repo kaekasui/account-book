@@ -2,4 +2,4 @@
   %td.color-code-icon(width='50px' style="color: #{tag.color_code}" id="#{tag.id}")= content_tag(:span, "", class: "glyphicon glyphicon-bookmark")
   %td.tag-color-code.color-code.col-sm-5(id="#{tag.id}")= tag.color_code
   %td.tag-name.name.col-sm-6(id="#{tag.id}")= tag.name
-  %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), tag, method: :delete, data: { confirm: 'Are you sure?' }
+  %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), tag, method: :delete, data: { confirm: I18n.t("confirmation.delete") }, "data-toggle" => "tooltip", "data-placement" => "top", title: I18n.t("labels.delete")
