@@ -31,8 +31,11 @@ class RecordsController < ApplicationController
     @record.tagged = params[:record][:tagged] if params[:record][:tagged]
     tagged_records = params[:record][:tagged]
     if @record.save
-      flash[:notice] = I18n.t("messages.record.created")
       set_tags(tagged_records.split(',')) if tagged_records.present?
+      if @record.errors.any?
+      else
+        flash[:notice] = I18n.t("messages.record.created")
+      end
     end
     respond_with @record, location: new_record_path
   end
@@ -104,11 +107,21 @@ class RecordsController < ApplicationController
 
     def set_tags(tagged_records)
       current_user.tagged_records.each do |tagged_record|
-        tagged_record.destroy
+        @record.errors.add(:tagged, tagged_record.errors.full_messages.first) unless tagged_record.destroy
       end
       tagged_records.each do |tagged_record|
-        new_tag = current_user.tags.where(name: tagged_record).first || current_user.tags.create(name: tagged_record, color_code: "#5e7535")
-        current_user.tagged_records.create(tag_id: new_tag.id, record_id: @record.id)
+        new_tag = current_user.tags.where(name: tagged_record).first || current_user.tags.create(name: tagged_record, color_code: generate_color_code)
+        unless new_tag.persisted?
+          @record.errors.add(:tagged, new_tag.errors.full_messages.first)
+        else
+          new_tagged_record = current_user.tagged_records.create(tag_id: new_tag.id, record_id: @record.id)
+          @record.errors.add(:tagged, new_tagged_record.errors.full_messages.first) unless new_tagged_record.persisted?
+        end
       end
+    end
+
+    def generate_color_code
+      color_code = "#%06x" % (rand * 0xffffff)
+      current_user.tags.where(color_code: color_code).first.blank? ? color_code : generate_color_code
     end
 end
