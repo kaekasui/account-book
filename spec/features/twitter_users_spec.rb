@@ -30,4 +30,11 @@ feature 'Twitterアカウントの管理' do
     expect(current_path).to eq root_path
     expect(page).to have_content I18n.t("devise.sessions.signed_out")
   end
+
+  scenario 'マイページを確認する' do
+    visit "/users/auth/twitter"
+
+    visit users_mypage_path
+    expect(page).to have_content I18n.t("messages.users.twitter_user_login")
+  end
 end

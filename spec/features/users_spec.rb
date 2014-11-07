@@ -164,4 +164,12 @@ feature 'ユーザーアカウントの管理' do
     expect(current_path).to eq root_path
     expect(page).to have_content I18n.t("devise.registrations.destroyed")
   end
+
+  scenario 'マイページを確認する' do
+    user = create(:user, confirmed_at: Time.now)
+    login user
+
+    visit users_mypage_path
+    expect(page).to have_content I18n.t("messages.users.original_user_login")
+  end
 end
