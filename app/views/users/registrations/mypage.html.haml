@@ -3,33 +3,10 @@
     %span.glyphicon.glyphicon-user
     = page_title
   .panel-body
-    %blockquote
-      - if current_user.type.nil?
-        %footer= I18n.t("messages.users.original_user_login")
-      - else
-        %footer= I18n.t("messages.users.twitter_user_login")
     - if current_user.type.nil?
-      %dl.dl-horizontal
-        %dt= User.human_attribute_name(:email)
-        %dd= resource.email
-      - if resource.unconfirmed_email.present?
-        %dl.dl-horizontal
-          %dt
-          %dd
-            = I18n.t("labels.unconfirmed_email") + I18n.t("code.colon")
-            = resource.unconfirmed_email
-      %dl.dl-horizontal
-        %dt= User.human_attribute_name(:password)
-        %dd= I18n.t("labels.comments")
+      = render "original_user_profile"
     - else
-      %dl.dl-horizontal
-        %dt= User.human_attribute_name(:name)
-        %dd= resource.name
-      %dl.dl-horizontal
-        %dt= User.human_attribute_name(:nickname)
-        %dd
-          = resource.nickname
-          = link_to content_tag(:span, "", class: "glyphicon glyphicon-new-window"), resource.twitter_url, target: :blank, "data-toggle" => 'tooltip', title: I18n.t("tooltip.open_twitter_url")
+      = render "twitter_user_profile"
     .align-right
       = link_to I18n.t("links.edit_user"), edit_user_registration_path, class: "btn btn-info" if current_user.type.nil?
       = link_to I18n.t("links.cancel_user"), cancel_user_registration_path, class: "btn btn-info"

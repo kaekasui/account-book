@@ -49,6 +49,7 @@ ja:
     add: "追加する"
     cancel: "退会する"
     change_password: "パスワードを変更する"
+    create: "登録する"
     download: "ダウンロードする"
     send: "送信する"
     sign_in: "ログインする"
@@ -179,5 +180,6 @@ ja:
       same: "が同じです。"
       original_user_login: "メールアドレスでログインしています。"
       twitter_user_login: "Twitterアカウントでログインしています。"
+      blank: "（設定されていません）"
   tooltip:
     open_twitter_url: "Twitter.comを開く"

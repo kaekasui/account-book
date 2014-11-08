@@ -1,0 +1,16 @@
+%blockquote
+  %footer= I18n.t("messages.users.original_user_login")
+
+.form.form-horizontal
+  .form-group
+    .col-sm-2.align-right= User.human_attribute_name(:email)
+    .col-sm-10= resource.email
+  - if resource.unconfirmed_email.present?
+    .form-group
+      .col-sm-2.algin-right= ""
+      .col-sm-10
+        = I18n.t("labels.unconfirmed_email") + I18n.t("code.colon")
+        = resource.unconfirmed_email
+  .form-group
+    .col-sm-2.align-right= User.human_attribute_name(:password)
+    .col-sm-10= I18n.t("labels.comments")

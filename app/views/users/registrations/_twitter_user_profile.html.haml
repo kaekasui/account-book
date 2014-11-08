@@ -1,0 +1,17 @@
+%blockquote
+  %footer= I18n.t("messages.users.twitter_user_login")
+
+.form.form-horizontal
+  .form-group
+    .col-sm-2.align-right= User.human_attribute_name(:name)
+    .col-sm-10= resource.name
+  .form-group
+    .col-sm-2.align-right= User.human_attribute_name(:nickname)
+    .col-sm-10= resource.nickname
+  .form-group
+    .col-sm-2.align-right.control-label= User.human_attribute_name(:email)
+    .col-sm-10
+      - if resource.email.blank?
+        = I18n.t("messages.users.blank")
+        = link_to I18n.t("buttons.create"), users_edit_email_path, class: "btn btn-info"
+      = resource.email
