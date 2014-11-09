@@ -8,7 +8,7 @@
   - if resource.unconfirmed_email.present?
     .form-group
       .col-sm-2.algin-right= ""
-      .col-sm-10
+      .col-sm-10.unconfirmed_email
         = I18n.t("labels.unconfirmed_email") + I18n.t("code.colon")
         = resource.unconfirmed_email
   .form-group

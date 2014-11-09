@@ -14,4 +14,12 @@
       - if resource.email.blank?
         = I18n.t("messages.users.blank")
         = link_to I18n.t("buttons.create"), users_edit_email_path, class: "btn btn-info"
-      = resource.email
+      - else
+        = resource.email
+        = link_to I18n.t("links.edit_email"), users_edit_email_path, class: "btn btn-info"
+  - if resource.unconfirmed_email.present?
+    .form-group
+      .col-sm-2
+      .col-sm-10.unconfirmed_email
+        = I18n.t("labels.unconfirmed_email") + I18n.t("code.colon")
+        = resource.unconfirmed_email

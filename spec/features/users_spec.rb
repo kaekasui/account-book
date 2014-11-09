@@ -172,4 +172,43 @@ feature 'ユーザーアカウントの管理' do
     visit users_mypage_path
     expect(page).to have_content I18n.t("messages.users.original_user_login")
   end
+
+  scenario 'メールアドレスを変更する' do
+    user = create(:user, confirmed_at: Time.now)
+    login user
+
+    visit users_mypage_path
+    click_link I18n.t("links.edit_user")
+    click_link I18n.t("links.edit_email")
+    expect(current_path).to eq users_edit_email_path
+    expect(user.email).to have_content "user@example.com"
+
+    # 同じメールアドレスを入力した場合
+    fill_in User.human_attribute_name(:email), with: "user@example.com"
+    within "form#edit_user" do
+      click_button I18n.t("buttons.send")
+    end
+    expect(page).to have_content I18n.t("messages.users.same")
+    expect(current_path).to eq users_update_email_path
+
+    # 再度別メールアドレスを入力した場合
+    fill_in User.human_attribute_name(:email), with: "user2@example.com"
+    within "form#edit_user" do
+      click_button I18n.t("buttons.send")
+    end
+    expect(page).to have_content I18n.t("devise.registrations.confirmed")
+    expect(current_path).to eq users_mypage_path
+    expect(page).to have_selector(".unconfirmed_email", text: (I18n.t("labels.unconfirmed_email") + I18n.t("code.colon") + " user2@example.com"))
+
+    open_email("user2@example.com")
+    mail_body = current_email.body
+    index = mail_body.index("confirmation_token=")
+    token = mail_body.slice(index+19..index+38)
+    visit user_confirmation_path(confirmation_token: token, confirmation_type: "edit")
+
+    expect(current_path).to eq users_mypage_path
+    expect(page).to have_content I18n.t("devise.confirmations.update_email")
+    expect(page).to have_content "user2@example.com"
+    expect(user.reload.email).to have_content "user2@example.com"
+  end
 end

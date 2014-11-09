@@ -22,7 +22,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_email
     email = resource_params[:email]
     if email == resource.email
-      resource.errors.add(:email, I18n.t("messages.users.same"))
+      error_message = email.blank? ? I18n.t("errors.messages.blank") : I18n.t("messages.users.same")
+      resource.errors.add(:email, error_message)
       render :edit_email
     else
       resource.unconfirmed_email = email
