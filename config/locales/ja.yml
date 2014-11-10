@@ -75,7 +75,9 @@ ja:
   placeholder:
     tags: "　▷ラベルを選択してください。"
   labels:
+    after_edit: "（変更後）"
     barance_of_payments: "収支"
+    before_edit: "（変更前）"
     csv_file: "CSVファイル"
     comments: "******"
     delete: "削除"
