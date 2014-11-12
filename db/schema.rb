@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104011227) do
+ActiveRecord::Schema.define(version: 20141112103430) do
 
   create_table "breakdowns", force: true do |t|
     t.string   "name"
@@ -22,12 +22,17 @@ ActiveRecord::Schema.define(version: 20141104011227) do
     t.datetime "updated_at"
   end
 
+  add_index "breakdowns", ["category_id"], name: "index_breakdowns_on_category_id", using: :btree
+  add_index "breakdowns", ["user_id"], name: "index_breakdowns_on_user_id", using: :btree
+
   create_table "cancels", force: true do |t|
     t.integer  "user_id"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "cancels", ["user_id"], name: "index_cancels_on_user_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -38,6 +43,8 @@ ActiveRecord::Schema.define(version: 20141104011227) do
     t.integer  "user_id"
   end
 
+  add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
+
   create_table "feedbacks", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -46,6 +53,8 @@ ActiveRecord::Schema.define(version: 20141104011227) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "monthly_counts", force: true do |t|
     t.integer  "user_id"
@@ -57,12 +66,16 @@ ActiveRecord::Schema.define(version: 20141104011227) do
     t.integer  "amount"
   end
 
+  add_index "monthly_counts", ["user_id"], name: "index_monthly_counts_on_user_id", using: :btree
+
   create_table "places", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
   end
+
+  add_index "places", ["user_id"], name: "index_places_on_user_id", using: :btree
 
   create_table "records", force: true do |t|
     t.date     "published_at"
@@ -77,6 +90,11 @@ ActiveRecord::Schema.define(version: 20141104011227) do
     t.integer  "user_id"
   end
 
+  add_index "records", ["breakdown_id"], name: "index_records_on_breakdown_id", using: :btree
+  add_index "records", ["category_id"], name: "index_records_on_category_id", using: :btree
+  add_index "records", ["place_id"], name: "index_records_on_place_id", using: :btree
+  add_index "records", ["user_id"], name: "index_records_on_user_id", using: :btree
+
   create_table "tagged_records", force: true do |t|
     t.integer  "record_id"
     t.integer  "tag_id"
@@ -84,6 +102,10 @@ ActiveRecord::Schema.define(version: 20141104011227) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tagged_records", ["record_id"], name: "index_tagged_records_on_record_id", using: :btree
+  add_index "tagged_records", ["tag_id"], name: "index_tagged_records_on_tag_id", using: :btree
+  add_index "tagged_records", ["user_id"], name: "index_tagged_records_on_user_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"
@@ -93,6 +115,8 @@ ActiveRecord::Schema.define(version: 20141104011227) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tags", ["user_id"], name: "index_tags_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
