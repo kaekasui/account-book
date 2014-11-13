@@ -77,8 +77,9 @@ body {
     font-size: 16px;
     font-weight: bold;
     font-family: 'Lucida Grande', Meiryo, sans-serif;
-    img { width: 60px; }
-    span.brand-name { border-bottom: dotted 3px #76891a; }
+    img { width: 60px; float: left; }
+    span.brand-name { border-bottom: dotted 3px #76891a; vertical-align: middle; }
+    span.glyphicon { padding-top: 6px; }
     padding: 10px 10px 10px 40px;
   }
   span { padding: 3px; }
