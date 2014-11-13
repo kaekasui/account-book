@@ -81,21 +81,24 @@ ja:
     csv_file: "CSVファイル"
     comments: "******"
     delete: "削除"
+    delete_unconfirmed_email: "24時間以上経った認証待ちのメール"
     edit: "編集"
     informations: "詳細"
     new_record: "入力する"
     number_of_registered_records: "登録数"
     line: "行目"
+    of_count: "件の"
     place: "場所"
     unconfirmed_email: "認証待ち"
   links:
     admin: "管理"
     adding: "新規追加"
     cancel_user: "退会する"
-    edit_user: "登録情報を編集する"
-    edit_email: "変更する"
     confirmation: "確認メールが見つからない場合"
     cross_mark: "×"
+    destroy: "削除する"
+    edit_user: "登録情報を編集する"
+    edit_email: "変更する"
     home: "ホーム"
     reset_password: "パスワードを忘れた場合"
     sign_in: "ログイン"
@@ -169,6 +172,7 @@ ja:
   messages:
     errors:
       send_email: "メールが送信できませんでした。"
+      delete_unconfirmed_email: "24時間以上経った認証待ちのメールアドレスの削除に失敗しました。"
     reason:
       authentication_failure: "認証失敗"
     record:
@@ -179,6 +183,7 @@ ja:
     places:
       destroy_failure: "削除できませんでした。"
     users:
+      delete_unconfirmed_email: "24時間以上経った認証待ちのメールアドレスを削除しました。"
       same: "が同じです。"
       original_user_login: "メールアドレスでログインしています。"
       twitter_user_login: "Twitterアカウントでログインしています。"

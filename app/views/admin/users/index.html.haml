@@ -3,6 +3,10 @@
     %span.glyphicon.glyphicon-user
     = page_title
   .panel-body
+    %table.table.table-bordered
+      %tr
+        %td(style='vertical-align:middle')= I18n.t("labels.delete_unconfirmed_email")
+        %td= link_to I18n.t("links.destroy"), delete_unconfirmed_email_admin_users_path, method: :post, class: "btn btn-default"
     %table.table
       %tr
         %th(width='40%')= User.human_attribute_name(:email)

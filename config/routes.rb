@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'feedbacks#index'
     resources :feedbacks
-    resources :users, only: [:index]
+    resources :users, only: [:index] do
+      post "/delete_unconfirmed_email" => "users#delete_unconfirmed_email", on: :collection
+    end
   end
 end
