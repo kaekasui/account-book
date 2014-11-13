@@ -19,6 +19,20 @@ class Record < ActiveRecord::Base
     "¥" + self.charge.to_s
   end
 
+  def import(file)
+    if file.present?
+      filename = file.original_filename
+      if filename.rindex('.').present? and (filename.slice((filename.rindex('.') + 1), (filename.rindex('.') + 3))) == 'csv'
+        csv_import(file)
+      else
+        errors[:base] << I18n.t("messages.record.import_file_is_not_csv")
+      end
+    else
+      errors[:base] << I18n.t("messages.record.import_file_not_found")
+    end
+    self
+  end
+
   def csv_import(csv_file)
     text = csv_file.read
     ActiveRecord::Base.transaction do
