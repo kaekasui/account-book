@@ -19,7 +19,6 @@ class CategoriesController < ApplicationController
   def create
     @category = current_user.categories.new(category_params)
     @category.barance_of_payments = 0 if category_params[:barance_of_payments].nil?
-    @category.user_id = current_user.id
     respond_to do |format|
       if @category.save
         if @category.submit_type == 'modal'
