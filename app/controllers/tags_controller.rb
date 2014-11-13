@@ -17,7 +17,7 @@ class TagsController < ApplicationController
       if @tag.save
         format.js
       else
-        format.js { render file: "tags/failure_create" }
+        format.js { render "tags/failure_create" }
       end
     end
   end
@@ -30,7 +30,7 @@ class TagsController < ApplicationController
       if @tag.save
         format.js
       else
-        format.js { render file: "tags/failure_update" }
+        format.js { render "tags/failure_update" }
       end
     end
   end

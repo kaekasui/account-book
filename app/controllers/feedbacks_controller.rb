@@ -7,7 +7,7 @@ class FeedbacksController < ApplicationController
       if @feedback.save
         format.js
       else
-        format.js { render action: "failure" }
+        format.js { render "failure" }
       end
     end
   end
