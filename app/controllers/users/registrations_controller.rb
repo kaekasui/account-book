@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, only: [ :new, :create ]
   skip_before_action :authenticate_user!, only: [:new]
-  prepend_before_filter :authenticate_scope!, only: [:edit, :update, :edit_email, :update_email, :destroy, :mypage]
+  prepend_before_filter :authenticate_scope!, only: [:edit, :update, :edit_email, :update_email, :destroy, :mypage, :send_unconfirmed_email, :delete_unconfirmed_email]
 
   def new
     super
@@ -69,6 +69,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
     flash[:alert] = I18n.t("messages.errors.delete_an_unconfirmed_email")
     ensure
     redirect_to users_mypage_path
+  end
+
+  def send_unconfirmed_email
+    resource.send_confirmation_instructions
+    if successfully_sent?(resource)
+      set_flash_message(:notice, :confirmed) if is_flashing_format?
+      respond_with resource, location: users_mypage_path
+    else
+      set_flash_message(:alert, I18n.t("messages.errors.send_email")) if is_flashing_format?
+      respond_with resource, location: users_edit_email_path
+    end
   end
 
   protected

@@ -11,6 +11,7 @@ ja:
     colon: "："
   confirmation:
     delete: "削除してもよろしいですか？"
+    resend: "再送してもよろしいですか？"
   csv_import:
     conditions:
       barance_of_payments: "収支：支出が0、収入が1を指しています。入力がない場合は0（支出）が登録されます。"
@@ -101,6 +102,7 @@ ja:
     edit_email: "変更する"
     home: "ホーム"
     reset_password: "パスワードを忘れた場合"
+    resend: "再送する"
     sign_in: "ログイン"
     sign_up: "新規登録"
     sign_out: "ログアウト"
