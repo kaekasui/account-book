@@ -4,7 +4,9 @@
 .form.form-horizontal
   .form-group
     .col-sm-2.align-right= User.human_attribute_name(:email)
-    .col-sm-10= resource.email
+    .col-sm-10
+      = resource.email
+      %span= link_to I18n.t("links.edit_email"), users_edit_email_path if resource.unconfirmed_email.nil?
   - if resource.unconfirmed_email.present?
     .form-group
       .col-sm-2.algin-right= ""

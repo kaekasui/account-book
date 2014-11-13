@@ -7,11 +7,8 @@
     = form_for(resource, html: { role: "form", method: :put }, as: resource_name, url: registration_path(resource_name)) do |f|
       .form-group
         = f.label :email
-        .row
-          .col-sm-6
-            = f.email_field :email, class: "form-control", readonly: true
-          .col-sm-6
-            = link_to I18n.t("links.edit_email"), users_edit_email_path, class: "btn btn-info"
+        %span= link_to I18n.t("links.edit_email"), users_edit_email_path
+        = f.email_field :email, class: "form-control", readonly: true
       .form-group
         = f.label :password
         = f.password_field :password, autocomplete: "off", class: "form-control"

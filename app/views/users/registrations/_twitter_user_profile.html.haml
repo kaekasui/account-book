@@ -9,14 +9,14 @@
     .col-sm-2.align-right= User.human_attribute_name(:nickname)
     .col-sm-10= resource.nickname
   .form-group
-    .col-sm-2.align-right.control-label= User.human_attribute_name(:email)
+    .col-sm-2.align-right= User.human_attribute_name(:email)
     .col-sm-10
       - if resource.email.blank?
         = I18n.t("messages.users.blank")
-        = link_to I18n.t("buttons.create"), users_edit_email_path, class: "btn btn-info"
+        %span= link_to I18n.t("buttons.create"), users_edit_email_path
       - else
         = resource.email
-        = link_to I18n.t("links.edit_email"), users_edit_email_path, class: "btn btn-info"
+        %span= link_to I18n.t("links.edit_email"), users_edit_email_path
   - if resource.unconfirmed_email.present?
     .form-group
       .col-sm-2

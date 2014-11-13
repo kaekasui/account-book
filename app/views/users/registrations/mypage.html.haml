@@ -8,8 +8,8 @@
     - else
       = render "twitter_user_profile"
     .align-right
-      = link_to I18n.t("links.edit_user"), edit_user_registration_path, class: "btn btn-info" if current_user.type.nil?
-      = link_to I18n.t("links.cancel_user"), cancel_user_registration_path, class: "btn btn-info"
+      %span= link_to I18n.t("links.edit_user"), edit_user_registration_path if current_user.type.nil?
+      %span= link_to I18n.t("links.cancel_user"), cancel_user_registration_path
     %hr
     %dl.dl-horizontal
       %dt= I18n.t("labels.number_of_registered_records")

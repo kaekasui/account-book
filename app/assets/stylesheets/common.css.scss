@@ -13,6 +13,15 @@ body {
   .align-left {
     text-align: left;
   }
+  .align-middle {
+    vertical-align: middle;
+  }
+  .align-top {
+    vertical-align: top;
+  }
+  .align-bottom {
+    vertical-align: bottom;
+  }
   .panel-default > .panel-heading {
     padding-left: 20px;
     font-family: 'Lucida Grande', Meiryo, sans-serif;
