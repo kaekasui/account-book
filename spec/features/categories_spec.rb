@@ -22,6 +22,15 @@ js: true
     #expect(page).to have_content(category_name)
 =end
 
+  scenario "カテゴリの一覧に内訳を表示する" do
+    category = create(:category, barance_of_payments: 0, user_id: @user.id)
+    breakdown = create(:breakdown, user_id: @user.id, category_id: category.id)
+    visit categories_path
+
+    expect(page).to have_content(category.name)
+    expect(page).to have_content(breakdown.name)
+  end
+
   scenario "カテゴリごとに記録を表示する" do
     category = create(:category, barance_of_payments: 0, user_id: @user.id)
     visit categories_path
