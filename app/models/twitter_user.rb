@@ -10,7 +10,7 @@ class TwitterUser < User
   end
 
   def update_with_oauth(auth)
-    update_attributes!(name: auth.info.name, nickname: auth.info.nickname, 
+    update_attributes!(name: auth.info.name, nickname: auth.info.nickname,
       token: auth.credentials.token)
   end
 
