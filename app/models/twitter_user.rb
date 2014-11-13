@@ -7,7 +7,7 @@ class TwitterUser < User
     create!(provider: auth.provider, uid: auth.uid,
       name: auth.info.name, nickname: auth.info.nickname,
       confirmed_at: Time.now(), token: auth.credentials.token)
-  end 
+  end
 
   def update_with_oauth(auth)
     update_attributes!(name: auth.info.name, nickname: auth.info.nickname, 

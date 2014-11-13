@@ -1,6 +1,6 @@
 class Tag < ActiveRecord::Base
   acts_as_paranoid
-  
+
   belongs_to :user
   has_many :tagged_records
   validates :name, presence: true, length: { maximum: MAX_TEXT_FIELD_LENGTH }

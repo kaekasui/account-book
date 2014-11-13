@@ -42,5 +42,5 @@ class User < ActiveRecord::Base
     def generate_code
       code = SecureRandom.urlsafe_base64(8)
       self.class.where(code: code).blank? ? code : generate_code
-    end 
+    end
 end
