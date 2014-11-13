@@ -20,6 +20,20 @@ feature 'Record' do
     expect(Record.last.charge).to eq 900
   end
 
+  scenario 'ラベルを指定してレコードを登録する' do
+    create(:category, name: "category_name", user_id: user.id)
+    visit root_path
+    click_link I18n.t("menu.new_record")
+
+    select category.name, from: "record_category_id"
+    fill_in 'record_charge', with: "900"
+    fill_in 'record_tagged', with: "タグ1"
+    click_button I18n.t("helpers.submit.create")
+
+    expect(Record.last.charge).to eq 900
+    expect(Tag.first.name).to eq "タグ1"
+  end
+
   scenario 'レコードの登録に失敗する' do
     create(:category, name: "category_name", user_id: user.id)
     visit root_path
