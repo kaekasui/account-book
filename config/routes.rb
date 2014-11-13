@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     #get 'users/cancel' => 'users/registrations#cancel'
   end
 
-  resource :dashboard do
+  resource :dashboard, only: [:show] do
     post "/set_graph" => "dashboards#set_graph"#, on: :collection
   end
   get 'csv/new' => 'csv#new'
