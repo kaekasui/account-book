@@ -42,7 +42,6 @@ class RecordsController < ApplicationController
 
   def update
     @record.update_attributes(record_params)
-    @record.user_id = current_user.id
     respond_to do |format|
       if @record.save
         tagged_records = params[:record][:tagged]

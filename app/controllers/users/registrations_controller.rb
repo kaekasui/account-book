@@ -48,12 +48,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def cancel
-    @cancel = Cancel.new
+    @cancel = current_user.cancel.new
   end
 
   def destroy
-    @cancel = Cancel.new(cancel_params)
-    @cancel.user_id = current_user.id
+    @cancel = current_user.cancel.new(cancel_params)
     if @cancel.save
       super
     else

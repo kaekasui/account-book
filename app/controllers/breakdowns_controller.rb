@@ -12,7 +12,6 @@ class BreakdownsController < ApplicationController
 
   def create
     @breakdown = current_user.breakdowns.new(breakdown_params)
-    @breakdown.user_id = current_user.id
     @breakdown.save
     respond_with @breakdown, location: breakdowns_path
   end
@@ -20,7 +19,6 @@ class BreakdownsController < ApplicationController
   def update
     respond_to do |format|
       @breakdown.update_attributes(breakdown_params)
-      @breakdown.user_id = current_user.id
       if @breakdown.save
         format.html { redirect_to breakdowns_path, notice: 'Breakdown was successfully updated.' }
         format.json { render :show, status: :ok, location: breakdowns_path }
@@ -41,7 +39,7 @@ class BreakdownsController < ApplicationController
 
   private
     def set_breakdown
-      @breakdown = Breakdown.find(params[:id])
+      @breakdown = current_user.breakdowns.find(params[:id])
     end
 
     def breakdown_params

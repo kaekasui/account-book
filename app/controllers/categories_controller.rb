@@ -36,7 +36,6 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       @category.update_attributes(category_params)
       @category.barance_of_payments = 0 if category_params[:barance_of_payments].nil?
-      @category.user_id = current_user.id
       if @category.save
         format.html { redirect_to categories_path, notice: 'Category was successfully updated.' }
         format.json { render :show, status: :ok, location: categories_path }

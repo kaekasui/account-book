@@ -12,7 +12,7 @@ class PlacesController < ApplicationController
   end
 
   def new
-    @place = Place.new
+    @place = current_user.places.new
     respond_with(@place)
   end
 
@@ -20,8 +20,7 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @place = Place.new(place_params)
-    @place.user_id = current_user.id
+    @place = current_user.places.new(place_params)
     @place.save
     respond_with @place, location: places_path
   end
