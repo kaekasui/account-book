@@ -71,4 +71,23 @@ feature 'Twitterアカウントの管理' do
     expect(page).to have_content I18n.t("devise.confirmations.update_email")
     expect(page).to have_content "user2@example.com"
   end
+
+  scenario '認証待ちのメールアドレスを削除する' do
+    visit "/users/auth/twitter"
+    visit users_mypage_path
+    click_link I18n.t("buttons.create")
+    expect(current_path).to eq users_edit_email_path
+
+    fill_in User.human_attribute_name(:email), with: "user2@example.com"
+    within "form#edit_user" do
+      click_button I18n.t("buttons.send")
+    end
+    expect(page).to have_content I18n.t("devise.registrations.confirmed")
+    expect(current_path).to eq users_mypage_path
+    expect(page).to have_selector(".unconfirmed_email", text: (I18n.t("labels.unconfirmed_email") + I18n.t("code.colon") + " user2@example.com"))
+
+    click_link I18n.t("links.destroy")
+    expect(current_path).to eq users_mypage_path
+    expect(page).to have_content I18n.t("messages.users.delete_an_unconfirmed_email")
+  end
 end
