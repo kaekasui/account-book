@@ -233,4 +233,26 @@ feature 'ユーザーアカウントの管理' do
     expect(current_path).to eq users_mypage_path
     expect(page).to have_content I18n.t("messages.users.delete_an_unconfirmed_email")
   end
+
+  scenario '認証待ちのメールアドレスにメールを再送する' do
+    user = create(:user, confirmed_at: Time.now)
+    login user
+
+    visit users_mypage_path
+    click_link I18n.t("links.edit_user")
+    click_link I18n.t("links.edit_email")
+    expect(current_path).to eq users_edit_email_path
+
+    fill_in User.human_attribute_name(:email), with: "user2@example.com"
+    within "form#edit_user" do
+      click_button I18n.t("buttons.send")
+    end
+    expect(page).to have_content I18n.t("devise.registrations.confirmed")
+    expect(current_path).to eq users_mypage_path
+    expect(page).to have_selector(".unconfirmed_email", text: (I18n.t("labels.unconfirmed_email") + I18n.t("code.colon") + " user2@example.com"))
+
+    click_link I18n.t("links.resend")
+    expect(current_path).to eq users_mypage_path
+    expect(page).to have_content I18n.t("devise.registrations.confirmed")
+  end
 end
