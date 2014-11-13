@@ -172,6 +172,7 @@ ja:
   messages:
     errors:
       send_email: "メールが送信できませんでした。"
+      delete_an_unconfirmed_email: "認証待ちのメールアドレスの削除に失敗しました。"
       delete_unconfirmed_email: "24時間以上経った認証待ちのメールアドレスの削除に失敗しました。"
     reason:
       authentication_failure: "認証失敗"
@@ -183,6 +184,7 @@ ja:
     places:
       destroy_failure: "削除できませんでした。"
     users:
+      delete_an_unconfirmed_email: "認証待ちのメールアドレスを削除しました。"
       delete_unconfirmed_email: "24時間以上経った認証待ちのメールアドレスを削除しました。"
       same: "が同じです。"
       original_user_login: "メールアドレスでログインしています。"

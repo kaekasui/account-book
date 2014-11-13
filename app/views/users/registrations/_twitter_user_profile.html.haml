@@ -13,7 +13,7 @@
     .col-sm-10
       - if resource.email.blank?
         = I18n.t("messages.users.blank")
-        %span= link_to I18n.t("buttons.create"), users_edit_email_path
+        %span= link_to I18n.t("buttons.create"), users_edit_email_path if resource.unconfirmed_email.nil?
       - else
         = resource.email
         %span= link_to I18n.t("links.edit_email"), users_edit_email_path
@@ -23,3 +23,5 @@
       .col-sm-10.unconfirmed_email
         = I18n.t("labels.unconfirmed_email") + I18n.t("code.colon")
         = resource.unconfirmed_email
+        %span= link_to I18n.t("links.edit_email"), users_edit_email_path
+        %span= link_to I18n.t("links.destroy"), users_delete_unconfirmed_email_path, method: :post

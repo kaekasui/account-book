@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'users/mypage' => 'users/registrations#mypage'
     get 'users/edit_email' => 'users/registrations#edit_email'
     post 'users/update_email' => 'users/registrations#update_email'
+    post "users/delete_unconfirmed_email" => "users/registrations#delete_unconfirmed_email"
     #get 'users/cancel' => 'users/registrations#cancel'
   end
 

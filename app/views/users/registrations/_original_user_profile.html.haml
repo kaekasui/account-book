@@ -13,6 +13,8 @@
       .col-sm-10.unconfirmed_email
         = I18n.t("labels.unconfirmed_email") + I18n.t("code.colon")
         = resource.unconfirmed_email
+        %span= link_to I18n.t("links.edit_email"), users_edit_email_path
+        %span= link_to I18n.t("links.destroy"), users_delete_unconfirmed_email_path, method: :post
   .form-group
     .col-sm-2.align-right= User.human_attribute_name(:password)
     .col-sm-10= I18n.t("labels.comments")
