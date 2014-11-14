@@ -41,13 +41,13 @@ class Record < ActiveRecord::Base
         line = line + 1
         record = Record.new
         record.user_id = user_id
-        # 日付
+        # published_at
         if row[0] =~ /\d\d\d\d-\d\d-\d\d/
           record.published_at = row[0]
         else
           errors.add(:published_at, "(#{line}#{I18n.t('labels.line')})" + I18n.t('csv_import.errors.published_at'))
         end
-        # 収支
+        # barance_of_payments
         barance_of_payments = 0
         if row[1].to_i == 0 or row[1].nil?
           barance_of_payments = 0
@@ -56,30 +56,30 @@ class Record < ActiveRecord::Base
         else
           errors.add(:category_id, "#{I18n.t('csv_import.errors.barance_of_payments_name')}(#{line}#{I18n.t('labels.line')})" + I18n.t('csv_import.errors.barance_of_payments'))
         end
-        # カテゴリ
+        # category
         if row[2].present?
           category = Category.find_by_name(row[2]) || Category.create!(name: row[2], user_id: user_id, barance_of_payments: barance_of_payments)
           record.category_id = category.id
         else
           errors.add(:category_id, "#{line}#{I18n.t('labels.line')})" + I18n.t('csv_import.errors.empty'))
         end
-        # 内訳
+        # breakdown
         if row[3].present?
           breakdown = category.breakdowns.find_by_name(row[3]) || category.breakdowns.create!(name: row[3], user_id: user_id)
           record.breakdown_id = breakdown.id
         end
-        # 場所
+        # place
         if row[4].present?
           place = Place.find_by_name(row[4]) || Place.create!(name: row[4], user_id: user_id)
           record.place_id = place.id
         end
-        # 料金
+        # charge
         if row[5].blank?
           record.charge = 0
         else
           record.charge = row[5].to_i
         end
-        # メモ
+        # memo
         if row[6]
           record.memo = row[6]
         end
