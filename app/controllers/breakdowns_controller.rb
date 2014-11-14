@@ -38,6 +38,7 @@ class BreakdownsController < ApplicationController
   end
 
   private
+
     def set_breakdown
       @breakdown = current_user.breakdowns.find(params[:id])
     end

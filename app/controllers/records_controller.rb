@@ -88,6 +88,7 @@ class RecordsController < ApplicationController
   end
 
   private
+
     def set_record
       @record = Record.find(params[:id])
     end

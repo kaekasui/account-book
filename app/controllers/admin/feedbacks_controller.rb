@@ -36,6 +36,7 @@ class Admin::FeedbacksController < Admin::AdminBaseController
   end
 
   private
+
     def set_feedback
       @admin_feedback = Feedback.find(params[:id])
     end

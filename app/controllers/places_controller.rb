@@ -48,6 +48,7 @@ class PlacesController < ApplicationController
   end
 
   private
+
     def set_place
       @place = Place.find(params[:id])
     end

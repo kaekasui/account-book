@@ -51,6 +51,7 @@ class TagsController < ApplicationController
   end
 
   private
+
     def set_tag
       @tag = current_user.tags.find(params[:id])
     end

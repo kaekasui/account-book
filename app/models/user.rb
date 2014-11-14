@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
   end
 
   private
+
     def password_blank?
       password.blank?
     end
