@@ -1,3 +1,4 @@
+# Twitter User
 class TwitterUser < User
   def self.find_for_oauth(auth)
     where(uid: auth.uid).first

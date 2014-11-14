@@ -1,3 +1,4 @@
+# Administrator manages all users.
 class Admin::UsersController < Admin::AdminBaseController
   respond_to :html
 

@@ -1,6 +1,7 @@
 require 'csv'
 require 'kconv'
 
+# User record.
 class Record < ActiveRecord::Base
   attr_accessor :category_type, :tagged
   acts_as_paranoid

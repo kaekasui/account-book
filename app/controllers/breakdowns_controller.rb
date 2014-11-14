@@ -1,3 +1,4 @@
+# User manages some breakdowns.
 class BreakdownsController < ApplicationController
   before_action :set_breakdown, only: [:edit, :update, :destroy]
   respond_to :js

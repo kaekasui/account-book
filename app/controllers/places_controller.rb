@@ -1,3 +1,4 @@
+# User manages some places.
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
   respond_to :js

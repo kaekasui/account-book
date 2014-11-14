@@ -1,3 +1,4 @@
+# Category is Record's category.
 class Category < ActiveRecord::Base
   attr_accessor :submit_type
   acts_as_paranoid

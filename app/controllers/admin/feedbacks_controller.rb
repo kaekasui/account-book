@@ -1,3 +1,4 @@
+# Administrator manages user's feedbacks.
 class Admin::FeedbacksController < Admin::AdminBaseController
   before_action :set_feedback, only: [:show, :edit, :update, :destroy]
   respond_to :html

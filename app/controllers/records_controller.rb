@@ -1,3 +1,4 @@
+# User records.
 class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:set_breakdowns_from_category]

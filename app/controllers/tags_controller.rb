@@ -1,3 +1,4 @@
+# User manages some tags.
 class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :update, :destroy, :set_color_code_text_field, :set_name_text_field]
   respond_to :js

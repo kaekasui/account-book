@@ -1,3 +1,4 @@
+# Twitter User regists the account.
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitter
     authorize :twitter do

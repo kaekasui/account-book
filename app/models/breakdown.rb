@@ -1,3 +1,4 @@
+# Breakdown is Record's breakdown.
 class Breakdown < ActiveRecord::Base
   acts_as_paranoid
 

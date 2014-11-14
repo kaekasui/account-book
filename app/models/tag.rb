@@ -1,3 +1,4 @@
+# Tag is tag.
 class Tag < ActiveRecord::Base
   acts_as_paranoid
 

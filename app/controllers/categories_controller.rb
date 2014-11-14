@@ -1,3 +1,4 @@
+# User manages some categories.
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   respond_to :js

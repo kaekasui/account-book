@@ -1,3 +1,4 @@
+# User's record monthly's counter.
 class MonthlyCount < ActiveRecord::Base
   belongs_to :user
 

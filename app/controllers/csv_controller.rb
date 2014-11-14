@@ -1,3 +1,4 @@
+# User import the csv file, and User download the sample csv file.
 class CsvController < ApplicationController
   respond_to :html
 

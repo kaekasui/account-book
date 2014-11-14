@@ -1,3 +1,4 @@
+# User confirms the account registration.
 class Users::ConfirmationsController < Devise::ConfirmationsController
 
   def show

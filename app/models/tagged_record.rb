@@ -1,3 +1,4 @@
+# TaggedRecord is Record's tags.
 class TaggedRecord < ActiveRecord::Base
   belongs_to :record
   belongs_to :tag

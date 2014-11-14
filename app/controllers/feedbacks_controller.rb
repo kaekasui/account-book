@@ -1,8 +1,8 @@
+# User sends messages.
 class FeedbacksController < ApplicationController
 
   def create
     @feedback = current_user.feedbacks.new(feedback_params)
-
     respond_to do |format|
       if @feedback.save
         format.js

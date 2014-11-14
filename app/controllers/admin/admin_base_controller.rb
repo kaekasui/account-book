@@ -1,3 +1,4 @@
+# Common methods for administrators.
 class Admin::AdminBaseController < ApplicationController
   before_action :admin_authentication
 

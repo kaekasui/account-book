@@ -1,3 +1,4 @@
+# User checks data as the graph.
 class DashboardsController < ApplicationController
   skip_before_action :authenticate_user!
 

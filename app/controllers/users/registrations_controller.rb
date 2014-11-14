@@ -1,3 +1,4 @@
+# User regists the account, and cancel the account.
 class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, only: [ :new, :create ]
   skip_before_action :authenticate_user!, only: [:new]
