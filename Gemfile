@@ -64,6 +64,7 @@ gem 'omniauth-facebook'
 
 # For test
 group :development, :test do
+  gem 'rubocop'
   gem 'capybara'
   gem 'capybara-email'
   gem 'capybara-webkit'
