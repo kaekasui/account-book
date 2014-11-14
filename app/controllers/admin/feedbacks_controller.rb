@@ -38,11 +38,11 @@ class Admin::FeedbacksController < Admin::AdminBaseController
 
   private
 
-    def set_feedback
-      @admin_feedback = Feedback.find(params[:id])
-    end
+  def set_feedback
+    @admin_feedback = Feedback.find(params[:id])
+  end
 
-    def feedback_params
-      params.require(:feedback).permit(:name, :user_id)
-    end
+  def feedback_params
+    params.require(:feedback).permit(:name, :user_id)
+  end
 end

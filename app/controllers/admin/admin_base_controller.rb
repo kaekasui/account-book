@@ -4,9 +4,9 @@ class Admin::AdminBaseController < ApplicationController
 
   private
 
-    def admin_authentication
-      if !current_user or !current_user.admin
-        redirect_to root_path
-      end
+  def admin_authentication
+    if !current_user or !current_user.admin
+      redirect_to root_path
     end
+  end
 end

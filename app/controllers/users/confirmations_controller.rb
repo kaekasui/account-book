@@ -20,15 +20,15 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   protected
 
-    def after_confirmation_path_for(resource_name, resource)
-      if signed_in?(resource_name)
-        if @confirmation_type == 'edit'
-          users_mypage_path
-        else
-          signed_in_root_path(resource)
-        end
+  def after_confirmation_path_for(resource_name, resource)
+    if signed_in?(resource_name)
+      if @confirmation_type == 'edit'
+        users_mypage_path
       else
-        new_session_path(resource_name)
+        signed_in_root_path(resource)
       end
+    else
+      new_session_path(resource_name)
     end
+  end
 end

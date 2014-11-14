@@ -60,24 +60,24 @@ class User < ActiveRecord::Base
 
   private
 
-    def password_blank?
-      password.blank?
-    end
+  def password_blank?
+    password.blank?
+  end
 
-    def email_required?
-      !password.nil? || !password_confirmation.nil?
-    end
+  def email_required?
+    !password.nil? || !password_confirmation.nil?
+  end
 
-    def password_required?
-      !password.nil? || !password_confirmation.nil?
-    end
+  def password_required?
+    !password.nil? || !password_confirmation.nil?
+  end
 
-    def set_code
-      self.code = code.blank? ? generate_code : code
-    end
+  def set_code
+    self.code = code.blank? ? generate_code : code
+  end
 
-    def generate_code
-      code = SecureRandom.urlsafe_base64(8)
-      self.class.where(code: code).blank? ? code : generate_code
-    end
+  def generate_code
+    code = SecureRandom.urlsafe_base64(8)
+    self.class.where(code: code).blank? ? code : generate_code
+  end
 end

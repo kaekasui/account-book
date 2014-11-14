@@ -13,19 +13,19 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
-    def authorize provider
-      auth = request.env['omniauth.auth']
-      @user = provider_class(provider).find_for_oauth(auth)
-      if @user
-        @user.update_with_oauth(auth)
-      else
-        @user = provider_class(provider).create_with_oauth(auth)
-      end
-      set_flash_message(:notice, :success, kind: provider)
-      sign_in_and_redirect @user, event: :authentication
+  def authorize provider
+    auth = request.env['omniauth.auth']
+    @user = provider_class(provider).find_for_oauth(auth)
+    if @user
+      @user.update_with_oauth(auth)
+    else
+      @user = provider_class(provider).create_with_oauth(auth)
     end
+    set_flash_message(:notice, :success, kind: provider)
+    sign_in_and_redirect @user, event: :authentication
+  end
 
-    def provider_class(provider)
-      eval("#{provider.capitalize}User")
-    end
+  def provider_class(provider)
+    eval("#{provider.capitalize}User")
+  end
 end

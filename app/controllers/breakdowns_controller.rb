@@ -40,11 +40,11 @@ class BreakdownsController < ApplicationController
 
   private
 
-    def set_breakdown
-      @breakdown = current_user.breakdowns.find(params[:id])
-    end
+  def set_breakdown
+    @breakdown = current_user.breakdowns.find(params[:id])
+  end
 
-    def breakdown_params
-      params.require(:breakdown).permit(:name, :category_id, :user_id, :deleted_at)
-    end
+  def breakdown_params
+    params.require(:breakdown).permit(:name, :category_id, :user_id, :deleted_at)
+  end
 end

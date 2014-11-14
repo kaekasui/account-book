@@ -90,39 +90,39 @@ class RecordsController < ApplicationController
 
   private
 
-    def set_record
-      @record = Record.find(params[:id])
-    end
+  def set_record
+    @record = Record.find(params[:id])
+  end
 
-    def record_params
-      params.require(:record).permit(:published_at, :charge, :category_id, :breakdown_id, :place_id, :memo, :user_id)
-    end
+  def record_params
+    params.require(:record).permit(:published_at, :charge, :category_id, :breakdown_id, :place_id, :memo, :user_id)
+  end
 
-    def year_param
-      params[:year]
-    end
+  def year_param
+    params[:year]
+  end
 
-    def month_param
-      params[:month]
-    end
+  def month_param
+    params[:month]
+  end
 
-    def set_tags(tagged_records)
-      current_user.tagged_records.each do |tagged_record|
-        @record.errors.add(:tagged, tagged_record.errors.full_messages.first) unless tagged_record.destroy
+  def set_tags(tagged_records)
+    current_user.tagged_records.each do |tagged_record|
+      @record.errors.add(:tagged, tagged_record.errors.full_messages.first) unless tagged_record.destroy
+    end
+    tagged_records.each do |tagged_record|
+      new_tag = current_user.tags.where(name: tagged_record).first || current_user.tags.create(name: tagged_record, color_code: generate_color_code)
+      unless new_tag.persisted?
+        @record.errors.add(:tagged, new_tag.errors.full_messages.first)
+      else
+        new_tagged_record = current_user.tagged_records.create(tag_id: new_tag.id, record_id: @record.id)
+        @record.errors.add(:tagged, new_tagged_record.errors.full_messages.first) unless new_tagged_record.persisted?
       end
-      tagged_records.each do |tagged_record|
-        new_tag = current_user.tags.where(name: tagged_record).first || current_user.tags.create(name: tagged_record, color_code: generate_color_code)
-        unless new_tag.persisted?
-          @record.errors.add(:tagged, new_tag.errors.full_messages.first)
-        else
-          new_tagged_record = current_user.tagged_records.create(tag_id: new_tag.id, record_id: @record.id)
-          @record.errors.add(:tagged, new_tagged_record.errors.full_messages.first) unless new_tagged_record.persisted?
-        end
-      end
     end
+  end
 
-    def generate_color_code
-      color_code = '#%06x' % (rand * 0xffffff)
-      current_user.tags.where(color_code: color_code).first.blank? ? color_code : generate_color_code
-    end
+  def generate_color_code
+    color_code = '#%06x' % (rand * 0xffffff)
+    current_user.tags.where(color_code: color_code).first.blank? ? color_code : generate_color_code
+  end
 end
