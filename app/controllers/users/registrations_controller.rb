@@ -89,7 +89,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     user = User.where(id: current_user.id).first
     user.update_attributes(unconfirmed_email: nil)
     flash[:notice] = I18n.t('messages.users.delete_an_unconfirmed_email')
-    rescue => ex
+    rescue
     flash[:alert] = I18n.t('messages.errors.delete_an_unconfirmed_email')
     ensure
     redirect_to users_mypage_path

@@ -12,7 +12,7 @@ class Admin::UsersController < Admin::AdminBaseController
       user.update_attributes!(unconfirmed_email: nil)
     end
     flash[:notice] = users.count.to_s + I18n.t('labels.of_count') + I18n.t('messages.users.delete_unconfirmed_email')
-    rescue => ex
+    rescue
     flash[:alert] = I18n.t('messages.errors.delete_unconfirmed_email')
     ensure
     redirect_to admin_users_path

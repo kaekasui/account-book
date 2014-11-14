@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   validates :password, length: { within: 8..128 }, unless: :password_blank?
 
   def create_data
-    category = categories.create(barance_of_payments: 1, name: '給料')
+    categories.create(barance_of_payments: 1, name: '給料')
     category = categories.create(barance_of_payments: 1, name: '臨時収入')
     category.breakdowns.create(name: 'おこづかい', user_id: id)
     category = categories.create(barance_of_payments: 0, name: '食費')
@@ -33,12 +33,12 @@ class User < ActiveRecord::Base
     category = categories.create(barance_of_payments: 0, name: '日用品')
     category.breakdowns.create(name: '消耗品費', user_id: id)
     category.breakdowns.create(name: '雑貨', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: '衣服')
+    categories.create(barance_of_payments: 0, name: '衣服')
     category = categories.create(barance_of_payments: 0, name: '水道、光熱費')
     category.breakdowns.create(name: '水道代', user_id: id)
     category.breakdowns.create(name: '電気代', user_id: id)
     category.breakdowns.create(name: 'ガス代', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: '趣味')
+    categories.create(barance_of_payments: 0, name: '趣味')
     category = categories.create(barance_of_payments: 0, name: '通信費')
     category.breakdowns.create(name: '携帯代', user_id: id)
     category = categories.create(barance_of_payments: 0, name: '美容、健康')
@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
     category.breakdowns.create(name: '住民税', user_id: id)
     category = categories.create(barance_of_payments: 0, name: '医療、保険')
     category.breakdowns.create(name: '医療費', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: 'その他')
+    categories.create(barance_of_payments: 0, name: 'その他')
   end
 
   private
