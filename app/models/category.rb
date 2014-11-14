@@ -9,6 +9,6 @@ class Category < ActiveRecord::Base
   has_many :records
 
   def barance_of_payments_name
-    self.barance_of_payments ? I18n.t('category.income') : I18n.t('category.outgo')
+    barance_of_payments ? I18n.t('category.income') : I18n.t('category.outgo')
   end
 end
