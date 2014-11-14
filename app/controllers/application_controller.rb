@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     end
 
     def send_csv(csv, options = {})
-      bom = "   "
+      bom = '   '
       bom.setbyte(0, 0xEF)
       bom.setbyte(1, 0xBB)
       bom.setbyte(2, 0xBF)

@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitter
     authorize :twitter do
-      session["devise.twitter_data"] = request.env["omniauth.auth"].except('extra')
+      session['devise.twitter_data'] = request.env['omniauth.auth'].except('extra')
     end
     rescue => ex
     #set_flash_message(:alert, :failure, kind: "twitter", reason: I18n.t("messages.reason.authentication_failure"))
@@ -12,7 +12,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
     def authorize provider
-      auth = request.env["omniauth.auth"]
+      auth = request.env['omniauth.auth']
       @user = provider_class(provider).find_for_oauth(auth)
       if @user
         @user.update_with_oauth(auth)

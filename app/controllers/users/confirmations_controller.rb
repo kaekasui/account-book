@@ -6,7 +6,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     yield resource if block_given?
 
     if resource.errors.empty?
-      if @confirmation_type == "edit"
+      if @confirmation_type == 'edit'
         set_flash_message(:notice, :update_email) if is_flashing_format?
       else
         set_flash_message(:notice, :confirmed) if is_flashing_format?
@@ -21,7 +21,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
     def after_confirmation_path_for(resource_name, resource)
       if signed_in?(resource_name)
-        if @confirmation_type == "edit"
+        if @confirmation_type == 'edit'
           users_mypage_path
         else
           signed_in_root_path(resource)

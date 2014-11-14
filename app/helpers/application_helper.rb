@@ -8,10 +8,10 @@ module ApplicationHelper
   end
 
   def setting_menu?
-    ["categories", "breakdowns", "places", "tags"].include?(controller_name)
+    ['categories', 'breakdowns', 'places', 'tags'].include?(controller_name)
   end
 
   def asterisk
-    content_tag(:font, " ※ ", class: "red")
+    content_tag(:font, ' ※ ', class: 'red')
   end
 end

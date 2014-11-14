@@ -27,7 +27,7 @@ class CategoriesController < ApplicationController
           format.js
         end
       else
-        format.js { render "categories/failure_create" }
+        format.js { render 'categories/failure_create' }
       end
     end
   end

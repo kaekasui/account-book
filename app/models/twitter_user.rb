@@ -15,6 +15,6 @@ class TwitterUser < User
   end
 
   def twitter_url
-    "https://twitter.com/" + nickname
+    'https://twitter.com/' + nickname
   end
 end

@@ -16,7 +16,7 @@ class Record < ActiveRecord::Base
   scope :total_charge, -> { sum(:charge) }
 
   def yen_charge
-    "¥" + self.charge.to_s
+    '¥' + self.charge.to_s
   end
 
   def import(file)
@@ -25,10 +25,10 @@ class Record < ActiveRecord::Base
       if filename.rindex('.').present? and (filename.slice((filename.rindex('.') + 1), (filename.rindex('.') + 3))) == 'csv'
         csv_import(file)
       else
-        errors[:base] << I18n.t("messages.record.import_file_is_not_csv")
+        errors[:base] << I18n.t('messages.record.import_file_is_not_csv')
       end
     else
-      errors[:base] << I18n.t("messages.record.import_file_not_found")
+      errors[:base] << I18n.t('messages.record.import_file_not_found')
     end
     self
   end
@@ -45,7 +45,7 @@ class Record < ActiveRecord::Base
         if row[0] =~ /\d\d\d\d-\d\d-\d\d/
           record.published_at = row[0]
         else
-          self.errors.add(:published_at, "(#{line}#{I18n.t('labels.line')})" + I18n.t("csv_import.errors.published_at"))
+          self.errors.add(:published_at, "(#{line}#{I18n.t('labels.line')})" + I18n.t('csv_import.errors.published_at'))
         end
         # 収支
         barance_of_payments = 0
@@ -54,14 +54,14 @@ class Record < ActiveRecord::Base
         elsif row[1].to_i == 1
           barance_of_payments = 1
         else
-          self.errors.add(:category_id, "#{I18n.t('csv_import.errors.barance_of_payments_name')}(#{line}#{I18n.t('labels.line')})" + I18n.t("csv_import.errors.barance_of_payments"))
+          self.errors.add(:category_id, "#{I18n.t('csv_import.errors.barance_of_payments_name')}(#{line}#{I18n.t('labels.line')})" + I18n.t('csv_import.errors.barance_of_payments'))
         end
         # カテゴリ
         if row[2].present?
           category = Category.find_by_name(row[2]) || Category.create!(name: row[2], user_id: self.user_id, barance_of_payments: barance_of_payments)
           record.category_id = category.id
         else
-          self.errors.add(:category_id, "#{line}#{I18n.t('labels.line')})" + I18n.t("csv_import.errors.empty"))
+          self.errors.add(:category_id, "#{line}#{I18n.t('labels.line')})" + I18n.t('csv_import.errors.empty'))
         end
         # 内訳
         if row[3].present?
@@ -90,12 +90,12 @@ class Record < ActiveRecord::Base
   end
 
   def self.import_csv(csv_file)
-    messages = ""
+    messages = ''
     text = csv_file.read
 
     CSV.parse(Kconv.toutf8(text)) do |row|
       transaction do
-        user = User.find_by_email(row[0]) || User.create(email: row[0], password: "password")
+        user = User.find_by_email(row[0]) || User.create(email: row[0], password: 'password')
         category = Category.find_by_name(row[1]) || Category.create(name: row[1], user_id: user.id)
         breakdown = Breakdown.find_by_name(row[2]) || Breakdown.create(name: row[2], user_id: user.id, category_id: category.id)
         record = Record.create(published_at: Date.today, breakdown_id: breakdown.id, user_id: user.id, charge: row[3])
@@ -109,7 +109,7 @@ class Record < ActiveRecord::Base
     user = User.find(self.user_id)
     year = self.published_at.year
     month = self.published_at.month
-    count = user.records.where("year(published_at) = ? and month(published_at) = ?", year, month).count
+    count = user.records.where('year(published_at) = ? and month(published_at) = ?', year, month).count
 
     monthly = MonthlyCount.where(year: year, month: month, user_id: user.id).first || MonthlyCount.new(year: year, month: month, user_id: user.id)
     monthly.count = count
@@ -125,49 +125,49 @@ class Record < ActiveRecord::Base
   def self.sample_format
     [
       [
-        I18n.t("csv_import.examples.published_at_1"),
+        I18n.t('csv_import.examples.published_at_1'),
         0,
-        I18n.t("csv_import.examples.category_1"),
-        I18n.t("csv_import.examples.breakdown_1"),
-        I18n.t("csv_import.examples.place_3"),
+        I18n.t('csv_import.examples.category_1'),
+        I18n.t('csv_import.examples.breakdown_1'),
+        I18n.t('csv_import.examples.place_3'),
         8600,
-        ""
+        ''
       ],
       [
-        I18n.t("csv_import.examples.published_at_1"),
+        I18n.t('csv_import.examples.published_at_1'),
         0,
-        I18n.t("csv_import.examples.category_2"),
-        I18n.t("csv_import.examples.breakdown_2"),
-        I18n.t("csv_import.examples.place_2"),
+        I18n.t('csv_import.examples.category_2'),
+        I18n.t('csv_import.examples.breakdown_2'),
+        I18n.t('csv_import.examples.place_2'),
         300,
-        I18n.t("csv_import.examples.memo_1")
+        I18n.t('csv_import.examples.memo_1')
       ],
       [
-        I18n.t("csv_import.examples.published_at_1"),
+        I18n.t('csv_import.examples.published_at_1'),
         0,
-        I18n.t("csv_import.examples.category_2"),
-        I18n.t("csv_import.examples.breakdown_3"),
-        I18n.t("csv_import.examples.place_2"),
+        I18n.t('csv_import.examples.category_2'),
+        I18n.t('csv_import.examples.breakdown_3'),
+        I18n.t('csv_import.examples.place_2'),
         500,
-        ""
+        ''
       ],
       [
-        I18n.t("csv_import.examples.published_at_2"),
+        I18n.t('csv_import.examples.published_at_2'),
         1,
-        I18n.t("csv_import.examples.category_3"),
-        "",
-        "",
+        I18n.t('csv_import.examples.category_3'),
+        '',
+        '',
         300000,
-        "上期ボーナス"
+        '上期ボーナス'
       ],
       [
-        I18n.t("csv_import.examples.published_at_2"),
+        I18n.t('csv_import.examples.published_at_2'),
         0,
-        I18n.t("csv_import.examples.category_4"),
-        I18n.t("csv_import.examples.breakdown_4"),
-        I18n.t("csv_import.examples.place_4"),
+        I18n.t('csv_import.examples.category_4'),
+        I18n.t('csv_import.examples.breakdown_4'),
+        I18n.t('csv_import.examples.place_4'),
         800,
-        ""
+        ''
       ]
     ]
   end
@@ -184,9 +184,9 @@ class Record < ActiveRecord::Base
 
   def self.generate_messages(user, category, breakdown, record)
     errors = []
-    errors << "---" + I18n.t("activerecord.attributes.user.email") + ": " + user.email unless user.errors.blank? and category.errors.blank? and breakdown.errors.blank? and record.errors.blank?
+    errors << '---' + I18n.t('activerecord.attributes.user.email') + ': ' + user.email unless user.errors.blank? and category.errors.blank? and breakdown.errors.blank? and record.errors.blank?
     errors.concat user.errors.full_messages unless user.errors.blank?
-    errors.concat "カテゴリ" + category.errors.full_messages.to_s unless category.errors.blank?
+    errors.concat 'カテゴリ' + category.errors.full_messages.to_s unless category.errors.blank?
     errors.concat breakdown.errors.full_messages.to_s unless breakdown.errors.blank?
     errors.concat record.errors.full_messages unless record.errors.blank?
     errors

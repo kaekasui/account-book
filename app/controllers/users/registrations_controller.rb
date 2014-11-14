@@ -20,7 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
         expire_data_after_sign_in!
-        puts "Started CreateCategoriesAndBreakdownsWorker"
+        puts 'Started CreateCategoriesAndBreakdownsWorker'
         CreateCategoriesAndBreakdownsWorker.perform_async resource.id
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
@@ -45,7 +45,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_email
     email = resource_params[:email]
     if email == resource.email
-      error_message = email.blank? ? I18n.t("errors.messages.blank") : I18n.t("messages.users.same")
+      error_message = email.blank? ? I18n.t('errors.messages.blank') : I18n.t('messages.users.same')
       resource.errors.add(:email, error_message)
       render :edit_email
     else
@@ -56,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         set_flash_message(:notice, :confirmed) if is_flashing_format?
         respond_with resource, location: users_mypage_path
       else
-        set_flash_message(:alert, I18n.t("messages.errors.send_email")) if is_flashing_format?
+        set_flash_message(:alert, I18n.t('messages.errors.send_email')) if is_flashing_format?
         respond_with resource, location: users_edit_email_path
       end
     end
@@ -87,9 +87,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def delete_unconfirmed_email
     user = User.where(id: current_user.id).first
     user.update_attributes(unconfirmed_email: nil)
-    flash[:notice] = I18n.t("messages.users.delete_an_unconfirmed_email")
+    flash[:notice] = I18n.t('messages.users.delete_an_unconfirmed_email')
     rescue => ex
-    flash[:alert] = I18n.t("messages.errors.delete_an_unconfirmed_email")
+    flash[:alert] = I18n.t('messages.errors.delete_an_unconfirmed_email')
     ensure
     redirect_to users_mypage_path
   end
@@ -100,7 +100,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       set_flash_message(:notice, :confirmed) if is_flashing_format?
       respond_with resource, location: users_mypage_path
     else
-      set_flash_message(:alert, I18n.t("messages.errors.send_email")) if is_flashing_format?
+      set_flash_message(:alert, I18n.t('messages.errors.send_email')) if is_flashing_format?
       respond_with resource, location: users_edit_email_path
     end
   end

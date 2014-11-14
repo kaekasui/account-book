@@ -42,7 +42,7 @@ class PlacesController < ApplicationController
     end
     rescue => ex
     puts ex.message
-    flash[:alert] = I18n.t("messages.places.destroy_failure")
+    flash[:alert] = I18n.t('messages.places.destroy_failure')
     ensure
     redirect_to places_path
   end

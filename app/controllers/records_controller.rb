@@ -34,7 +34,7 @@ class RecordsController < ApplicationController
       set_tags(tagged_records.split(',')) if tagged_records.present?
       if @record.errors.any?
       else
-        flash[:notice] = I18n.t("messages.record.created")
+        flash[:notice] = I18n.t('messages.record.created')
       end
     end
     respond_with @record, location: new_record_path
@@ -66,8 +66,8 @@ class RecordsController < ApplicationController
   def set_breakdowns_from_category
     @category_id = ''
     parameters = params
-    parameters.delete("controller")
-    parameters.delete("action")
+    parameters.delete('controller')
+    parameters.delete('action')
     parameters.each do |key, value|
       @category_id = key
     end
@@ -120,7 +120,7 @@ class RecordsController < ApplicationController
     end
 
     def generate_color_code
-      color_code = "#%06x" % (rand * 0xffffff)
+      color_code = '#%06x' % (rand * 0xffffff)
       current_user.tags.where(color_code: color_code).first.blank? ? color_code : generate_color_code
     end
 end
