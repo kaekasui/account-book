@@ -12,7 +12,7 @@ ja:
         barance_of_payments: "収支"
         name: "カテゴリ名"
       feedback:
-        user_id: "アカウント"
+        user_id: "ユーザー"
         content: "内容"
       tag:
         color_code: "カラーコード"

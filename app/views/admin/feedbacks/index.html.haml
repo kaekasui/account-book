@@ -12,6 +12,6 @@
       - @admin_feedbacks.each do |feedback|
         %tr
           %td= feedback.user.name || feedback.user.email
-          %td= link_to simple_format(truncate(feedback.content, length: 40)), ['admin', feedback]
+          %td= link_to truncate(feedback.content, length: 40), ['admin', feedback]
           %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_admin_feedback_path(feedback)
           %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), ['admin', feedback], method: :delete, data: { confirm: "Are you sure?" }
