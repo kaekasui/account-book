@@ -1,2 +1,2 @@
 web: bin/rails server -p $PORT -e $RAILS_ENV
-worker: bin/sidekiq
+worker: bundle exec sidekiq -C config/sidekiq.yml -e $RAILS_ENV
