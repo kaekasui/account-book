@@ -4,6 +4,26 @@
     = page_title
   .panel-body
     = render partial: 'records/links'
+    %br
+    %table.table.table-bordered
+      %tr
+        %td(width='30%')
+          = content_tag(:span, "", class: 'glyphicon glyphicon-minus-sign minus')
+          = I18n.t("category.outgo")
+          = I18n.t("code.colon")
+          = @outgo.count.to_s + I18n.t("labels.count")
+          = "( ¥" + number_with_delimiter(@outgo.sum(:charge)).to_s + ' )'
+        %td(width='30%')
+          = content_tag(:span, "", class: 'glyphicon glyphicon-plus-sign plus')
+          = I18n.t("category.income")
+          = I18n.t("code.colon")
+          = @income.count.to_s + I18n.t("labels.count")
+          = "( ¥" + number_with_delimiter(@income.sum(:charge)).to_s + ' )'
+        %td(width='40%')
+          = I18n.t("labels.altogether")
+          = I18n.t("code.colon")
+          = @records.count.to_s + I18n.t("labels.count")
+          = "( ¥" + number_with_delimiter(@income.sum(:charge) - @outgo.sum(:charge)).to_s + ' )'
     %table.table.record
       %tr
         %th= ""

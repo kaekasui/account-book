@@ -79,11 +79,13 @@ ja:
   placeholder:
     tags: "　▷ラベルを選択してください。"
   labels:
+    altogether: "合計"
     after_edit: "（変更後）"
     barance_of_payments: "収支"
     before_edit: "（変更前）"
     csv_file: "CSVファイル"
     comments: "******"
+    count: "件"
     delete: "削除"
     delete_unconfirmed_email: "24時間以上経った認証待ちのメール"
     edit: "編集"

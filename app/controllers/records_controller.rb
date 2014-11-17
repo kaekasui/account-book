@@ -9,6 +9,8 @@ class RecordsController < ApplicationController
     @month = month_param || Date.today.month.to_s
 
     @records = current_user.records.where("year(published_at) = #{@year} and month(published_at) = #{@month}").order(:published_at).reverse_order
+    @outgo = @records.joins(:category).where("barance_of_payments = ?", 0)
+    @income = @records.joins(:category).where("barance_of_payments = ?", 1)
   end
 
   def show

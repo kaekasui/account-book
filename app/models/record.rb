@@ -181,6 +181,10 @@ class Record < ActiveRecord::Base
     end
   end
 
+  def income
+    where(:category, "barance_of_payments = 0")
+  end
+
   private
 
   def self.generate_messages(user, category, breakdown, record)
