@@ -132,6 +132,7 @@ ja:
   page_title:
     admin/feedbacks:
       index: "フィードバック"
+      show: "フィードバックの詳細"
     admin/users:
       index: "ユーザー"
     categories:

@@ -1,12 +1,15 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @admin_feedback.content
-%p
-  %b User:
-  = @admin_feedback.user_id
-
-= link_to 'Edit', edit_admin_feedback_path(@admin_feedback)
-\|
-= link_to 'Back', admin_feedbacks_path
+.panel.panel-default
+  .panel-heading
+    %span.glyphicon.glyphicon-envelope
+    = page_title
+  .panel-body
+    = Feedback.human_attribute_name(:user_id) + I18n.t("code.colon")
+    = @admin_feedback.user.name || @admin_feedback.user.email
+    %hr
+    = simple_format(@admin_feedback.content)
+    %table.table.non-border
+      %tr
+        %td
+        %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_admin_feedback_path(@admin_feedback)
+        %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), ['admin', @admin_feedback], method: :delete, data: { confirm: "Are you sure?" }
+ 
