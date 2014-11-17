@@ -34,7 +34,7 @@ class RecordsController < ApplicationController
     @record.tagged = params[:record][:tagged] if params[:record][:tagged]
     tagged_records = params[:record][:tagged]
     if @record.save
-      set_tags(tagged_records.split(',')) if tagged_records.present?
+      set_tags(@record.id, tagged_records.split(',')) if tagged_records.present?
       if @record.errors.any?
       else
         flash[:notice] = I18n.t('messages.record.created')
@@ -48,7 +48,7 @@ class RecordsController < ApplicationController
     respond_to do |format|
       if @record.save
         tagged_records = params[:record][:tagged]
-        set_tags(tagged_records.split(',')) if tagged_records.present?
+        set_tags(@record.id, tagged_records.split(',')) if tagged_records.present?
         format.html { redirect_to @record, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
       else
@@ -108,8 +108,8 @@ class RecordsController < ApplicationController
     params[:month]
   end
 
-  def set_tags(tagged_records)
-    current_user.tagged_records.each do |tagged_record|
+  def set_tags(record_id, tagged_records)
+    current_user.tagged_records.where(record_id: record_id).each do |tagged_record|
       @record.errors.add(:tagged, tagged_record.errors.full_messages.first) unless tagged_record.destroy
     end
     tagged_records.each do |tagged_record|
