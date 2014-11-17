@@ -19,7 +19,7 @@ ja:
       unconfirmed: "登録が完了していません。確認メールのURLに接続してください。メールがない場合は確認メールを再送してください。"
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "【おこづかいちょうβ】仮登録完了のお知らせ"
       reset_password_instructions:
         subject: "Reset password instructions"
       unlock_instructions:
