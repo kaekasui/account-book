@@ -14,4 +14,12 @@ module ApplicationHelper
   def asterisk
     content_tag(:font, ' ※ ', class: 'red')
   end
+
+  def image_icon(type)
+    if type == "TwitterUser"
+      image_tag('twitter-icon-blue.png', witdh: '15px', height: '15px')
+    else
+      content_tag(:span, "", class: "glyphicon glyphicon-envelope")
+    end
+  end
 end

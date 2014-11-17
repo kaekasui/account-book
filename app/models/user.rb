@@ -58,6 +58,20 @@ class User < ActiveRecord::Base
     categories.create(barance_of_payments: 0, name: 'その他')
   end
 
+  def status
+    if confirmed_at.nil?
+      'primary'
+    elsif cancel?
+      'default'
+    else
+      'success'
+    end
+  end
+
+  def cancel?
+    cancel.present?
+  end
+
   private
 
   def password_blank?

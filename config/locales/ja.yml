@@ -4,6 +4,9 @@ ja:
     year: "年"
     current_month: "今月"
     last_month: "先月"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
   category:
     income: "収入"
     outgo: "支出"
@@ -90,6 +93,10 @@ ja:
     line: "行目"
     of_count: "件の"
     place: "場所"
+    status:
+      primary: "仮登録"
+      success: "利用中"
+      default: "退会済み"
     unconfirmed_email: "認証待ち"
   links:
     admin: "管理"

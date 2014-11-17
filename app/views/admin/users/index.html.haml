@@ -9,9 +9,17 @@
         %td= link_to I18n.t("links.destroy"), delete_unconfirmed_email_admin_users_path, method: :post, class: "btn btn-default"
     %table.table
       %tr
-        %th(width='40%')= User.human_attribute_name(:email)
-        %th(width='60%')= User.human_attribute_name(:name)
+        %th(width='10%')= User.human_attribute_name(:status)
+        %th(width='20%')= User.human_attribute_name(:last_sign_in_at)
+        %th(width='5%')= User.human_attribute_name(:login_type)
+        %th(width='30%')= User.human_attribute_name(:email)
+        %th(width='20%')= User.human_attribute_name(:name)
       - @admin_users.each do |user|
         %tr
+          %td
+            %span.label(class="label-#{user.status}")
+              = I18n.t("labels.status.#{user.status}")
+          %td= l user.last_sign_in_at if user.last_sign_in_at
+          %td= image_icon(user.type)
           %td= user.email
           %td= user.name
