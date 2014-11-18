@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   acts_as_paranoid
   before_create :set_code
 
+  has_many :messages
   has_many :categories
   has_many :breakdowns
   has_many :places

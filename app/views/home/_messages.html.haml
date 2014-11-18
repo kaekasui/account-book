@@ -1,0 +1,12 @@
+.panel.panel-default
+  .panel-heading
+    %span.glyphicon.glyphicon-envelope
+    = I18n.t("labels.message")
+  .panel-body
+    = I18n.t("messages.message.blank") if @messages.count == 0
+    %table.table.non-border.table-condensed
+      - @messages.each do |message|
+        %tr
+          %td
+            %span.label(class="label-#{message.message_type}")= I18n.t("labels.message_type.#{message.message_type}")
+            %span= truncate(message.content)

@@ -1,6 +1,11 @@
-%script
-  $(document).ready(function() { $(".select").select2(); });
+/%script
+/$(document).ready(function() { $(".select").select2(); });
+/%select.select
+/%option(value='cat1')= "カテゴリ1"
+/%option(value='cat2')= "カテゴリ2"
 
-%select.select
-  %option(value='cat1')= "カテゴリ1"
-  %option(value='cat2')= "カテゴリ2"
+.row
+  .col-sm-6
+    = render partial: "notices"
+  .col-sm-6
+    = render partial: "messages"

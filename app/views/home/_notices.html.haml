@@ -1,0 +1,8 @@
+.panel.panel-default
+  .panel-heading
+    %span.glyphicon.glyphicon-info-sign
+    = I18n.t("labels.notice")
+  .panel-body
+    = I18n.t("messages.notice.blank") if @notices.count == 0
+    - @notices.each do |notice|
+      = notice.title

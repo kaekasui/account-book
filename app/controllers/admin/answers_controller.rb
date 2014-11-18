@@ -5,6 +5,7 @@ class Admin::AnswersController < Admin::AdminBaseController
 
   def new
     @answer = @feedback.answers.new
+    @answer.user_id = @feedback.user_id
     respond_with(@answer)
   end
 

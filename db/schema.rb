@@ -11,16 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118033940) do
-
-  create_table "answers", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "feedback_id"
-    t.text     "content"
-    t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20141118043153) do
 
   create_table "breakdowns", force: true do |t|
     t.string   "name"
@@ -65,6 +56,16 @@ ActiveRecord::Schema.define(version: 20141118033940) do
 
   add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
+  create_table "messages", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "feedback_id"
+    t.text     "content"
+    t.string   "type"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "monthly_counts", force: true do |t|
     t.integer  "user_id"
     t.integer  "year"
@@ -76,6 +77,16 @@ ActiveRecord::Schema.define(version: 20141118033940) do
   end
 
   add_index "monthly_counts", ["user_id"], name: "index_monthly_counts_on_user_id", using: :btree
+
+  create_table "notices", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "post_type"
+    t.datetime "post_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "places", force: true do |t|
     t.string   "name"

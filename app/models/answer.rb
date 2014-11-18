@@ -1,4 +1,4 @@
 # Answers
-class Answer < ActiveRecord::Base
+class Answer < Message
   belongs_to :feedback
 end
