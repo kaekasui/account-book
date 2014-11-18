@@ -50,7 +50,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'feedbacks#index'
-    resources :feedbacks, only: [:index, :edit, :update, :destroy] do
+    resources :feedbacks, only: [:index, :edit, :update, :destroy, :show] do
       resources :answers, only: [:new, :create, :edit, :update, :destroy]
     end
     resources :users, only: [:index] do
