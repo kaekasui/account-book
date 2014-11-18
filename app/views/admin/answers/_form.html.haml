@@ -1,0 +1,14 @@
+= form_for ['admin', @answer.feedback, @answer], html: { role: "form" } do |f|
+  = render partial: "messages", locals: { target: @answer }
+  = f.hidden_field :user_id
+  = f.hidden_field :feedback_id
+  .form-group
+    = f.text_area :content, class: "form-control", rows: 10
+  .form-group
+    = f.submit I18n.t("buttons.send"), class: "btn btn-default"
+
+%hr
+%p
+  = Feedback.human_attribute_name(:user_id) + I18n.t("code.colon")
+  = @feedback.user.name || @feedback.user.email
+= simple_format(@feedback.content)

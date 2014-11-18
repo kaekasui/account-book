@@ -50,7 +50,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'feedbacks#index'
-    resources :feedbacks
+    resources :feedbacks, only: [:index, :edit, :update, :destroy] do
+      resources :answers, only: [:new, :create, :edit, :update, :destroy]
+    end
     resources :users, only: [:index] do
       post "/delete_unconfirmed_email" => "users#delete_unconfirmed_email", on: :collection
     end

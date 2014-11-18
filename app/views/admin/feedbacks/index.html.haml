@@ -7,11 +7,13 @@
       %tr
         %th= Feedback.human_attribute_name(:user_id)
         %th(width='50%')= Feedback.human_attribute_name(:content)
+        %td.return-icon= I18n.t("labels.return")
         %td.edit-icon= I18n.t("labels.edit")
         %td.trash-icon= I18n.t("labels.delete")
-      - @admin_feedbacks.each do |feedback|
+      - @feedbacks.each do |feedback|
         %tr
           %td= feedback.user.name || feedback.user.email
           %td= link_to truncate(feedback.content, length: 40), ['admin', feedback]
+          %td.return-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-share-alt"), new_admin_feedback_answer_path(feedback_id: feedback.id)
           %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_admin_feedback_path(feedback)
           %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), ['admin', feedback], method: :delete, data: { confirm: "Are you sure?" }

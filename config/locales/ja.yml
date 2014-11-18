@@ -95,6 +95,7 @@ ja:
     line: "行目"
     of_count: "件の"
     place: "場所"
+    return: "返信"
     status:
       primary: "仮登録"
       success: "利用中"
@@ -130,9 +131,14 @@ ja:
     tag: "ラベル"
     users: "ユーザー"
   page_title:
+    admin/answers:
+      new: "フィードバックの返信"
+      create: "フィードバックの返信"
     admin/feedbacks:
       index: "フィードバック"
       show: "フィードバックの詳細"
+      edit: "フィードバックの編集"
+      update: "フィードバックの編集"
     admin/users:
       index: "ユーザー"
     categories:

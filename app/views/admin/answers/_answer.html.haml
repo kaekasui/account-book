@@ -1,0 +1,8 @@
+%hr
+%p= l answer.created_at
+= simple_format(answer.content)
+%table.table.non-border
+  %tr
+    %td
+    %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_admin_feedback_answer_path(feedback_id: @feedback.id, id: answer.id)
+    %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), ['admin', @feedback, answer], method: :delete, data: { confirm: "Are you sure?" }
