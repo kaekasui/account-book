@@ -1,0 +1,7 @@
+.panel.panel-default
+  .panel-heading
+    %span.glyphicon.glyphicon-envelope
+    = page_title
+  .panel-body
+    - if @message.type == "Answer"
+      = render "answers"

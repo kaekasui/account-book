@@ -7,6 +7,7 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
+      only_date: "%Y年%m月%d日"
   category:
     income: "収入"
     outgo: "支出"
@@ -91,6 +92,7 @@ ja:
     edit: "編集"
     informations: "詳細"
     message: "メッセージ"
+    message_answer: "メッセージへの回答"
     message_type:
       warning: "回答"
       success: "参考"
@@ -153,6 +155,9 @@ ja:
       show: "カテゴリの詳細"
     dashboards:
       show: "ダッシュボード"
+    messages:
+      index: "メッセージの一覧"
+      show: "メッセージの詳細"
     notice:
       terms: "ご利用規約"
     places:

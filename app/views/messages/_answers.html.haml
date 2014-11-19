@@ -1,0 +1,9 @@
+%p
+  = I18n.t("labels.message_answer") + I18n.t("code.colon")
+  = l @message.created_at, format: :only_date
+%p= simple_format(@message.content)
+%hr
+%p
+  = I18n.t("labels.message") + I18n.t("code.colon")
+  = l @target_feedback.created_at, format: :only_date
+%p= simple_format(@target_feedback.content)

@@ -9,4 +9,4 @@
         %tr
           %td
             %span.label(class="label-#{message.message_type}")= I18n.t("labels.message_type.#{message.message_type}")
-            %span= truncate(message.content)
+            %span= link_to truncate(message.content, length: 20), message_path(id: message.id)
