@@ -8,11 +8,11 @@ RSpec.describe Admin::FeedbacksController, type: :routing do
     end
 
     it "routes to #new" do
-      expect(get: "/admin/feedbacks/new").to route_to("admin/feedbacks#new")
+      expect(get: "/admin/feedbacks/new").not_to route_to("admin/feedbacks#new")
     end
 
     it "routes to #show" do
-      expect(get: "/admin/feedbacks/1").to route_to("admin/feedbacks#show", id: "1")
+      expect(get: "/admin/feedbacks/1").not_to route_to("admin/feedbacks#show", id: "1")
     end
 
     it "routes to #edit" do
@@ -20,7 +20,7 @@ RSpec.describe Admin::FeedbacksController, type: :routing do
     end
 
     it "routes to #create" do
-      expect(post: "/admin/feedbacks").to route_to("admin/feedbacks#create")
+      expect(post: "/admin/feedbacks").not_to route_to("admin/feedbacks#create")
     end
 
     it "routes to #update" do

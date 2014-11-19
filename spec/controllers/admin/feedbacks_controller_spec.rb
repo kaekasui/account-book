@@ -12,7 +12,7 @@ RSpec.describe Admin::FeedbacksController, type: :controller do
       it "フィードバックの一覧が表示されること" do
         feedback = create(:feedback, user_id: user.id)
         get :index
-        expect(assigns(:admin_feedbacks)).to eq([feedback])
+        expect(assigns(:feedbacks)).to eq([feedback])
       end
     end
 
