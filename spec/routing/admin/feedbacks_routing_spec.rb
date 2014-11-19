@@ -12,7 +12,7 @@ RSpec.describe Admin::FeedbacksController, type: :routing do
     end
 
     it "routes to #show" do
-      expect(get: "/admin/feedbacks/1").not_to route_to("admin/feedbacks#show", id: "1")
+      expect(get: "/admin/feedbacks/1").to route_to("admin/feedbacks#show", id: "1")
     end
 
     it "routes to #edit" do
