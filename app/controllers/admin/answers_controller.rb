@@ -15,12 +15,12 @@ class Admin::AnswersController < Admin::AdminBaseController
   def create
     @answer = @feedback.answers.new(answer_params)
     @answer.save
-    respond_with(['admin', @feedback])
+    respond_with(@answer, location: ['admin', @feedback])
   end
 
   def update
     @answer.update(answer_params)
-    respond_with(['admin', @feedback])
+    respond_with(@answer, location: ['admin', @feedback])
   end
 
   def destroy

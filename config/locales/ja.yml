@@ -141,6 +141,8 @@ ja:
     admin/answers:
       new: "フィードバックの返信"
       create: "フィードバックの返信"
+      edit: "フィードバックの返信編集"
+      update: "フィードバックの返信編集"
     admin/feedbacks:
       index: "フィードバック"
       show: "フィードバックの詳細"

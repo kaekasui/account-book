@@ -3,6 +3,8 @@ ja:
     models:
       category: "カテゴリ"
     attributes:
+      answer:
+        content: "内容"
       breakdown:
         category_id: "カテゴリ"
         name: "内訳"
