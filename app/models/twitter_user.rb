@@ -7,7 +7,7 @@ class TwitterUser < User
   def self.create_with_oauth(auth)
     create!(provider: auth.provider, uid: auth.uid,
       name: auth.info.name, nickname: auth.info.nickname,
-      confirmed_at: Time.now(), token: auth.credentials.token)
+      confirmed_at: Time.now, token: auth.credentials.token)
   end
 
   def update_with_oauth(auth)
