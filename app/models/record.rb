@@ -23,7 +23,7 @@ class Record < ActiveRecord::Base
   def import(file)
     if file.present?
       filename = file.original_filename
-      if filename.rindex('.').present? and (filename.slice((filename.rindex('.') + 1), (filename.rindex('.') + 3))) == 'csv'
+      if filename.rindex('.').present? && (filename.slice((filename.rindex('.') + 1), (filename.rindex('.') + 3))) == 'csv'
         csv_import(file)
       else
         errors[:base] << I18n.t('messages.record.import_file_is_not_csv')
@@ -50,7 +50,7 @@ class Record < ActiveRecord::Base
         end
         # barance_of_payments
         barance_of_payments = 0
-        if row[1].to_i == 0 or row[1].nil?
+        if row[1].to_i == 0 || row[1].nil?
           barance_of_payments = 0
         elsif row[1].to_i == 1
           barance_of_payments = 1
@@ -189,7 +189,7 @@ class Record < ActiveRecord::Base
 
   def self.generate_messages(user, category, breakdown, record)
     errors = []
-    errors << '---' + I18n.t('activerecord.attributes.user.email') + ': ' + user.email unless user.errors.blank? and category.errors.blank? and breakdown.errors.blank? and record.errors.blank?
+    errors << '---' + I18n.t('activerecord.attributes.user.email') + ': ' + user.email unless user.errors.blank? && category.errors.blank? && breakdown.errors.blank? && record.errors.blank?
     errors.concat user.errors.full_messages unless user.errors.blank?
     errors.concat 'カテゴリ' + category.errors.full_messages.to_s unless category.errors.blank?
     errors.concat breakdown.errors.full_messages.to_s unless breakdown.errors.blank?
