@@ -75,7 +75,7 @@ class Record < ActiveRecord::Base
           record.category_id = category.id
         else
           errors.add(:category_id,
-                     "#{line}#{I18n.t('labels.line')})" +
+                     "(#{line}#{I18n.t('labels.line')})" +
                      I18n.t('csv_import.errors.empty'))
         end
         # breakdown
@@ -107,29 +107,6 @@ class Record < ActiveRecord::Base
     self
   end
 
-  def self.import_csv(csv_file)
-    messages = ''
-    text = csv_file.read
-
-    CSV.parse(Kconv.toutf8(text)) do |row|
-      transaction do
-        user = User.find_by_email(row[0]) ||
-               User.create(email: row[0], password: 'password')
-        category = Category.find_by_name(row[1]) ||
-                   Category.create(name: row[1], user_id: user.id)
-        breakdown = Breakdown.find_by_name(row[2]) ||
-                    Breakdown.create(
-                      name: row[2], user_id: user.id,
-                      category_id: category.id)
-        record = Record.create(
-                   published_at: Date.today, breakdown_id: breakdown.id,
-                   user_id: user.id, charge: row[3])
-        messages = generate_messages(user, category, breakdown, record)
-      end
-    end
-    messages
-  end
-
   def set_records_count
     user = User.find(user_id)
     year = published_at.year
@@ -151,53 +128,11 @@ class Record < ActiveRecord::Base
   end
 
   def self.sample_format
-    [
-      [
-        I18n.t('csv_import.examples.published_at_1'),
-        0,
-        I18n.t('csv_import.examples.category_1'),
-        I18n.t('csv_import.examples.breakdown_1'),
-        I18n.t('csv_import.examples.place_3'),
-        8600,
-        ''
-      ],
-      [
-        I18n.t('csv_import.examples.published_at_1'),
-        0,
-        I18n.t('csv_import.examples.category_2'),
-        I18n.t('csv_import.examples.breakdown_2'),
-        I18n.t('csv_import.examples.place_2'),
-        300,
-        I18n.t('csv_import.examples.memo_1')
-      ],
-      [
-        I18n.t('csv_import.examples.published_at_1'),
-        0,
-        I18n.t('csv_import.examples.category_2'),
-        I18n.t('csv_import.examples.breakdown_3'),
-        I18n.t('csv_import.examples.place_2'),
-        500,
-        ''
-      ],
-      [
-        I18n.t('csv_import.examples.published_at_2'),
-        1,
-        I18n.t('csv_import.examples.category_3'),
-        '',
-        '',
-        300000,
-        '上期ボーナス'
-      ],
-      [
-        I18n.t('csv_import.examples.published_at_2'),
-        0,
-        I18n.t('csv_import.examples.category_4'),
-        I18n.t('csv_import.examples.breakdown_4'),
-        I18n.t('csv_import.examples.place_4'),
-        800,
-        ''
-      ]
-    ]
+    record = []
+    CSV.foreach('db/seeds_data/sample_records.csv') do |row|
+      record << [row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]]
+    end
+    record
   end
 
   def self.sample_format_csvfile
@@ -213,6 +148,17 @@ class Record < ActiveRecord::Base
   end
 
   private
+
+  def self.generate_messages(target)
+    errors = []
+    if target.errors.any?
+      errors << '---' +
+        I18n.t('activerecord.attributes.user.email') + ': ' + user.email
+    end
+    errors.concat('カテゴリ') if target.class == 'Category'
+    errors.concat(target.errors.full_messages.to_s)
+    errors
+  end
 
   def self.generate_messages(user, category, breakdown, record)
     errors = []
@@ -236,5 +182,4 @@ class Record < ActiveRecord::Base
   def count_monthly_records_worker
     CountMonthlyRecordsWorker.perform_async id
   end
-
 end

@@ -32,38 +32,13 @@ class User < ActiveRecord::Base
   validates :password, length: { within: 8..128 }, unless: :password_blank?
 
   def create_data
-    categories.create(barance_of_payments: 1, name: '給料')
-    category = categories.create(barance_of_payments: 1, name: '臨時収入')
-    category.breakdowns.create(name: 'おこづかい', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: '食費')
-    category.breakdowns.create(name: '外食', user_id: id)
-    category.breakdowns.create(name: '食料品', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: '日用品')
-    category.breakdowns.create(name: '消耗品費', user_id: id)
-    category.breakdowns.create(name: '雑貨', user_id: id)
-    categories.create(barance_of_payments: 0, name: '衣服')
-    category = categories.create(barance_of_payments: 0, name: '水道、光熱費')
-    category.breakdowns.create(name: '水道代', user_id: id)
-    category.breakdowns.create(name: '電気代', user_id: id)
-    category.breakdowns.create(name: 'ガス代', user_id: id)
-    categories.create(barance_of_payments: 0, name: '趣味')
-    category = categories.create(barance_of_payments: 0, name: '通信費')
-    category.breakdowns.create(name: '携帯代', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: '美容、健康')
-    category.breakdowns.create(name: '化粧品', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: '交通費')
-    category.breakdowns.create(name: '電車代', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: '車、バイク')
-    category.breakdowns.create(name: 'ガソリン代', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: '教養、教育費')
-    category.breakdowns.create(name: '参考書', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: '交際費')
-    category.breakdowns.create(name: '飲み会会費', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: '税金')
-    category.breakdowns.create(name: '住民税', user_id: id)
-    category = categories.create(barance_of_payments: 0, name: '医療、保険')
-    category.breakdowns.create(name: '医療費', user_id: id)
-    categories.create(barance_of_payments: 0, name: 'その他')
+    CSV.foreach('db/seeds_data/categories.csv') do |row|
+      categories.create(barance_of_payments: row[0], name: row[1])
+    end
+    CSV.foreach('db/seeds_data/categoreis.csv') do |row|
+      breakdowns.create(category_id: categories.find_by_name(row[0]).id,
+                        name: row[1])
+    end
   end
 
   def status
