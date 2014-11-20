@@ -1,3 +1,4 @@
+# create the default categories and breakdowns
 class CreateCategoriesAndBreakdownsWorker
   include Sidekiq::Worker
   sidekiq_options queue: :sidekiq, retry: 3

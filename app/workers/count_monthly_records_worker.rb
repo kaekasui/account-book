@@ -1,3 +1,4 @@
+# record counter
 class CountMonthlyRecordsWorker
   include Sidekiq::Worker
   sidekiq_options queue: :sidekiq, retry: 3
