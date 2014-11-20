@@ -20,8 +20,15 @@ class User < ActiveRecord::Base
   has_many :tagged_records
   has_one :cancel
 
-  validates :email, presence: true, uniqueness: true, length: { maximum: MAX_LONG_TEXT_FIELD_LENGTH }, if: :email_required?
-  validates :password, presence: true, confirmation: true, if: :password_required?
+  validates :email,
+            presence: true,
+            uniqueness: true,
+            length: { maximum: MAX_LONG_TEXT_FIELD_LENGTH },
+            if: :email_required?
+  validates :password,
+            presence: true,
+            confirmation: true,
+            if: :password_required?
   validates :password, length: { within: 8..128 }, unless: :password_blank?
 
   def create_data
