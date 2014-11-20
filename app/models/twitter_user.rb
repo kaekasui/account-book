@@ -12,7 +12,7 @@ class TwitterUser < User
 
   def update_with_oauth(auth)
     update_attributes!(name: auth.info.name, nickname: auth.info.nickname,
-      token: auth.credentials.token)
+                       token: auth.credentials.token)
   end
 
   def twitter_url

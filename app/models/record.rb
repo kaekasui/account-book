@@ -70,8 +70,7 @@ class Record < ActiveRecord::Base
         if row[2].present?
           category = Category.find_by_name(row[2]) ||
                      Category.create!(
-                       name: row[2],
-                       user_id: user_id,
+                       name: row[2], user_id: user_id,
                        barance_of_payments: barance_of_payments)
           record.category_id = category.id
         else
@@ -123,10 +122,8 @@ class Record < ActiveRecord::Base
                       name: row[2], user_id: user.id,
                       category_id: category.id)
         record = Record.create(
-                   published_at: Date.today,
-                   breakdown_id: breakdown.id,
-                   user_id: user.id,
-                   charge: row[3])
+                   published_at: Date.today, breakdown_id: breakdown.id,
+                   user_id: user.id, charge: row[3])
         messages = generate_messages(user, category, breakdown, record)
       end
     end
