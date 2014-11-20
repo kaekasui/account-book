@@ -42,7 +42,7 @@ class Record < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       line = 0
       CSV.parse(Kconv.toutf8(text)) do |row|
-        line = line + 1
+        line += 1
         record = Record.new
         record.user_id = user_id
         # published_at
@@ -209,7 +209,7 @@ class Record < ActiveRecord::Base
   end
 
   def income
-    where(:category, "barance_of_payments = 0")
+    where(:category, 'barance_of_payments = 0')
   end
 
   private
