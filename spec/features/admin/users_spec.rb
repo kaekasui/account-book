@@ -35,4 +35,13 @@ feature '管理者：ユーザーの管理' do
     expect(page).to have_content I18n.t("messages.users.delete_unconfirmed_email")
     expect(user.reload.unconfirmed_email).to be_nil
   end
+
+  scenario 'ユーザーの一覧でユーザーの情報を表示する' do
+    user = create(:user, confirmed_at: Time.now, admin: true)
+    login user
+
+    visit admin_users_path
+    expect(page.body).to have_content(user.last_sign_in_at)
+    expect(page.body).to have_content(user.email)
+  end
 end
