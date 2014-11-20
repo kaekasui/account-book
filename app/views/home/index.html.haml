@@ -6,6 +6,7 @@
 
 .row
   .col-sm-6
-    = render partial: "notices"
+    = render partial: "top_notices"
   .col-sm-6
-    = render partial: "messages"
+    - if current_user
+      = render partial: "top_messages" if current_user
