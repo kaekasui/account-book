@@ -4,5 +4,8 @@
     = I18n.t("labels.notice")
   .panel-body
     = I18n.t("messages.notice.blank") if @notices.count == 0
-    - @notices.each do |notice|
-      = notice.title
+    %table.table.non-border.table-condensed
+      - @notices.each do |notice|
+        %tr
+          %td
+            %span= notice.title
