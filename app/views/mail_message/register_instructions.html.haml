@@ -1,0 +1,9 @@
+%p= raw I18n.t("mail.confirmation_instructions.body1")
+%p= User.human_attribute_name(:email) + I18n.t("code.colon") + @email
+%br
+
+%p= raw I18n.t("mail.confirmation_instructions.body3")
+%br
+
+%p= raw I18n.t("mail.confirmation_instructions.body4")
+%br

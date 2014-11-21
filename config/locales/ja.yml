@@ -109,6 +109,9 @@ ja:
     sign_out: "ログアウト"
     status: "マイページ"
     terms: "ご利用規約"
+  mail_message:
+    register_instructions:
+      subject: "【おこづかいちょうβ】本登録完了のお知らせ"
   menu:
     breakdown: "内訳"
     category: "カテゴリ"
