@@ -17,24 +17,24 @@ class Record < ActiveRecord::Base
         -> { group("date_format(published_at, '%Y/%m')").count }
   scope :total_charge, -> { sum(:charge) }
 
-  def yen_charge
-    '¥' + charge.to_s
-  end
-
   def import(file)
     if file.present?
-      filename = file.original_filename
-      if filename.rindex('.').present? &&
-         (filename.slice(filename.rindex('.') + 1,
-                         filename.rindex('.') + 3)) == 'csv'
-        csv_import(file)
-      else
-        errors[:base] << I18n.t('messages.record.import_file_is_not_csv')
-      end
+      file_import(file)
     else
       errors[:base] << I18n.t('messages.record.import_file_not_found')
     end
     self
+  end
+
+  def file_import(file)
+    filename = file.original_filename
+    if filename.rindex('.').present? &&
+       (filename.slice(filename.rindex('.') + 1,
+                       filename.rindex('.') + 3)) == 'csv'
+      csv_import(file)
+    else
+      errors[:base] << I18n.t('messages.record.import_file_is_not_csv')
+    end
   end
 
   def csv_import(csv_file)
@@ -98,9 +98,7 @@ class Record < ActiveRecord::Base
           record.charge = row[5].to_i
         end
         # memo
-        if row[6]
-          record.memo = row[6]
-        end
+        record.memo = row[6] if row[6].present?
         record.save!
       end
     end
@@ -109,18 +107,18 @@ class Record < ActiveRecord::Base
 
   def set_records_count
     user = User.find(user_id)
-    year = published_at.year
-    month = published_at.month
+    year, month = published_at.year, published_at.month
+
     count = user.records.where(
       'year(published_at) = ? and month(published_at) = ?', year, month).count
+    set_monthly_records_count(user, count)
+  end
 
+  def set_monthly_records_count(user, count)
     monthly = MonthlyCount.where(
                 year: year, month: month, user_id: user.id).first ||
               MonthlyCount.new(year: year, month: month, user_id: user.id)
-    monthly.count = count
-
-    monthly.amount = user.records.total_charge
-    monthly.save
+    monthly.update(count: count, amount: user.records.total_charge)
   end
 
   def category_type
@@ -148,36 +146,6 @@ class Record < ActiveRecord::Base
   end
 
   private
-
-  def self.generate_messages(target)
-    errors = []
-    if target.errors.any?
-      errors << '---' +
-        I18n.t('activerecord.attributes.user.email') + ': ' + user.email
-    end
-    errors.concat('カテゴリ') if target.class == 'Category'
-    errors.concat(target.errors.full_messages.to_s)
-    errors
-  end
-
-  def self.generate_messages(user, category, breakdown, record)
-    errors = []
-    if user.errors.any? || category.errors.any? ||
-       breakdown.errors.any? || record.errors.any?
-      errors << '---' +
-        I18n.t('activerecord.attributes.user.email') +
-        ': ' + user.email
-    end
-    errors.concat user.errors.full_messages unless user.errors.blank?
-    unless category.errors.blank?
-      errors.concat 'カテゴリ' + category.errors.full_messages.to_s
-    end
-    unless breakdown.errors.blank?
-      errors.concat breakdown.errors.full_messages.to_s
-    end
-    errors.concat record.errors.full_messages unless record.errors.blank?
-    errors
-  end
 
   def count_monthly_records_worker
     CountMonthlyRecordsWorker.perform_async id
