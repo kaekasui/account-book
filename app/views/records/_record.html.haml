@@ -4,7 +4,7 @@
   %td= record.category.barance_of_payments ? content_tag(:span, "", class: 'glyphicon glyphicon-plus-sign plus') : content_tag(:span, "", class: 'glyphicon glyphicon-minus-sign minus')
   %td(width='10%')= record.published_at
   - if controller_name != "categories"
-    %td(width='20%')= record.category.name
+    %td(width='20%')= link_to record.category.name, category_path(id: record.category.id)
   %td(width='20%')= record.breakdown.name if record.breakdown
   %td
     - record.tagged_records.each do |tagged|
