@@ -70,6 +70,7 @@ ja:
     before_edit: "（変更前）"
     csv_file: "CSVファイル"
     comments: "******"
+    copy: "コピーして作成"
     count: "件"
     delete: "削除"
     delete_unconfirmed_email: "24時間以上経った認証待ちのメール"
@@ -175,6 +176,7 @@ ja:
       create: "新規登録"
       mypage: "マイページ"
     records:
+      copy: "入力する"
       create: "入力する"
       edit: "編集する"
       index: "履歴"

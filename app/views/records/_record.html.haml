@@ -1,6 +1,6 @@
 %tr
   %script
-    $("[data-toggle='tooltip']").tooltip();
+    $("[data-toggle='tooltip']").tooltip(placement: 'top');
   %td= record.category.barance_of_payments ? content_tag(:span, "", class: 'glyphicon glyphicon-plus-sign plus') : content_tag(:span, "", class: 'glyphicon glyphicon-minus-sign minus')
   %td(width='10%')= record.published_at
   - if controller_name != "categories"
@@ -8,7 +8,8 @@
   %td(width='20%')= record.breakdown.name if record.breakdown
   %td
     - record.tagged_records.each do |tagged|
-      %span(style="color: #{tagged.tag.color_code}")= content_tag(:span, "", class: "glyphicon glyphicon-bookmark", "data-toggle" => "tooltip", "data-placement" => "top", title: "#{tagged.tag.name}" )
+      %span(style="color: #{tagged.tag.color_code}")= content_tag(:span, "", class: "glyphicon glyphicon-bookmark", "data-toggle" => "tooltip", title: "#{tagged.tag.name}" )
   %td(width='10%')= '¥' + number_with_delimiter(record.charge)
-  %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_record_path(record)
-  %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), record, method: :delete, data: { confirm: "Are you sure?" }
+  %td.copy-icon= link_to content_tag(:span, '', class: 'glyphicon glyphicon-share'), record_copy_path(record_id: record.id), 'data-toggle' => 'tooltip', title: I18n.t('labels.copy')
+  %td.edit-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit"), edit_record_path(record), 'data-toggle' => 'tooltip', title: I18n.t('labels.edit')
+  %td.trash-icon= link_to content_tag(:span, "", class: "glyphicon glyphicon-trash"), record, method: :delete, data: { confirm: "Are you sure?" }, 'data-toggle' => 'tooltip', title: I18n.t('labels.delete')

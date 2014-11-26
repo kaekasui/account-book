@@ -25,6 +25,12 @@ class RecordsController < ApplicationController
     end
   end
 
+  def copy
+    @record = current_user.records.new
+    @record.attributes = Record.find(params[:record_id]).attributes
+    @record.tagged = (@record.tagged_records.map {|r| r.tag.name }).join(',')
+  end
+
   def edit
     @record.tagged = (@record.tagged_records.map {|r| r.tag.name }).join(',')
   end

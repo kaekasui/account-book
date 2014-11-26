@@ -13,6 +13,8 @@ $(document).on('ready page:load', (e) ->
     set_new_tags()
   if ($(".container").hasClass('records_update'))
     set_new_tags()
+  if ($(".container").hasClass('records_copy'))
+    set_new_tags()
 ) 
 
 set_color_code_text_field = (field) ->

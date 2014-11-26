@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   resources :places
   resources :records do
     post "/set_breakdowns_from_category" => "records#set_breakdowns_from_category", on: :collection
+    get '/copy' => 'records#copy'
     get "/download" => "records#download", on: :collection
   end
   resources :tags, only: [:index, :create, :update, :destroy] do
