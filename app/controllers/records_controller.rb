@@ -44,6 +44,7 @@ class RecordsController < ApplicationController
       if @record.errors.any?
       else
         flash[:notice] = I18n.t('messages.record.created')
+        session[:pre_record_id] = @record.id
       end
     end
     respond_with @record, location: new_record_path
