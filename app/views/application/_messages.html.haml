@@ -12,6 +12,6 @@
       %span(aria-hidden='true')= t("links.cross_mark")
       %span.sr-only= "Close"
     = notice if notice
-    - if notice == I18n.t('messages.record.created') or I18n.t('messages.record.updated')
+    - if notice == I18n.t('messages.record.created') or notice == I18n.t('messages.record.updated')
       %u= link_to I18n.t('links.edit'), edit_record_path(id: session[:pre_record_id])
       %u= link_to I18n.t('links.copy'), record_copy_path(record_id: session[:pre_record_id])

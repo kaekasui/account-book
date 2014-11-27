@@ -57,7 +57,7 @@ class RecordsController < ApplicationController
         tagged_records = params[:record][:tagged]
         set_tags(@record.id, tagged_records.split(',')) if tagged_records.present?
         session[:pre_record_id] = @record.id
-        format.html { redirect_to records_path(month: @record.reload.published_at.month), notice: I18n.t('messages.record.updated') }
+        format.html { redirect_to records_path(year: @record.published_at.year, month: @record.published_at.month), notice: I18n.t('messages.record.updated') }
         format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit }

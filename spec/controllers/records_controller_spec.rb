@@ -89,10 +89,10 @@ RSpec.describe RecordsController, type: :controller do
           expect(assigns(:record)).to eq(record)
         end
 
-        it "対象の記録の詳細画面にリダイレクトすること" do
+        it "対象の記録の一覧画面にリダイレクトすること" do
           record = create(:record, category_id: category.id, user_id: user.id)
           put :update, { id: record.id, record: attributes_for(:record, category_id: category.id, user_id: user.id) }
-          expect(response).to redirect_to(record)
+          expect(response).to redirect_to(records_path(year: record.published_at.year, month: record.published_at.month))
         end
       end
 
