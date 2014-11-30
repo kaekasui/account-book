@@ -82,10 +82,15 @@ class RecordsController < ApplicationController
     parameters.each do |key, value|
       @category_id = key
     end
+    @breakdowns = current_user.breakdowns.where(id: nil)
     if @category_id == ''
-      @breakdowns = current_user.breakdowns.where(id: nil)
     elsif @category_id
-      @breakdowns = current_user.categories.find(@category_id).breakdowns
+      user_breakdowns = current_user.categories.find(@category_id).breakdowns
+      keys = user_breakdowns.joins(:records).group('records.breakdown_id').order('count_all desc').count.keys
+      breakdown_ids = user_breakdowns.map {|b| b.id }
+      (keys + (breakdown_ids - keys)).each do |breakdown|
+        @breakdowns << current_user.breakdowns.find(breakdown)
+      end
     else
       @breakdowns = current_user.breakdowns.all
     end
