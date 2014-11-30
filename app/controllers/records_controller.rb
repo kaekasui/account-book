@@ -1,6 +1,7 @@
 # User records.
 class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :update, :destroy]
+  before_action :set_places, only: [:new, :create, :copy, :edit, :update]
   skip_before_action :verify_authenticity_token, only: [:set_breakdowns_from_category]
   respond_to :html
 
@@ -18,12 +19,6 @@ class RecordsController < ApplicationController
 
   def new
     @record = current_user.records.new
-    @places_list = current_user.places.where(id: nil)
-    unless current_user.places.blank?
-      current_user.places.joins(:records).group('records.place_id').order('count_all desc').count.keys.each do |place|
-        @places_list << current_user.places.find(place)
-      end
-    end
     if params[:category].present?
       category = current_user.categories.find_by_id(params[:category])
       @record.category_id = category.id
@@ -114,7 +109,18 @@ class RecordsController < ApplicationController
   private
 
   def set_record
-    @record = Record.find(params[:id])
+    @record = current_user.records.find(params[:id])
+  end
+
+  def set_places
+    @places_list = current_user.places.where(id: nil)
+    unless current_user.places.blank?
+      keys = current_user.places.joins(:records).group('records.place_id').order('count_all desc').count.keys
+      place_ids = current_user.places.map {|p| p.id}
+      (keys + (place_ids - keys)).each do |place_id|
+        @places_list << [current_user.places.find(place_id).name, place_id]
+      end
+    end
   end
 
   def record_params

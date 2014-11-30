@@ -62,7 +62,9 @@ class CategoriesController < ApplicationController
   def set_categories_box
     @categories = current_user.categories.where(id: nil)
     user_categories = current_user.categories.where(barance_of_payments: params[:barance_of_payments])
-    user_categories.joins(:records).group('records.category_id').order('count_all desc').count.keys.each do |category|
+    keys = user_categories.joins(:records).group('records.category_id').order('count_all desc').count.keys
+    category_ids = user_categories.map {|c| c.id }
+    (keys + (category_ids - keys)).each do |category|
       @categories << current_user.categories.find(category)
     end
   end
