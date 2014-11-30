@@ -60,7 +60,11 @@ class CategoriesController < ApplicationController
   end
 
   def set_categories_box
-    @categories = current_user.categories.where(barance_of_payments: params[:barance_of_payments]).order(:updated_at).reverse_order
+    @categories = current_user.categories.where(id: nil)
+    user_categories = current_user.categories.where(barance_of_payments: params[:barance_of_payments])
+    user_categories.joins(:records).group('records.category_id').order('count_all desc').count.keys.each do |category|
+      @categories << current_user.categories.find(category)
+    end
   end
 
   private
