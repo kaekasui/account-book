@@ -18,6 +18,12 @@ class RecordsController < ApplicationController
 
   def new
     @record = current_user.records.new
+    @places_list = current_user.places.where(id: nil)
+    unless current_user.places.blank?
+      current_user.places.joins(:records).group('records.place_id').order('count_all desc').count.keys.each do |place|
+        @places_list << current_user.places.find(place)
+      end
+    end
     if params[:category].present?
       category = current_user.categories.find_by_id(params[:category])
       @record.category_id = category.id

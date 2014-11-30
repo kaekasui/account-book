@@ -35,7 +35,7 @@
       .form-group
         = f.label :place_id, class: "control-label col-sm-2"
         .col-sm-10
-          = f.select :place_id, current_user.places.order(:updated_at).reverse_order.map { |p| [p.name, p.id] }, { include_blank: I18n.t("include_blank.place") }, { class: "form-control" }
+          = f.select :place_id, @places_list, { include_blank: I18n.t("include_blank.place") }, { class: "form-control" }
       .form-group
         = f.label :charge, (Record.human_attribute_name(:charge) + asterisk).html_safe, class: "control-label col-sm-2"
         .col-sm-10
