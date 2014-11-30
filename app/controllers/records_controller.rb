@@ -82,7 +82,9 @@ class RecordsController < ApplicationController
     parameters.each do |key, value|
       @category_id = key
     end
-    if @category_id
+    if @category_id == ''
+      @breakdowns = current_user.breakdowns.where(id: nil)
+    elsif @category_id
       @breakdowns = current_user.categories.find(@category_id).breakdowns
     else
       @breakdowns = current_user.breakdowns.all

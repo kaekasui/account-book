@@ -1,2 +1,2 @@
 $("select#record_category_id").children().remove();
-$("select#record_category_id").html('<%= j options_for_select(@categories.map{ |c| [c.name, c.id] }) %>');
+$("select#record_category_id").html('<%= j options_for_select(@categories.map{ |c| [c.name, c.id] }.insert(0, ["#{I18n.t('include_blank.category')}", ''])) %>');
