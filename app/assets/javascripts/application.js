@@ -17,4 +17,5 @@
 //= require bootstrap
 //= require turbolinks
 //= require toastr
+//= require angular
 //= require_tree .
