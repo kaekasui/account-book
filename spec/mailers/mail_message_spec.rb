@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe MailMessage, :type => :mailer do
+RSpec.describe MailMessage, type: :mailer do
   describe "register_instructions" do
     let(:user) { create(:user, confirmed_at: Time.now) }
     let(:mail) { MailMessage.register_instructions(user.email) }

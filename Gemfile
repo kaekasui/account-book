@@ -93,6 +93,9 @@ group :development, :test do
   gem 'selenium-webdriver'
   #gem 'rspec-sidekiq'
   gem 'dotenv-rails'
+
+  # confirm the mail
+  gem 'letter_opener_web'
 end
 
 # i18n

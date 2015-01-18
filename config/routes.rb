@@ -59,4 +59,8 @@ Rails.application.routes.draw do
       post "/delete_unconfirmed_email" => "users#delete_unconfirmed_email", on: :collection
     end
   end
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
