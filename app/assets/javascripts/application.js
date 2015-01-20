@@ -15,7 +15,7 @@
 //= require jquery-ui
 //= require jquery.minicolors
 //= require bootstrap
+//= require angular
 //= require turbolinks
 //= require toastr
-//= require angular
 //= require_tree .
