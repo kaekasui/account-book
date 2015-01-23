@@ -66,6 +66,7 @@ gem 'omniauth-facebook'
 # For test
 group :development, :test do
   gem 'rubocop'
+  gem 'pry', '< 0.10.0'
   gem 'pry-rails'
   gem 'hirb'
   gem 'hirb-unicode'
