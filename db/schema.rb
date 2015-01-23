@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118043153) do
+ActiveRecord::Schema.define(version: 20150123052946) do
 
   create_table "breakdowns", force: true do |t|
     t.string   "name"
@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(version: 20141118043153) do
     t.string   "code"
     t.boolean  "admin"
     t.string   "type"
+    t.integer  "status"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

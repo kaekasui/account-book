@@ -15,10 +15,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource_saved
       if resource.active_for_authentication?
+        resource.update(status: 2)
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
       else
+        resource.update(status: 1)
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
         expire_data_after_sign_in!
         puts 'Started CreateCategoriesAndBreakdownsWorker'
@@ -71,6 +73,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
   end
 
+  # withdraw the account
   def cancel
     @cancel = Cancel.new
   end
@@ -79,7 +82,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @cancel = Cancel.new(cancel_params)
     @cancel.user_id = current_user.id
     if @cancel.save
-      super
+      @cancel.user.update(status: 3)
+      Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+      set_flash_message :notice, :destroyed if is_flashing_format?
+      yield resource if block_given?
+      respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
     else
       render :cancel
     end

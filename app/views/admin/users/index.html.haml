@@ -17,8 +17,8 @@
       - @admin_users.each do |user|
         %tr
           %td
-            %span.label(class="label-#{user.status}")
-              = I18n.t("labels.status.#{user.status}")
+            %span.label(class="label-#{user.status_code}")
+              = I18n.t("labels.status.#{user.status_code}")
           %td= l user.last_sign_in_at if user.last_sign_in_at
           %td= image_icon(user.type)
           %td= user.email
