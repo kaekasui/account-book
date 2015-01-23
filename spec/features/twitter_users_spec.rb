@@ -38,6 +38,36 @@ feature 'Twitterアカウントの管理' do
     expect(page).to have_content I18n.t("messages.users.twitter_user_login")
   end
 
+  scenario '退会する' do
+    visit '/users/auth/twitter'
+    visit users_mypage_path
+    expect(page).to have_content I18n.t("messages.users.twitter_user_login")
+    visit cancel_user_registration_path
+
+    fill_in Cancel.human_attribute_name(:content), with: '退会理由'
+    click_button I18n.t('buttons.cancel')
+
+    expect(current_path).to eq  root_path
+    expect(page).to have_content I18n.t('devise.registrations.destroyed')
+  end
+
+  scenario '退会後にログインする' do
+    visit '/users/auth/twitter'
+    visit users_mypage_path
+    expect(page).to have_content I18n.t("messages.users.twitter_user_login")
+    visit cancel_user_registration_path
+
+    fill_in Cancel.human_attribute_name(:content), with: '退会理由'
+    click_button I18n.t('buttons.cancel')
+
+    expect(current_path).to eq  root_path
+    expect(page).to have_content I18n.t('devise.registrations.destroyed')
+
+    visit '/users/auth/twitter'
+    visit users_mypage_path
+    expect(page).to have_content I18n.t("messages.users.twitter_user_login")
+  end
+
   scenario 'メールアドレスを変更する' do
     visit "/users/auth/twitter"
     visit users_mypage_path
