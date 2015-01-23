@@ -106,7 +106,7 @@ describe Users::RegistrationsController do
     describe '退会' do
       it 'ステータスが退会ステータスになっていること' do
         delete :destroy, { use_route: :users, cancel: attributes_for(:cancel)}
-        expect(@user.reload.status).to eq 2
+        expect(@user.reload.status).to eq 3
       end
 
       it '退会情報が登録されていること' do
