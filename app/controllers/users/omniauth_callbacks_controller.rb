@@ -22,6 +22,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user = provider_class(provider).create_with_oauth(auth)
     end
     set_flash_message(:notice, :success, kind: provider)
+    @user.update(status: 2)
     sign_in_and_redirect @user, event: :authentication
   end
 

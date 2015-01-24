@@ -103,10 +103,15 @@ describe Users::RegistrationsController do
       end
     end
 
-    describe 'アカウントを削除すること' do
-      it 'アカウントを論理削除し削除時刻を更新すること' do
+    describe '退会' do
+      it 'ステータスが退会ステータスになっていること' do
         delete :destroy, { use_route: :users, cancel: attributes_for(:cancel)}
-        expect(@user.reload.deleted_at).to_not be_nil
+        expect(@user.reload.status).to eq 3
+      end
+
+      it '退会情報が登録されていること' do
+        delete :destroy, { use_route: :users, cancel: attributes_for(:cancel)}
+        expect(@user.cancels.blank?).to eq false
       end
     end
 

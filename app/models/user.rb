@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   has_many :feedbacks
   has_many :tags
   has_many :tagged_records
-  has_one :cancel
+  has_many :cancels
 
   validates :email,
             presence: true,
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def status
+  def status_code
     if confirmed_at.nil?
       'primary'
     elsif cancel?
@@ -51,8 +51,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def status_list
+    { '1' => I18n.t('labels.status.primary'),  # 仮登録
+      '2' => I18n.t('labels.status.success'),  # 利用中
+      '3' => I18n.t('labels.status.default')   # 退会済み
+    }
+  end
+
   def cancel?
-    cancel.present?
+    status == 3
   end
 
   private
