@@ -23,8 +23,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         resource.update(status: 1)
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
         expire_data_after_sign_in!
-        puts 'Started CreateCategoriesAndBreakdownsWorker'
-        CreateCategoriesAndBreakdownsWorker.perform_async resource.id
+        #puts 'Started CreateCategoriesAndBreakdownsWorker'
+        #CreateCategoriesAndBreakdownsWorker.perform_async resource.id
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
     else

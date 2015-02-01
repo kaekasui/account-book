@@ -22,7 +22,7 @@ class Admin::FeedbacksController < Admin::AdminBaseController
 
   def destroy
     @feedback.destroy
-    respond_with(['admin', @feedback])
+    respond_with(['admin', @feedback], location: admin_feedbacks_path)
   end
 
   private

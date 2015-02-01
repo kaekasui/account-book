@@ -25,7 +25,7 @@ class Admin::AnswersController < Admin::AdminBaseController
 
   def destroy
     @answer.destroy
-    respond_with(['admin', @feedback])
+    respond_with(['admin', @feedback], location: admin_feedback_path(id: @feedback.id))
   end
 
   private

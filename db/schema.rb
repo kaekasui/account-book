@@ -13,10 +13,10 @@
 
 ActiveRecord::Schema.define(version: 20150123052946) do
 
-  create_table "breakdowns", force: true do |t|
-    t.string   "name"
-    t.integer  "category_id"
-    t.integer  "user_id"
+  create_table "breakdowns", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "category_id", limit: 4
+    t.integer  "user_id",     limit: 4
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -25,30 +25,30 @@ ActiveRecord::Schema.define(version: 20150123052946) do
   add_index "breakdowns", ["category_id"], name: "index_breakdowns_on_category_id", using: :btree
   add_index "breakdowns", ["user_id"], name: "index_breakdowns_on_user_id", using: :btree
 
-  create_table "cancels", force: true do |t|
-    t.integer  "user_id"
-    t.text     "content"
+  create_table "cancels", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.text     "content",    limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "cancels", ["user_id"], name: "index_cancels_on_user_id", using: :btree
 
-  create_table "categories", force: true do |t|
-    t.string   "name"
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",                limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "barance_of_payments"
+    t.boolean  "barance_of_payments", limit: 1
     t.datetime "deleted_at"
-    t.integer  "user_id"
+    t.integer  "user_id",             limit: 4
   end
 
   add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
 
-  create_table "feedbacks", force: true do |t|
-    t.text     "content"
-    t.integer  "user_id"
-    t.boolean  "checked"
+  create_table "feedbacks", force: :cascade do |t|
+    t.text     "content",    limit: 65535
+    t.integer  "user_id",    limit: 4
+    t.boolean  "checked",    limit: 1
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -56,58 +56,58 @@ ActiveRecord::Schema.define(version: 20150123052946) do
 
   add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
-  create_table "messages", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "feedback_id"
-    t.text     "content"
-    t.string   "type"
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "feedback_id", limit: 4
+    t.text     "content",     limit: 65535
+    t.string   "type",        limit: 255
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "monthly_counts", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "year"
-    t.integer  "month"
-    t.integer  "count"
+  create_table "monthly_counts", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "year",       limit: 4
+    t.integer  "month",      limit: 4
+    t.integer  "count",      limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "amount"
+    t.integer  "amount",     limit: 4
   end
 
   add_index "monthly_counts", ["user_id"], name: "index_monthly_counts_on_user_id", using: :btree
 
-  create_table "notices", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.string   "post_type"
+  create_table "notices", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
+    t.string   "post_type",  limit: 255
     t.datetime "post_at"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "places", force: true do |t|
-    t.string   "name"
+  create_table "places", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "user_id",    limit: 4
   end
 
   add_index "places", ["user_id"], name: "index_places_on_user_id", using: :btree
 
-  create_table "records", force: true do |t|
+  create_table "records", force: :cascade do |t|
     t.date     "published_at"
-    t.integer  "charge"
-    t.integer  "category_id"
-    t.integer  "breakdown_id"
-    t.integer  "place_id"
-    t.text     "memo"
+    t.integer  "charge",       limit: 4
+    t.integer  "category_id",  limit: 4
+    t.integer  "breakdown_id", limit: 4
+    t.integer  "place_id",     limit: 4
+    t.text     "memo",         limit: 65535
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "user_id",      limit: 4
   end
 
   add_index "records", ["breakdown_id"], name: "index_records_on_breakdown_id", using: :btree
@@ -115,10 +115,10 @@ ActiveRecord::Schema.define(version: 20150123052946) do
   add_index "records", ["place_id"], name: "index_records_on_place_id", using: :btree
   add_index "records", ["user_id"], name: "index_records_on_user_id", using: :btree
 
-  create_table "tagged_records", force: true do |t|
-    t.integer  "record_id"
-    t.integer  "tag_id"
-    t.integer  "user_id"
+  create_table "tagged_records", force: :cascade do |t|
+    t.integer  "record_id",  limit: 4
+    t.integer  "tag_id",     limit: 4
+    t.integer  "user_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -127,10 +127,10 @@ ActiveRecord::Schema.define(version: 20150123052946) do
   add_index "tagged_records", ["tag_id"], name: "index_tagged_records_on_tag_id", using: :btree
   add_index "tagged_records", ["user_id"], name: "index_tagged_records_on_user_id", using: :btree
 
-  create_table "tags", force: true do |t|
-    t.string   "name"
-    t.string   "color_code"
-    t.integer  "user_id"
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "color_code", limit: 255
+    t.integer  "user_id",    limit: 4
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -138,33 +138,33 @@ ActiveRecord::Schema.define(version: 20150123052946) do
 
   add_index "tags", ["user_id"], name: "index_tags_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
-    t.string   "confirmation_token"
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "name"
-    t.string   "nickname"
-    t.string   "token"
-    t.string   "code"
-    t.boolean  "admin"
-    t.string   "type"
-    t.integer  "status"
+    t.string   "unconfirmed_email",      limit: 255
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
+    t.string   "name",                   limit: 255
+    t.string   "nickname",               limit: 255
+    t.string   "token",                  limit: 255
+    t.string   "code",                   limit: 255
+    t.boolean  "admin",                  limit: 1
+    t.string   "type",                   limit: 255
+    t.integer  "status",                 limit: 4
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
