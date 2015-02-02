@@ -64,4 +64,44 @@ feature 'Record' do
     visit records_path(year: year, month: "06")
     expect(page).not_to have_content category.name
   end
+
+  scenario 'レコード作成後のメッセージからコピーして作成する' do
+    create(:category, name: 'category_name', user_id: user.id)
+    visit root_path
+    click_link I18n.t('menu.new_record')
+
+    select category.name, from: 'record_category_id'
+    fill_in 'record_charge', with: '900'
+    click_button I18n.t("helpers.submit.create")
+
+    expect(Record.last.charge).to eq 900
+    expect(page).to have_content I18n.t('labels.copy')
+    click_link I18n.t('labels.copy')
+
+    click_button I18n.t("helpers.submit.create")
+
+    expect(Record.last.charge).to eq 900
+    expect(Record.count).to eq 2
+  end
+
+  scenario 'レコード作成後のメッセージから編集する' do
+    create(:category, name: 'category_name', user_id: user.id)
+    visit root_path
+    click_link I18n.t('menu.new_record')
+
+    select category.name, from: 'record_category_id'
+    fill_in 'record_charge', with: '900'
+    click_button I18n.t("helpers.submit.create")
+
+    expect(Record.last.charge).to eq 900
+
+    expect(page).to have_content I18n.t('labels.edit')
+    click_link I18n.t('labels.edit')
+
+    fill_in 'record_charge', with: '1200'
+    click_button I18n.t("helpers.submit.update")
+
+    expect(Record.last.charge).to eq 1200
+    expect(Record.count).to eq 1
+  end
 end
