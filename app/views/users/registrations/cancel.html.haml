@@ -4,6 +4,8 @@
     = page_title
   .panel-body
     = render partial: 'messages', locals: { target: @cancel }
+    = raw I18n.t('messages.users.cancel')
+    %br
     = form_for @cancel, url: user_registration_path, html: { role: "form", method: :delete } do |f|
       .form-group
         = f.label :content, class: "control-label"
