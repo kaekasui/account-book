@@ -255,4 +255,56 @@ feature 'ユーザーアカウントの管理' do
     expect(current_path).to eq users_mypage_path
     expect(page).to have_content I18n.t("devise.registrations.confirmed")
   end
+
+  scenario '登録済みのメールアドレスで新規登録できないこと' do
+    create(:user, confirmed_at: Time.now)
+
+    # 新規登録
+    visit root_path
+    click_link I18n.t("links.sign_up")
+    fill_in User.human_attribute_name(:email), with: 'user@example.com'
+    fill_in User.human_attribute_name(:password), with: 'password'
+    fill_in User.human_attribute_name(:password_confirmation), with: 'password'
+    click_button I18n.t('buttons.sign_up')
+    expect(current_path).to eq user_registration_path
+    expect(page).to have_content I18n.t('errors.messages.taken', :email)
+  end
+
+  scenario '退会後の再登録でメール確認からの登録があること' do
+    user = create(:user, confirmed_at: Time.now)
+    login user
+
+    visit users_mypage_path
+    click_link I18n.t('links.cancel_user')
+
+    fill_in Cancel.human_attribute_name(:content), with: '退会理由'
+    click_button I18n.t('buttons.cancel')
+
+    expect(current_path).to eq root_path
+    expect(page).to have_content I18n.t("devise.registrations.destroyed")
+
+    # 再登録
+    click_link I18n.t("links.sign_up")
+    fill_in User.human_attribute_name(:email), with: 'user@example.com'
+    fill_in User.human_attribute_name(:password), with: 'password'
+    fill_in User.human_attribute_name(:password_confirmation), with: 'password'
+    click_button I18n.t('buttons.sign_up')
+    expect(current_path).to eq root_path
+    expect(page).to have_content I18n.t("devise.registrations.signed_up_but_unconfirmed")
+
+    user = User.find_by_email("user@example.com")
+    open_email("user@example.com")
+    mail_body = current_email.body
+    index = mail_body.index("confirmation_token=")
+    token = mail_body.slice(index+19..index+38)
+    visit user_confirmation_path(confirmation_token: token)
+
+    expect(current_path).to eq new_user_session_path
+
+    fill_in User.human_attribute_name(:email), with: 'user@example.com'
+    fill_in User.human_attribute_name(:password), with: 'password'
+    click_button I18n.t('buttons.sign_in')
+
+    expect(page).to have_content I18n.t('devise.sessions.signed_in')
+  end
 end

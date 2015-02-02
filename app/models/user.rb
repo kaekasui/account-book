@@ -22,9 +22,9 @@ class User < ActiveRecord::Base
 
   validates :email,
             presence: true,
-            uniqueness: true,
             length: { maximum: MAX_LONG_TEXT_FIELD_LENGTH },
             if: :email_required?
+  validates :email, uniqueness: true, if: :available_email?
   validates :password,
             presence: true,
             confirmation: true,
@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
 
   def email_required?
     !password.nil? || !password_confirmation.nil?
+  end
+
+  def available_email?
+    User.where(email: email).where('status = 1 or status = 2').present?
   end
 
   def password_required?

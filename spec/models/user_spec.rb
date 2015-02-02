@@ -17,14 +17,14 @@ describe User, type: :model do
   end
 
   it '論理削除となり削除時刻が更新されること' do
-    user = create(:user)
+    user = create(:user, confirmed_at: Time.now)
     expect(user.deleted_at).to be_nil
     user.destroy
     expect(user.deleted_at).not_to be_nil
   end
 
   it '重複したメールアドレスであればエラーが発生すること' do
-    create(:user)
+    create(:user, confirmed_at: Time.now)
     user = build(:user)
     expect(user).to have(1).errors_on(:email)
   end
