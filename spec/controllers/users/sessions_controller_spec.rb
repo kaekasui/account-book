@@ -8,12 +8,12 @@ describe Users::SessionsController do
   context 'ログインしていない場合' do
     describe 'ログイン画面' do
       it 'ログインフォームが表示されること' do
-        get :new, use_route: :users
+        get :new
         expect(assigns(:user)).to be_a_new(User)
       end
 
       it 'ログイン画面が表示されること' do
-        get :new, use_route: :users
+        get :new
         expect(response).to render_template :new
       end
     end
@@ -27,7 +27,7 @@ describe Users::SessionsController do
 
         it 'トップ画面にリダイレクトすること' do
           create(:user, confirmed_at: Time.now)
-          post :create, { use_route: :users, user: attributes_for(:user) }
+          post :create, { user: attributes_for(:user) }
           expect(response).to redirect_to root_path 
         end
       end
@@ -39,7 +39,7 @@ describe Users::SessionsController do
         end
 
         it 'ログイン画面を表示すること' do
-          post :create, { use_route: :users, user: attributes_for(:user, email: "") }
+          post :create, { user: attributes_for(:user, email: "") }
           expect(response).to render_template :new
         end
       end
@@ -54,14 +54,14 @@ describe Users::SessionsController do
 
     describe 'ログイン画面' do
       it 'トップ画面にリダイレクトすること' do
-        get :new, use_route: :users
+        get :new
         expect(response).to redirect_to root_path
       end
     end 
 
     describe 'ログアウト' do
       it 'ログアウトすること' do
-        delete :destroy, use_route: :users
+        delete :destroy
         expect(response).to redirect_to root_path
       end
     end

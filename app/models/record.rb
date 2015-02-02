@@ -5,7 +5,16 @@ require 'kconv'
 class Record < ActiveRecord::Base
   attr_accessor :category_type, :tagged
   acts_as_paranoid
-  after_commit :count_monthly_records_worker
+  # after_commit :count_monthly_records_worker
+  #
+  # DEPRECATION WARNING:
+  # Currently, Active Record suppresses errors raised
+  # within `after_rollback`/`after_commit` callbacks
+  # and only print them to the logs.
+  # In the next version, these errors will no longer be suppressed.
+  # Instead, the errors will propagate normally
+  # just like in other Active Record callbacks.
+
   belongs_to :category
   belongs_to :breakdown
   belongs_to :user

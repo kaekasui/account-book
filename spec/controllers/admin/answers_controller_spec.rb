@@ -11,7 +11,7 @@ RSpec.describe Admin::AnswersController, type: :controller do
 
     describe "フィードバックの返信画面" do
       it "フィードバックの返信フォームが表示されること" do
-        get :new, { feedback_id: feedback.id }, use_route: 'feedbacks'
+        get :new, { feedback_id: feedback.id }
         expect(assigns(:answer)).to be_a_new(Answer)
       end
     end
@@ -43,7 +43,7 @@ RSpec.describe Admin::AnswersController, type: :controller do
     describe 'フィードバックの返信編集画面' do
       it 'フィードバックの返信フォームが表示されること' do
         answer = create(:answer, feedback_id: feedback.id, user_id: user.id)
-        get :edit, { feedback_id: feedback.id, id: answer.id, use_route: 'feedbacks' }
+        get :edit, { feedback_id: feedback.id, id: answer.id }
         expect(assigns(:answer)).to eq answer
       end
     end
@@ -94,7 +94,7 @@ RSpec.describe Admin::AnswersController, type: :controller do
   context 'ユーザーがログインしていない場合' do
     describe 'フィードバックの返信画面' do
       it 'ログイン画面が表示されること' do
-        get :new, { feedback_id: feedback.id }, use_route: 'feedbacks'
+        get :new, { feedback_id: feedback.id }
         expect(response).to redirect_to new_user_session_path
       end
     end
@@ -102,7 +102,7 @@ RSpec.describe Admin::AnswersController, type: :controller do
     describe 'フィードバックの返信編集画面' do
       it 'ログイン画面が表示されること' do
         answer = create(:answer, feedback_id: feedback.id, user_id: user.id)
-        get :edit, { feedback_id: feedback.id, id: answer.id, use_route: 'feedbacks' }
+        get :edit, { feedback_id: feedback.id, id: answer.id }
         expect(response).to redirect_to new_user_session_path
       end
     end

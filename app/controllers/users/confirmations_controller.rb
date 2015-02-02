@@ -10,7 +10,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
       if @confirmation_type == 'edit'
         set_flash_message(:notice, :update_email) if is_flashing_format?
       else
-        MailMessage.register_instructions(resource.email).deliver
+        MailMessage.register_instructions(resource.email).deliver_later
         set_flash_message(:notice, :confirmed) if is_flashing_format?
       end
       respond_with_navigational(resource){ redirect_to after_confirmation_path_for(resource_name, resource) }
