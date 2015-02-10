@@ -10,8 +10,8 @@ class RecordsController < ApplicationController
     @month = month_param || Date.today.month.to_s
 
     @records = current_user.records.where("year(published_at) = #{@year} and month(published_at) = #{@month}").order(:published_at).reverse_order
-    @outgo = @records.joins(:category).where("barance_of_payments = ?", 0)
-    @income = @records.joins(:category).where("barance_of_payments = ?", 1)
+    @outgo = @records.joins(:category).where('barance_of_payments = ?', 0)
+    @income = @records.joins(:category).where('barance_of_payments = ?', 1)
   end
 
   def show
@@ -29,11 +29,11 @@ class RecordsController < ApplicationController
   def copy
     @record = current_user.records.new
     @record.attributes = Record.find(params[:record_id]).attributes
-    @record.tagged = (@record.tagged_records.map {|r| r.tag.name }).join(',')
+    @record.tagged = (@record.tagged_records.map { |r| r.tag.name }).join(',')
   end
 
   def edit
-    @record.tagged = (@record.tagged_records.map {|r| r.tag.name }).join(',')
+    @record.tagged = (@record.tagged_records.map { |r| r.tag.name }).join(',')
   end
 
   def create
@@ -80,7 +80,7 @@ class RecordsController < ApplicationController
     parameters = params
     parameters.delete('controller')
     parameters.delete('action')
-    parameters.each do |key, value|
+    parameters.each do |key, _value|
       @category_id = key
     end
     @breakdowns = current_user.breakdowns.where(id: nil)
@@ -88,7 +88,7 @@ class RecordsController < ApplicationController
     elsif @category_id
       user_breakdowns = current_user.categories.find(@category_id).breakdowns
       keys = user_breakdowns.joins(:records).group('records.breakdown_id').order('count_all desc').count.keys
-      breakdown_ids = user_breakdowns.map {|b| b.id }
+      breakdown_ids = user_breakdowns.map(&:id)
       (keys + (breakdown_ids - keys)).each do |breakdown|
         @breakdowns << current_user.breakdowns.find(breakdown)
       end
@@ -116,7 +116,7 @@ class RecordsController < ApplicationController
     @places_list = current_user.places.where(id: nil)
     unless current_user.places.blank?
       keys = current_user.places.joins(:records).group('records.place_id').order('count_all desc').count.keys
-      place_ids = current_user.places.map {|p| p.id}
+      place_ids = current_user.places.map(&:id)
       (keys + (place_ids - keys)).each do |place_id|
         @places_list << [current_user.places.find(place_id).name, place_id]
       end

@@ -1,6 +1,6 @@
 # User regists the account, and cancel the account.
 class Users::RegistrationsController < Devise::RegistrationsController
-  prepend_before_filter :require_no_authentication, only: [ :new, :create ]
+  prepend_before_filter :require_no_authentication, only: [:new, :create]
   skip_before_action :authenticate_user!, only: [:new]
   prepend_before_filter :authenticate_scope!, only: [:edit, :update, :edit_email, :update_email, :destroy, :mypage, :send_unconfirmed_email, :delete_unconfirmed_email]
 
@@ -23,8 +23,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         resource.update(status: 1)
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
         expire_data_after_sign_in!
-        #puts 'Started CreateCategoriesAndBreakdownsWorker'
-        #CreateCategoriesAndBreakdownsWorker.perform_async resource.id
+        # puts 'Started CreateCategoriesAndBreakdownsWorker'
+        # CreateCategoriesAndBreakdownsWorker.perform_async resource.id
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
     else
@@ -86,7 +86,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
       set_flash_message :notice, :destroyed if is_flashing_format?
       yield resource if block_given?
-      respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+      respond_with_navigational(resource) { redirect_to after_sign_out_path_for(resource_name) }
     else
       render :cancel
     end
@@ -97,9 +97,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     user.update_attributes(unconfirmed_email: nil)
     flash[:notice] = I18n.t('messages.users.delete_an_unconfirmed_email')
     rescue
-    flash[:alert] = I18n.t('messages.errors.delete_an_unconfirmed_email')
+      flash[:alert] = I18n.t('messages.errors.delete_an_unconfirmed_email')
     ensure
-    redirect_to users_mypage_path
+      redirect_to users_mypage_path
   end
 
   def send_unconfirmed_email
@@ -115,7 +115,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def after_update_path_for(resource)
+  def after_update_path_for(_resource)
     users_mypage_path
   end
 

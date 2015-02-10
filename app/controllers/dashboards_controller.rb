@@ -7,9 +7,9 @@ class DashboardsController < ApplicationController
 
   def set_graph
     @graph_data = if current_user
-      current_user.monthly_counts.year_data
-    else
-      {}
+                    current_user.monthly_counts.year_data
+                  else
+                    {}
     end
   end
 end

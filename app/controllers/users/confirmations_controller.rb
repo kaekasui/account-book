@@ -1,6 +1,5 @@
 # User confirms the account registration.
 class Users::ConfirmationsController < Devise::ConfirmationsController
-
   def show
     self.resource = resource_class.confirm_by_token(params[:confirmation_token])
     @confirmation_type = params[:confirmation_type]
@@ -13,9 +12,9 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
         MailMessage.register_instructions(resource.email).deliver_later
         set_flash_message(:notice, :confirmed) if is_flashing_format?
       end
-      respond_with_navigational(resource){ redirect_to after_confirmation_path_for(resource_name, resource) }
+      respond_with_navigational(resource) { redirect_to after_confirmation_path_for(resource_name, resource) }
     else
-      respond_with_navigational(resource.errors, status: :unprocessable_entity){ render :new }
+      respond_with_navigational(resource.errors, status: :unprocessable_entity) { render :new }
     end
   end
 

@@ -48,7 +48,7 @@ class TagsController < ApplicationController
   end
 
   def get_tags
-    render text: current_user.tags.map {|t| t.name }
+    render text: current_user.tags.map(&:name)
   end
 
   private
