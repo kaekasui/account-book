@@ -15,20 +15,18 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.delivery_method = :letter_opener_web
-  config.action_mailer.default_url_options = { host: ENV["HOST_NAME"] }
-=begin
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.smtp_settings = {
-    enable_starttls_auto: true,
-    address: 'smtp.gmail.com',
-    port: 587,
-    domain: 'smtp.gmail.com',
-    authentication: 'plain',
-    user_name: ENV["MAIL_USER_NAME"],
-    password: ENV["MAIL_PASSWORD"]
-  }
-=end
+  config.action_mailer.default_url_options = { host: ENV['HOST_NAME'] }
+  #   config.action_mailer.delivery_method = :smtp
+  #   config.action_mailer.raise_delivery_errors = true
+  #   config.action_mailer.smtp_settings = {
+  #     enable_starttls_auto: true,
+  #     address: 'smtp.gmail.com',
+  #     port: 587,
+  #     domain: 'smtp.gmail.com',
+  #     authentication: 'plain',
+  #     user_name: ENV["MAIL_USER_NAME"],
+  #     password: ENV["MAIL_PASSWORD"]
+  #   }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

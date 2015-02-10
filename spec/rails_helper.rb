@@ -1,22 +1,22 @@
-ENV["RAILS_ENV"] ||= 'test'
+ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/email/rspec'
-#require 'rspec/autorun'
+# require 'rspec/autorun'
 
 require 'simplecov'
 require 'simplecov-rcov'
 
 OmniAuth.config.test_mode = true
 
-OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(
   provider: 'twitter',
   uid: '123456',
-  info: { name: "name", nickname: "NickName" },
-  credentials: { token: "TOKEN" }
-})
+  info: { name: 'name', nickname: 'NickName' },
+  credentials: { token: 'TOKEN' }
+)
 
 SimpleCov.start do
   add_filter 'factories'
@@ -30,11 +30,11 @@ SimpleCov.start do
   add_group 'Routing', 'routing'
   add_group 'Features', 'features'
   add_group 'Workers', 'workers'
-  #add_group 'Requests', 'requests'
+  # add_group 'Requests', 'requests'
 end
 
 SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -78,10 +78,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  #config.before(:suite) do
+  # config.before(:suite) do
   #  DatabaseCleaner.strategy = :truncation
   #  DatabaseCleaner.clean_with(:truncation)
-  #end
+  # end
 
   config.infer_spec_type_from_file_location!
   config.infer_base_class_for_anonymous_controllers = false
