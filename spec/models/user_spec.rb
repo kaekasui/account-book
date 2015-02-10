@@ -7,12 +7,12 @@ describe User, type: :model do
   end
 
   it 'メールアドレスが空であればエラーが発生すること' do
-    user = build(:user, email: "")
+    user = build(:user, email: '')
     expect(user).to have(1).errors_on(:email)
   end
 
   it 'パスワードが空であればエラーが発生すること' do
-    user = build(:user, password: "")
+    user = build(:user, password: '')
     expect(user).to have(1).errors_on(:password)
   end
 
@@ -30,32 +30,32 @@ describe User, type: :model do
   end
 
   it '入力上限値(100)を超える101文字のメールアドレスであればエラーが発生すること' do
-    user = build(:user, email: ("a" * 89) + "@example.com")
+    user = build(:user, email: ('a' * 89) + '@example.com')
     expect(user).to have(1).errors_on(:email)
   end
 
   it '入力上限値(100)を超えない100文字のメールアドレスであれば有効であること' do
-    user = build(:user, email: ("a" * 88) + "@example.com")
+    user = build(:user, email: ('a' * 88) + '@example.com')
     expect(user).to be_valid
   end
 
   it '入力上限値(128)を超える129文字のパスワードであればエラーが発生すること' do
-    user = build(:user, password: "a" * 129)
+    user = build(:user, password: 'a' * 129)
     expect(user).to have(1).errors_on(:password)
   end
 
   it '入力上限値(128)を超えない128文字のパスワードであれば有効であること' do
-    user = build(:user, password: "a" * 128)
+    user = build(:user, password: 'a' * 128)
     expect(user).to be_valid
   end
 
   it '入力下限値(8)を超える8文字のパスワードであれば有効であること' do
-    user = build(:user, password: "a" * 8)
+    user = build(:user, password: 'a' * 8)
     expect(user).to be_valid
   end
 
   it '入力下限値(8)を下回る7文字のパスワードであればエラーが発生すること' do
-    user = build(:user, password: "a" * 7)
+    user = build(:user, password: 'a' * 7)
     expect(user).to have(1).errors_on(:password)
   end
 end

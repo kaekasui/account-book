@@ -11,7 +11,7 @@ RSpec.describe Record, type: :model do
   end
 
   it '料金が空であればエラーが発生すること' do
-    record = build(:record, charge: "", category_id: category.id)
+    record = build(:record, charge: '', category_id: category.id)
     expect(record).to have(1).errors_on(:charge)
   end
 

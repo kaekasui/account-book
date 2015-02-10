@@ -10,7 +10,7 @@ describe Answer, type: :model do
   end
 
   it '回答が無ければエラーが発生すること' do
-    answer = build(:answer, content: "", user_id: user.id, feedback_id: feedback.id)
+    answer = build(:answer, content: '', user_id: user.id, feedback_id: feedback.id)
     expect(answer).to have(1).errors_on(:content)
   end
 end
