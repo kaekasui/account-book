@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :place, class: Place do
-    name "MyString"
+    name 'MyString'
   end
 end

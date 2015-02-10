@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :breakdown, class: Breakdown do
-    name "MyString"
+    name 'MyString'
   end
 end

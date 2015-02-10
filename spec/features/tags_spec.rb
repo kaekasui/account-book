@@ -11,10 +11,10 @@ feature 'Tag' do
 
   scenario '履歴一覧にラベルが表示されること' do
     visit edit_record_path(id: record.id)
-    fill_in 'record_tagged', with: "ラベル"
-    click_button I18n.t("buttons.update")
+    fill_in 'record_tagged', with: 'ラベル'
+    click_button I18n.t('buttons.update')
 
     visit records_path
-    expect(page).to have_selector(".glyphicon.glyphicon-bookmark[title=ラベル]")
+    expect(page).to have_selector('.glyphicon.glyphicon-bookmark[title=ラベル]')
   end
 end

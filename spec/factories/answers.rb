@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :answer, class: Answer do
-    content "MyText"
+    content 'MyText'
   end
 end

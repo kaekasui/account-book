@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :feedback do
-    content "MyText"
+    content 'MyText'
     checked false
   end
 end
