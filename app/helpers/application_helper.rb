@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def setting_menu?
-    ['categories', 'breakdowns', 'places', 'tags'].include?(controller_name)
+    %w(categories breakdowns places tags).include?(controller_name)
   end
 
   def asterisk
@@ -16,10 +16,10 @@ module ApplicationHelper
   end
 
   def image_icon(type)
-    if type == "TwitterUser"
+    if type == 'TwitterUser'
       image_tag('twitter-icon-blue.png', witdh: '15px', height: '15px')
     else
-      content_tag(:span, "", class: "glyphicon glyphicon-envelope")
+      content_tag(:span, '', class: 'glyphicon glyphicon-envelope')
     end
   end
 end

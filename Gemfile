@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails' #, '4.1.5'
+gem 'rails' # , '4.1.5'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
@@ -97,7 +97,7 @@ group :development, :test do
   gem 'rspec_junit_formatter'
   gem 'launchy'
   gem 'selenium-webdriver'
-  #gem 'rspec-sidekiq'
+  # gem 'rspec-sidekiq'
   gem 'dotenv-rails'
 
   # confirm the mail
