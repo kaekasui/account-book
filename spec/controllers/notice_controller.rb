@@ -8,7 +8,7 @@ RSpec.describe NoticeController, type: :controller do
       sign_in user
     end
 
-    it "ご利用規約が表示できること" do
+    it 'ご利用規約が表示できること' do
       get :terms
       expect(response.status).to eq 200
     end
@@ -19,7 +19,7 @@ RSpec.describe NoticeController, type: :controller do
   end
 
   context 'ユーザーがログインしていない場合' do
-    it "ご利用規約が表示できること" do
+    it 'ご利用規約が表示できること' do
       get :terms
       expect(response.status).to eq 200
     end

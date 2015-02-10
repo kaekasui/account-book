@@ -8,80 +8,80 @@ RSpec.describe TagsController, type: :controller do
       sign_in user
     end
 
-    describe "ラベル一覧画面" do
-      it "ラベルが一覧で表示されること" do
+    describe 'ラベル一覧画面' do
+      it 'ラベルが一覧で表示されること' do
         tag = create(:tag, user_id: user.id)
         get :index
         expect(assigns(:tags)).to eq([tag])
       end
     end
 
-    describe "ラベルの登録" do
-      describe "有効な値を入力した場合" do
-        it "新しいラベルを登録すること" do
-          expect {
-            post :create, { tag: attributes_for(:tag, user_id: user.id), format: :js }
-          }.to change(Tag, :count).by(1)
+    describe 'ラベルの登録' do
+      describe '有効な値を入力した場合' do
+        it '新しいラベルを登録すること' do
+          expect do
+            post :create, tag: attributes_for(:tag, user_id: user.id), format: :js
+          end.to change(Tag, :count).by(1)
         end
 
-        it "登録したラベルが割り当てられること" do
-          post :create, { tag: attributes_for(:tag, user_id: user.id), format: :js }
+        it '登録したラベルが割り当てられること' do
+          post :create, tag: attributes_for(:tag, user_id: user.id), format: :js
           expect(assigns(:tag)).to be_a(Tag)
           expect(assigns(:tag)).to be_persisted
         end
 
-	it "レスポンスのステータスコードが200であること" do
-          post :create, { tag: attributes_for(:tag, user_id: user.id), format: :js }
+        it 'レスポンスのステータスコードが200であること' do
+          post :create, tag: attributes_for(:tag, user_id: user.id), format: :js
           expect(response.status).to eq(200)
-        end 
+        end
       end
 
-      describe "無効な値を入力した場合" do
-        it "ラベルを登録しないこと" do
-          expect {
-            post :create, { tag: attributes_for(:tag, name: "", user_id: user.id), format: :js }
-          }.to change(Tag, :count).by(0)
+      describe '無効な値を入力した場合' do
+        it 'ラベルを登録しないこと' do
+          expect do
+            post :create, tag: attributes_for(:tag, name: '', user_id: user.id), format: :js
+          end.to change(Tag, :count).by(0)
           expect(assigns(:tag)).to be_a_new(Tag)
         end
       end
     end
 
-    describe "ラベルの更新" do
-      describe "有効な値を入力した場合" do
-        it "ラベルを更新すること" do
+    describe 'ラベルの更新' do
+      describe '有効な値を入力した場合' do
+        it 'ラベルを更新すること' do
           tag = create(:tag, user_id: user.id)
-          put :update, { id: tag.id, tag: attributes_for(:tag, name: "new"), format: :js }
+          put :update, id: tag.id, tag: attributes_for(:tag, name: 'new'), format: :js
           tag.reload
-          expect(tag.name).to eq("new")
+          expect(tag.name).to eq('new')
         end
 
-        it "対象のラベルが割り当てられること" do
+        it '対象のラベルが割り当てられること' do
           tag = create(:tag, user_id: user.id)
-          put :update, { id: tag.id, tag: attributes_for(:tag, name: "new"), format: :js }
+          put :update, id: tag.id, tag: attributes_for(:tag, name: 'new'), format: :js
           expect(assigns(:tag)).to eq(tag)
         end
       end
 
-      describe "無効な値を入力した場合" do
-        it "ラベルを更新しないこと" do
+      describe '無効な値を入力した場合' do
+        it 'ラベルを更新しないこと' do
           tag = create(:tag, user_id: user.id)
-          put :update, { id: tag.id, tag: attributes_for(:tag, name: ""), format: :js }
+          put :update, id: tag.id, tag: attributes_for(:tag, name: ''), format: :js
           expect(assigns(:tag)).to eq(tag)
         end
       end
     end
- 
-    describe "ラベルの削除" do
-      it "対象のラベルを削除すること" do
+
+    describe 'ラベルの削除' do
+      it '対象のラベルを削除すること' do
         tag = create(:tag, user_id: user.id)
-        expect {
-          delete :destroy, { id: tag.id }
-        }.to change(Tag, :count).by(-1)
+        expect do
+          delete :destroy, id: tag.id
+        end.to change(Tag, :count).by(-1)
       end
 
-      it "ラベルの一覧画面にリダイレクトすること" do
+      it 'ラベルの一覧画面にリダイレクトすること' do
         tag = create(:tag, user_id: user.id)
-        delete :destroy, { id: tag.id }
+        delete :destroy, id: tag.id
         expect(response).to redirect_to(tags_url)
       end
     end
@@ -92,8 +92,8 @@ RSpec.describe TagsController, type: :controller do
   end
 
   context 'ユーザーがログインしていない場合' do
-    describe "ラベル一覧画面" do
-      it "ログイン画面にリダイレクトすること" do
+    describe 'ラベル一覧画面' do
+      it 'ログイン画面にリダイレクトすること' do
         get :index
         expect(response).to redirect_to(user_session_path)
       end

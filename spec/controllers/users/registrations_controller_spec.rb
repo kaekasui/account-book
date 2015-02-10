@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Users::RegistrationsController do
   before do
-    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
   context 'ログインしていない場合' do
@@ -21,22 +21,22 @@ describe Users::RegistrationsController do
     describe '新規登録' do
       context '有効な値を入力した場合' do
         it 'ユーザーを追加すること' do
-          expect { post :create, { user: attributes_for(:user) } }.to change(User, :count).by(1)
+          expect { post :create, user: attributes_for(:user)  }.to change(User, :count).by(1)
         end
 
         it 'トップ画面にリダイレクトすること' do
-          post :create, { user: attributes_for(:user) }
+          post :create, user: attributes_for(:user)
           expect(response).to redirect_to root_path
         end
       end
 
       context '無効な値を入力した場合' do
         it 'ユーザーを追加しないこと' do
-          expect { post :create, { user: attributes_for(:user, email: "") }}.to change(User, :count).by(0)
+          expect { post :create, user: attributes_for(:user, email: '') }.to change(User, :count).by(0)
         end
 
         it '新規登録画面を再表示すること' do
-          post :create, { user: attributes_for(:user, email: "") }
+          post :create, user: attributes_for(:user, email: '')
           expect(response).to render_template :new
         end
       end
@@ -62,7 +62,7 @@ describe Users::RegistrationsController do
         get :new
         expect(response).to redirect_to root_path
       end
-    end 
+    end
 
     describe 'ユーザー情報の編集画面' do
       it '登録されたユーザー情報を表示すること' do
@@ -79,24 +79,24 @@ describe Users::RegistrationsController do
     describe 'ユーザー情報の編集' do
       context '有効な値を入力した場合' do
         it 'ユーザー情報を更新すること' do
-          patch :update, { user: attributes_for(:edit_user), id: @user.id }
+          patch :update, user: attributes_for(:edit_user), id: @user.id
           expect(@user.password).to eq 'password'
         end
 
         it 'マイページにリダイレクトすること' do
-          patch :update, { user: attributes_for(:edit_user), id: @user.id }
+          patch :update, user: attributes_for(:edit_user), id: @user.id
           expect(response).to redirect_to users_mypage_path
         end
       end
 
       context '無効な値を入力した場合' do
         it 'ユーザー情報を更新しないこと' do
-          patch :update, { user: attributes_for(:edit_user, current_password: "invalid_password")}
-          expect(@user.reload.password).to eq "password"
+          patch :update, user: attributes_for(:edit_user, current_password: 'invalid_password')
+          expect(@user.reload.password).to eq 'password'
         end
 
         it 'ユーザー情報の編集画面を再表示すること' do
-          patch :update, { user: attributes_for(:edit_user, current_password: "invalid_password")}
+          patch :update, user: attributes_for(:edit_user, current_password: 'invalid_password')
           expect(response).to render_template :edit
         end
       end
@@ -104,12 +104,12 @@ describe Users::RegistrationsController do
 
     describe '退会' do
       it 'ステータスが退会ステータスになっていること' do
-        delete :destroy, { cancel: attributes_for(:cancel)}
+        delete :destroy, cancel: attributes_for(:cancel)
         expect(@user.reload.status).to eq 3
       end
 
       it '退会情報が登録されていること' do
-        delete :destroy, { cancel: attributes_for(:cancel)}
+        delete :destroy, cancel: attributes_for(:cancel)
         expect(@user.cancels.blank?).to eq false
       end
     end

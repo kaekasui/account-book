@@ -8,8 +8,8 @@ RSpec.describe Admin::FeedbacksController, type: :controller do
       sign_in user
     end
 
-    describe "一覧画面" do
-      it "フィードバックの一覧が表示されること" do
+    describe '一覧画面' do
+      it 'フィードバックの一覧が表示されること' do
         feedback = create(:feedback, user_id: user.id)
         get :index
         expect(assigns(:feedbacks)).to eq([feedback])

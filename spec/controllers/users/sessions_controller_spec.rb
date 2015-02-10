@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Users::SessionsController do
   before do
-    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
   context 'ログインしていない場合' do
@@ -27,19 +27,19 @@ describe Users::SessionsController do
 
         it 'トップ画面にリダイレクトすること' do
           create(:user, confirmed_at: Time.now)
-          post :create, { user: attributes_for(:user) }
-          expect(response).to redirect_to root_path 
+          post :create, user: attributes_for(:user)
+          expect(response).to redirect_to root_path
         end
       end
 
       context '無効な値を入力した場合' do
         it 'ログインしないこと' do
           user = build(:user, password: nil)
-          expect(sign_in user).to eq [nil, ""]
+          expect(sign_in user).to eq [nil, '']
         end
 
         it 'ログイン画面を表示すること' do
-          post :create, { user: attributes_for(:user, email: "") }
+          post :create, user: attributes_for(:user, email: '')
           expect(response).to render_template :new
         end
       end
@@ -57,7 +57,7 @@ describe Users::SessionsController do
         get :new
         expect(response).to redirect_to root_path
       end
-    end 
+    end
 
     describe 'ログアウト' do
       it 'ログアウトすること' do
