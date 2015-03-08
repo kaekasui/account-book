@@ -8,3 +8,8 @@ build:
     - script:
         name: Set up DB
         code: RAILS_ENV=test bundle exec rake db:schema:load
+  after-steps:
+    - hipchat-notify:
+      token: XZhgAPWJm6aCvXWaWNXVjsbU3Krqkwhsq0AgUbhQ
+      room-id: account-book-pig
+      from-name: ci
