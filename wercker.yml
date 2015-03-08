@@ -10,7 +10,7 @@ build:
         code: RAILS_ENV=test bundle exec rake db:schema:load
   after-steps:
     - hipchat-notify:
-        token: $HIPCHAT_TOKEN
+        token: db92512a071efb662a1cf7be232708
         room-id: 1295388
 deploy:
   steps:
