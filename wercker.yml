@@ -1,0 +1,20 @@
+box: wercker/rvm
+services:
+  - wercker/postgresql
+build:
+  steps:
+    - rvm-use:
+      version: ruby-2.2.1
+    - bundle-install
+    - rails-database-yml
+    - script:
+        name: Set up DB
+        code: RAILS_ENV=test bundle exec rake db:schema:load
+    - script:
+        name: Run specs
+        code: bundle exec rake
+  after-steps:
+    - hipchat-notify:
+      token: db92512a071efb662a1cf7be232708
+      room-id: account-book-pig
+      from-name: ci
