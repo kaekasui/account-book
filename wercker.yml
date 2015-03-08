@@ -10,13 +10,11 @@ build:
         code: RAILS_ENV=test bundle exec rake db:schema:load
   after-steps:
     - hipchat-notify:
-        token: ENV['HIPCHAT_TOKEN']
+        token: $HIPCHAT_TOKEN
         room-id: 1295388
-        from-name: ci
 deploy:
   steps:
     - heroku-deploy:
-        key-name: HEROKU_SSH_KEY
     - script:
         name: heroku maintenance
         code: |-
