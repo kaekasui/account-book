@@ -15,6 +15,7 @@ build:
 deploy:
   steps:
     - heroku-deploy:
+        key-name: HEROKU_SSH_KEY
     - script:
         name: heroku maintenance
         code: |-
