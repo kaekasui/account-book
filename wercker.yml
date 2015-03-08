@@ -13,3 +13,12 @@ build:
         token: ENV['HIPCHAT_TOKEN']
         room-id: 1295388
         from-name: ci
+deploy:
+  steps:
+    - heroku-deploy:
+        key-name: HEROKU_SSH_KEY
+    - script:
+        name: heroku maintenance
+        code: |-
+          heroku maintenance:on --app ENV['APP_NAME']
+          heroku run rake db:migrate --app ENV['APP_NAME']
