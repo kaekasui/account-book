@@ -17,5 +17,4 @@ deploy:
     - heroku-deploy:
         key-name: HEROKU_SSH_KEY
         run: |-
-          maintenance:on --app account-book-pig-test
           rake db:migrate --app account-book-pig-test
