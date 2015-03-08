@@ -12,3 +12,4 @@ build:
     - hipchat-notify:
         token: ENV['HIPCHAT_TOKEN']
         room-id: 1295388
+        from-name: ci
