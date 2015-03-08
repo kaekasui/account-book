@@ -13,8 +13,3 @@ build:
     - script:
         name: Run specs
         code: bundle exec rake
-  after-steps:
-    - hipchat-notify:
-      token: db92512a071efb662a1cf7be232708
-      room-id: account-book-pig
-      from-name: ci
