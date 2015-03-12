@@ -11,7 +11,7 @@
 # -------------------------------------------------------
 
 Airbrake.configure do |config|
-  config.api_key = '81dc3f70f85b15a1b400afe638ff39ad'
+  config.api_key = ENV['ERRBIT_API_KEY']
   config.host    = 'summer-snowflake-errbit.herokuapp.com'
   config.port    = 443
   config.secure  = config.port == 443
