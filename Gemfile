@@ -119,3 +119,6 @@ gem 'sidekiq'
 # for sidekiq dashboard, build-in tools
 gem 'sinatra', require: false
 gem 'slim'
+
+# for errbit and send to hipchat
+gem 'airbrake'
