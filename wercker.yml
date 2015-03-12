@@ -8,6 +8,9 @@ build:
     - script:
         name: Set up DB
         code: RAILS_ENV=test bundle exec rake db:schema:load
+    - script:
+        name: Run specs
+        code: RAILS_ENV=test bundle exec rake spec
   after-steps:
     - hipchat-notify:
         token: db92512a071efb662a1cf7be232708
@@ -18,3 +21,7 @@ deploy:
         key-name: HEROKU_SSH_KEY
         run: |-
           rake db:migrate --app account-book-pig-test
+  after-steps:
+    - hipchat-notify:
+        token: db92512a071efb662a1cf7be232708
+        room-id: 1295388
