@@ -1,1 +1,13 @@
 inherit_from: '.rubocop-todo.yml'
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+# クラスにコメントを残さない
+Documentation:
+  Enabled: false
+
+# クラス、モジュールをcompact形式で記述
+ClassAndModuleChildren:
+  EnforcedStyle: compact
